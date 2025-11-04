@@ -1,6 +1,6 @@
 // --- 1. DEFINIÇÃO DOS TIPOS ---
 
-// Tipos para Pacientes (anteriormente Clients)
+// Tipos para Clientes (anteriormente Clients)
 export interface ClientProps {
   id: string;
   name: string;

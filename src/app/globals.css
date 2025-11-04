@@ -5,7 +5,7 @@
 @theme {
   --font-sans: "Poppins", sans-serif;
 
-  --color-primary: #0d78ec;
+  --color-primary: #a78f69;
 
   --animate-in: fade-in 300ms ease-out both;
   --animate-out: fade-out 300ms ease-in both;
@@ -134,18 +134,18 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #0d78ec;
+  background-color: #a78f69;
   border-radius: 9999px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: #0d78ec;
+  background-color: #a78f69;
 }
 
 /* Para Firefox */
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #0d78ec #fff;
+  scrollbar-color: #a78f69 #fff;
 }
 
 .swiper-slide {

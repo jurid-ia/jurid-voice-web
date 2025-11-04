@@ -48,7 +48,7 @@ export function AuthGuard({ children, fallback }: AuthGuardProps) {
   if (loading) {
     return (
       fallback || (
-        <div className="flex h-screen w-full items-center justify-center gap-2 bg-white">
+        <div className="flex h-screen w-full items-center justify-center gap-2 bg-neutral-200">
           <Image
             src="/logos/icon.png"
             alt=""

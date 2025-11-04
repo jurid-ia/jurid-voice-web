@@ -50,7 +50,7 @@ interface GeneralContextProps {
     React.SetStateAction<ReminderProps | null>
   >;
 
-  // Pacientes (Clients)
+  // Clientes (Clients)
   clients: ClientProps[];
   setClients: React.Dispatch<React.SetStateAction<ClientProps[]>>;
   clientsFilters: FetchSimpleRequest;
@@ -108,7 +108,7 @@ export const GeneralContextProvider = ({ children }: ProviderProps) => {
   const [selectedReminder, setSelectedReminder] =
     useState<ReminderProps | null>(null);
 
-  // --- Estados para Pacientes (Clients) ---
+  // --- Estados para Clientes (Clients) ---
   const [clients, setClients] = useState<ClientProps[]>([]);
   const [isGettingClients, setIsGettingClients] = useState(true);
   const [clientsFilters, setClientsFilters] = useState<FetchSimpleRequest>({
@@ -266,7 +266,7 @@ export const GeneralContextProvider = ({ children }: ProviderProps) => {
         selectedReminder,
         setSelectedReminder,
 
-        // Pacientes
+        // Clientes
         clients,
         setClients,
         clientsFilters,

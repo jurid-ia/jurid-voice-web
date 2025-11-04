@@ -33,7 +33,7 @@ export function GeneralClientsTable() {
   const [sortColumn, setSortColumn] = useState<SortableColumn>(null);
 
   const GeneralClientsColumns = [
-    { key: "NAME", label: "Nome do Paciente", sortable: true },
+    { key: "NAME", label: "Nome do Cliente", sortable: true },
     { key: "BIRTH_DATE", label: "Data de Nascimento", sortable: true },
     { key: "DESCRIPTION", label: "Descrição", sortable: true },
     { key: "ACTIONS", label: "Ações", sortable: false },
@@ -144,7 +144,7 @@ export function GeneralClientsTable() {
                       className="h-24"
                     >
                       <div className="flex w-full items-center justify-center">
-                        Nenhum Paciente encontrado.
+                        Nenhum Cliente encontrado.
                       </div>
                     </TableCell>
                   </TableRow>
