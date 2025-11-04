@@ -55,7 +55,7 @@ export function Header() {
           const recordingId = pathSegments[2];
 
           breadcrumbs.push({
-            label: selectedRecording?.name || "Consulta",
+            label: selectedRecording?.name || "Reunião",
             href: `/clients/${clientId}/${recordingId}`,
             isActive: true,
           });

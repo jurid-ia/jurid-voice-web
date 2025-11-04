@@ -144,7 +144,7 @@ export function SelectedClientTable() {
                       className="h-24"
                     >
                       <div className="flex w-full items-center justify-center">
-                        Nenhuma consulta encontrada.
+                        Nenhuma reunião encontrada.
                       </div>
                     </TableCell>
                   </TableRow>

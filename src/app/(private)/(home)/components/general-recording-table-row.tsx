@@ -36,7 +36,7 @@ export function GeneralRecordingTableItem({ recording }: Props) {
       </TableCell>
       <TableCell className="py-0.5 text-start text-sm font-medium whitespace-nowrap">
         {recording.type === "CLIENT"
-          ? "Consulta"
+          ? "Reunião"
           : recording.type === "STUDY"
             ? "Estudos"
             : recording.type === "REMINDER"
