@@ -66,7 +66,7 @@ export function AudioRecorder({
 
   const derivedTitle = (() => {
     const labelByType: Record<RecordingType, string> = {
-      CLIENT: "Gravação do Paciente",
+      CLIENT: "Gravação do Cliente",
       REMINDER: "Lembrete",
       STUDY: "Estudo",
       OTHER: "Gravação",
@@ -120,7 +120,7 @@ export function AudioRecorder({
   const handleSaveRecording = async () => {
     if (payload.type === "CLIENT") {
       if (!payload.clientId) {
-        toast.error("Selecione um paciente.");
+        toast.error("Selecione um cliente.");
         return;
       }
     }
