@@ -10,6 +10,14 @@ const config = {
     "./app/**/*.{js,jsx,ts,tsx,css,md,mdx}",
     "./src/**/*.{js,jsx,ts,tsx,md,mdx}",
   ],
+  theme: {
+    extend: {
+      transitionProperty: {
+        height: "height",
+        width: "width",
+      },
+    },
+  },
   plugins: [tailwindcssAnimate, aspectRatio],
 } satisfies Config;
 export default config;
