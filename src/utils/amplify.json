@@ -6,8 +6,8 @@
   "oauth": {
     "domain": "sa-east-1ozz9xr2ra.auth.sa-east-1.amazoncognito.com",
     "scope": ["email", "openid"],
-    "redirectSignIn": "http://localhost:3000",
-    "redirectSignOut": "http://localhost:3000",
+    "redirectSignIn": "https://voice.juridia.com.br",
+    "redirectSignOut": "https://voice.juridia.com.br",
     "responseType": "code"
   },
   "federationTarget": "COGNITO_USER_POOLS",
