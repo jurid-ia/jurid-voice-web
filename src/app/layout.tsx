@@ -18,7 +18,7 @@ const poppins = Poppins({
 
 export const metadata = {
   title: {
-    default: "JuridIA Voice",
+    default: process.env.PROJECT_NAME || "JuridIA Voice",
   },
   icons: {
     icon: "/icon.png",

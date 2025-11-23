@@ -19,30 +19,32 @@ export default function Privacy() {
         />
       </div>
       <span className="mx-auto w-max text-lg font-bold">
-        POLÍTICA DE PRIVACIDADE - HEALTH VOICE
+        POLÍTICA DE PRIVACIDADE - {process.env.PROJECT_NAME || "JURIDIA VOICE"}
       </span>
       <span>
         Esta Política de Privacidade descreve como a Executivo{"'"}s Digital (
         {"'"}
         Nós{"'"},{"'"}Nosso{"'"}, {"'"}Nossa{"'"}), desenvolvedora do aplicativo{" "}
-        {"'"}Health Voice{"'"}({"'"}Aplicativo{"'"}), coleta, utiliza, armazena,
-        protege e, em raras ocasiões, compartilha suas informações pessoais, bem
-        como a forma como você, Usuário ({"'"}Você{"'"}, {"'"}Seu{"'"}, {"'"}Sua
+        {"'"}
+        {process.env.PROJECT_NAME || "JuridIA Voice"}
+        {"'"}({"'"}Aplicativo{"'"}), coleta, utiliza, armazena, protege e, em
+        raras ocasiões, compartilha suas informações pessoais, bem como a forma
+        como você, Usuário ({"'"}Você{"'"}, {"'"}Seu{"'"}, {"'"}Sua
         {"'"}), pode exercer seus direitos como titular de dados sob a Lei Geral
         de Proteção de Dados Pessoais (Lei nº 13.709/2018 – LGPD) e outras
         legislações aplicáveis.
       </span>
       <span>
         A presente Política deve ser lida em conjunto com os Termos de Uso do
-        Health Voice. Ao utilizar o Aplicativo, você concorda com as práticas
-        descritas nesta Política de Privacidade.
+        {process.env.PROJECT_NAME || "JuridIA Voice"}. Ao utilizar o Aplicativo,
+        você concorda com as práticas descritas nesta Política de Privacidade.
       </span>
       <span className="font-semibold">
         1. NOSSO COMPROMISSO COM SUA PRIVACIDADE E A LGPD
       </span>
       <span>
         A Executivo{"'"}s Digital está profundamente comprometida com a proteção
-        da sua privacidade e de seus dados pessoais. Desenvolvemos o Health
+        da sua privacidade e de seus dados pessoais. Desenvolvemos o JuridIA
         Voice com a privacidade em mente (Privacy by Design), implementando
         medidas técnicas e organizacionais rigorosas para garantir a segurança e
         a conformidade com a LGPD e o Código de Ética Médica.
@@ -51,10 +53,11 @@ export default function Privacy() {
         2. QUAIS DADOS COLETAMOS E PARA QUAIS FINALIDADES?
       </span>
       <span>
-        A coleta de dados pelo Health Voice se divide em duas categorias
-        principais: Dados de Cadastro e Uso da Plataforma (tratados por nós como
-        Controlador) e Conteúdo Gerado pelo Usuário (no qual atuamos como
-        Operador para o Usuário, que é o Controlador).
+        A coleta de dados pelo {process.env.PROJECT_NAME || "JuridIA Voice"} se
+        divide em duas categorias principais: Dados de Cadastro e Uso da
+        Plataforma (tratados por nós como Controlador) e Conteúdo Gerado pelo
+        Usuário (no qual atuamos como Operador para o Usuário, que é o
+        Controlador).
       </span>
       <span className="font-semibold">
         2.1. Dados de Cadastro e Uso da Plataforma (Dados Pessoais Comuns)
@@ -109,13 +112,13 @@ export default function Privacy() {
         2.2. Conteúdo Gerado pelo Usuário (Dados Pessoais Sensíveis – Saúde)
       </span>
       <span>
-        Esta categoria refere-se aos áudios de consultas, transcrições e
+        Esta categoria refere-se aos áudios de reuniões, transcrições e
         anotações gravadas e geradas por você dentro do Aplicativo.
       </span>
       <span className="font-semibold">Dados:</span>
       <span className="pl-4">
-        Áudios de Consultas: Gravações de voz de interações profissionais
-        (médico-paciente, reuniões etc.).
+        Áudios de Reuniões: Gravações de voz de interações profissionais
+        (advogado-cliente, reuniões etc.).
       </span>
       <span className="pl-4">
         Transcrições de Áudio: Texto gerado a partir do processamento dos
@@ -132,7 +135,8 @@ export default function Privacy() {
       </span>
       <span className="font-semibold">Finalidade:</span>
       <span>
-        A única finalidade para a qual o Health Voice processa este tipo de dado
+        A única finalidade para a qual o{" "}
+        {process.env.PROJECT_NAME || "JuridIA Voice"} processa este tipo de dado
         é para prover a funcionalidade de gravação, transcrição e organização
         conforme as instruções e comandos do Usuário.
       </span>
@@ -142,7 +146,7 @@ export default function Privacy() {
         O Usuário, na qualidade de profissional de saúde ou responsável pela
         interação, é o Controlador dos dados contidos nos áudios, transcrições e
         anotações. Ele é EXCLUSIVAMENTE responsável por obter o CONSENTIMENTO
-        explícito e informado dos titulares dos dados (pacientes e/ou demais
+        explícito e informado dos titulares dos dados (clientes e/ou demais
         interlocutores) para a gravação, armazenamento e tratamento desses dados
         de saúde, conforme o Art. 11, I da LGPD. Além disso, outras bases legais
         para tratamento de dados sensíveis, como o Art. 11, II, alínea {"'"}f

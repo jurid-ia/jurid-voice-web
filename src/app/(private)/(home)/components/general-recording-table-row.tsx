@@ -2,7 +2,6 @@
 import { ClientProps, RecordingDetailsProps } from "@/@types/general-client";
 import { TableCell, TableRow } from "@/components/ui/blocks/table";
 import { useGeneralContext } from "@/context/GeneralContext";
-import { cn } from "@/utils/cn";
 import { ChevronRight } from "lucide-react";
 import moment from "moment";
 import { useRouter } from "next/navigation";
@@ -49,29 +48,44 @@ export function GeneralRecordingTableItem({ recording }: Props) {
         <div className="flex items-center justify-end">
           <button
             onClick={() => {
-              if (recording.client === null) return;
-              setSelectedClient(recording.client as ClientProps);
-              setSelectedRecording(recording);
-              setRecordingsFilters({
-                ...recordingsFilters,
-                clientId: recording.client?.id as string,
-              });
-              router.push(`/clients/${recording.client?.id}/${recording.id}`);
+              if (recording.type === "CLIENT") {
+                setSelectedClient(recording.client as ClientProps);
+                setSelectedRecording(recording);
+                setRecordingsFilters({
+                  ...recordingsFilters,
+                  clientId: recording.client?.id as string,
+                });
+                router.push(`/clients/${recording.client?.id}/${recording.id}`);
+              } else if (recording.type === "STUDY") {
+                setSelectedRecording(recording);
+                setRecordingsFilters({
+                  ...recordingsFilters,
+                  clientId: undefined,
+                  type: "STUDY",
+                });
+                router.push(`/studies/${recording.id}`);
+              } else if (recording.type === "OTHER") {
+                setSelectedRecording(recording);
+                setRecordingsFilters({
+                  ...recordingsFilters,
+                  clientId: undefined,
+                  type: "OTHER",
+                });
+                router.push(`/others/${recording.id}`);
+              } else if (recording.type === "REMINDER") {
+                setSelectedRecording(recording);
+                setRecordingsFilters({
+                  ...recordingsFilters,
+                  clientId: undefined,
+                  type: "REMINDER",
+                });
+                router.push(`/reminders/${recording.id}`);
+              }
             }}
-            className={cn(
-              "bg-primary group flex items-center gap-2 rounded-3xl px-2 py-1 text-sm text-white",
-              recording.client === null && "cursor-not-allowed opacity-50",
-              recording.client !== null &&
-                "transition ease-in-out hover:shadow-md",
-            )}
+            className="bg-primary group flex items-center gap-2 rounded-3xl px-2 py-1 text-sm text-white transition ease-in-out hover:shadow-md"
           >
             <span>Acessar</span>
-            <ChevronRight
-              className={cn(
-                "h-4 transition ease-in-out",
-                recording.client !== null && "group-hover:translate-x-1",
-              )}
-            />
+            <ChevronRight className="h-4 transition ease-in-out group-hover:translate-x-1" />
           </button>
         </div>
       </TableCell>

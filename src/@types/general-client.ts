@@ -19,6 +19,19 @@ export interface ReminderProps {
   time: string;
   userId: string;
   notificationSended: boolean;
+  recording: {
+    audioUrl: string;
+    createdAt: string;
+    description: string;
+    duration: string;
+    id: string;
+    name: string;
+    reminderId: string;
+    summary: string | null;
+    transcription: string;
+    type: string;
+    userId: string;
+  };
 }
 
 // Tipos para Gravações
@@ -59,9 +72,15 @@ export interface FetchRecordingsRequest {
   page: number;
   clientId?: string; // Mantido como clientId conforme especificação da API
   reminderId?: string; // Mantido como reminderId conforme especificação da API
+  query?: string;
+  sortBy?: "NAME" | "CREATED_AT" | "DURATION" | "TYPE" | null;
+  sortDirection?: "ASC" | "DESC" | null;
   type?: "CLIENT" | "REMINDER" | "OTHER" | "STUDY";
 }
 
-export interface FetchSimpleRequest {
+export interface FetchClientRequest {
   page: number;
+  query?: string;
+  sortBy?: "NAME" | "BIRTH_DATE" | "DESCRIPTION" | null;
+  sortDirection?: "ASC" | "DESC" | null;
 }

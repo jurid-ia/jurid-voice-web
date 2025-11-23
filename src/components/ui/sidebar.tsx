@@ -23,9 +23,9 @@ export function Sidebar() {
     <>
       <div
         className={cn(
-          "fixed top-0 left-0 z-[9999] h-screen w-[248px] -translate-x-full border-r border-r-stone-700 transition duration-300 ease-in xl:w-[calc(100%-450px)]",
+          "fixed top-0 left-0 z-[9999] h-screen w-[248px] -translate-x-full border-r border-r-neutral-300 transition duration-300 ease-in xl:w-[calc(100%-450px)]",
           !mobileMenu && "transparent pointer-events-none",
-          mobileMenu && "translate-x-0 bg-neutral-200 backdrop-blur",
+          mobileMenu && "bg-primary translate-x-0 backdrop-blur",
         )}
       >
         <div className="px-4 py-4">
@@ -50,7 +50,7 @@ export function Sidebar() {
                   "_blank",
                 )
               }
-              className="border-light text-light flex h-10 items-center gap-2 rounded-3xl border px-4 font-semibold"
+              className="border-light text-light flex h-10 items-center gap-2 rounded-3xl border border-white px-4 font-semibold text-white"
             >
               <Image
                 src="/icons/google-login.png"
@@ -61,7 +61,15 @@ export function Sidebar() {
               />
               Baixar Play Store
             </button>
-            <button className="border-primary bg-primary text-light flex h-10 items-center gap-2 rounded-3xl border px-4 font-semibold">
+            <button
+              onClick={() =>
+                window.open(
+                  "https://apps.apple.com/us/app/juridia-voice/id6754660537",
+                  "_blank",
+                )
+              }
+              className="text-light flex h-10 items-center gap-2 rounded-3xl border border-white px-4 font-semibold text-white"
+            >
               <Image
                 src="/icons/apple-login.png"
                 alt=""
@@ -72,17 +80,27 @@ export function Sidebar() {
               Baixar App Store
             </button>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="bg-primary/10 text-primary hover:bg-primary/20 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full p-2 transition">
+          <div className="ml-auto flex items-center gap-2">
+            <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20">
               <Bell className="h-4" />
             </div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <div className="bg-primary/10 text-primary hover:bg-primary/20 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full p-2 transition">
+                <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20">
                   <User className="h-4" />
                 </div>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="z-[9999] border-none bg-white text-black">
+              <DropdownMenuContent
+                align="end"
+                className="z-[9999] border-none bg-white text-black"
+              >
+                <DropdownMenuItem
+                  onSelect={() =>
+                    window.open("https://wa.me/5541997819114", "_blank")
+                  }
+                >
+                  Falar com Suporte
+                </DropdownMenuItem>
                 <DropdownMenuItem
                   onSelect={() => {
                     cookies.remove(
