@@ -5,7 +5,6 @@ interface SidebarState {
   mobileMenu: boolean;
   setMobileMenu: (value: boolean) => void;
 }
-
 export const useSidebar = create<SidebarState>()(
   persist(
     (set) => ({
