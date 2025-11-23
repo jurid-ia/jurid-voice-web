@@ -5,7 +5,6 @@ import { useGeneralContext } from "@/context/GeneralContext";
 import { cn } from "@/utils/cn";
 import { buildRowsFromSpeeches } from "@/utils/speeches";
 import { useMemo } from "react";
-
 export function Transcription() {
   const { selectedRecording } = useGeneralContext();
 
