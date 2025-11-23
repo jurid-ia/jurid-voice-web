@@ -9,7 +9,6 @@ import { Toaster } from "react-hot-toast";
 import "swiper/css";
 import "./globals.css";
 moment.locale("pt-br");
-
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
