@@ -1,5 +1,6 @@
 "use client";
 
+import { RequestTranscription } from "@/components/ui/request-transcription";
 import { useGeneralContext } from "@/context/GeneralContext";
 import { cn } from "@/utils/cn";
 import { buildRowsFromSpeeches } from "@/utils/speeches";
@@ -41,10 +42,24 @@ export function Transcription() {
             </span>
           </div>
         ))
+      ) : selectedRecording.transcription ? (
+        <div className="flex flex-col gap-4 px-10">
+          <p className="text-primary m-auto w-full text-justify text-base font-extrabold">
+            Transcrição Completa
+          </p>
+          <p className="m-auto w-full text-justify text-base font-medium text-black">
+            {selectedRecording.transcription}
+          </p>
+        </div>
       ) : (
-        <h1 className="text-primary m-auto w-full text-center text-3xl font-extrabold md:w-max">
-          Transcrição não disponível
-        </h1>
+        <>
+          <h1 className="text-primary m-auto w-full text-center text-3xl font-extrabold md:w-max">
+            Transcrição não disponível
+          </h1>
+          <div className="prose prose-sm prose-h1:text-center prose-h1:text-primary prose-h2:text-primary w-full max-w-none">
+            <RequestTranscription />
+          </div>
+        </>
       )}
     </div>
   );
