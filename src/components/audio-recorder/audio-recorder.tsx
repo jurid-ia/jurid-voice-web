@@ -137,8 +137,15 @@ export function AudioRecorder({
       console.log("response", response);
 
       if (response?.status >= 400) {
-        resetFlow();
-        throw new Error("Erro ao salvar gravação");
+        let errorMessage = "Erro ao salvar gravação. Tente novamente.";
+        if (response?.body?.message) {
+          errorMessage = response.body.message;
+        }
+        setError(errorMessage);
+        toast.error(errorMessage);
+        setCurrentStep("preview"); // Return to preview to allow retry
+        // DO NOT call resetFlow() - keep the modal open with the recording
+        return;
       }
 
       toast.success("Gravação salva com sucesso!");
@@ -149,9 +156,15 @@ export function AudioRecorder({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Erro ao processar gravação:", error);
-      toast.error(error.message || "Erro ao salvar gravação");
-      setCurrentStep("idle");
-      resetFlow();
+      let errorMessage = "Erro ao salvar gravação. Tente novamente.";
+      if (error.message) {
+        errorMessage = error.message;
+      }
+
+      setError(errorMessage);
+      toast.error(errorMessage);
+      setCurrentStep("preview"); // Return to preview to allow retry
+      // DO NOT call resetFlow() - keep the modal open with the recording
     }
   };
 
@@ -246,10 +259,12 @@ export function AudioRecorder({
           errorMessage = "Permissão negada. Permita o acesso ao microfone.";
         } else if (error.name === "NotFoundError") {
           errorMessage = "Nenhum microfone encontrado.";
+        } else if (error.message) {
+          errorMessage = error.message; // Custom error messages
         }
 
         setError(errorMessage);
-        setCurrentStep("idle");
+        setCurrentStep("save-dialog");
       }
     }
   };
