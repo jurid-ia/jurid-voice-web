@@ -1,7 +1,6 @@
 "use client";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
-
 export default function Terms() {
   return (
     <div className="mx-auto flex h-full w-full max-w-[1280px] flex-col gap-2 p-2 pb-8 text-sm text-black">
