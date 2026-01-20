@@ -172,7 +172,7 @@ function LoadingScreen({ fallback }: { fallback?: React.ReactNode }) {
             initial={{ scale: 0.8, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-primary/40 ring-primary/40 relative flex h-32 w-32 items-center justify-center rounded-3xl shadow-2xl ring-1 backdrop-blur-md sm:h-40 sm:w-40"
+            className="relative flex h-32 w-32 items-center justify-center rounded-lg bg-white/40 shadow-2xl ring-1 ring-white/60 backdrop-blur-md sm:h-40 sm:w-40"
           >
             <Image
               src="/logos/icon.png"
