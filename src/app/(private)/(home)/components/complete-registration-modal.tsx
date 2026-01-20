@@ -1,24 +1,22 @@
 "use client";
 
+import Field from "@/app/(public)/login/components/field";
+import {
+    Form,
+    FormField,
+    FormItem,
+    FormMessage
+} from "@/components/ui/blocks/form";
 import { useSession } from "@/context/auth";
 import { cn } from "@/utils/cn";
 import { maskCpfCnpj, maskPhone } from "@/utils/masks";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, CheckCircle2, User, Phone, Hash } from "lucide-react";
+import { CheckCircle2, Hash, Loader2, Phone, User } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import z from "zod";
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/blocks/form";
-import Field from "@/app/(public)/login/components/field";
 import toast from "react-hot-toast";
-import Image from "next/image";
+import z from "zod";
 
 const FormSchema = z.object({
     name: z.string().min(3, "O nome deve ter pelo menos 3 caracteres"),
@@ -103,12 +101,12 @@ export function CompleteRegistrationModal() {
             <div className="relative w-full max-w-5xl overflow-hidden rounded-3xl bg-white shadow-2xl flex flex-col md:flex-row min-h-[600px] animate-in zoom-in-95 slide-in-from-bottom-5 duration-500">
 
                 {/* Left Side: Image Carousel */}
-                <div className="relative hidden w-1/2 md:block overflow-hidden bg-blue-900">
-                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-blue-900/90 via-blue-900/20 to-transparent" />
+                <div className="relative hidden w-1/2 md:block overflow-hidden bg-black">
+                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
                     <div className="absolute top-10 left-10 z-20">
                         <div className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md border border-white/20">
-                            <div className="h-2 w-2 rounded-full bg-blue-400 animate-pulse shadow-[0_0_8px_rgba(96,165,250,0.8)]" />
+                            <div className="h-2 w-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(96,165,250,0.8)]" />
                             <span className="text-xs font-semibold text-white tracking-wide">Plataforma Segura</span>
                         </div>
                     </div>
@@ -141,7 +139,7 @@ export function CompleteRegistrationModal() {
                                 key={i}
                                 className={cn(
                                     "h-1 rounded-full transition-all duration-300",
-                                    i === currentImageIndex ? "w-8 bg-blue-400" : "w-2 bg-white/30"
+                                    i === currentImageIndex ? "w-8 bg-primary" : "w-2 bg-white/30"
                                 )}
                             />
                         ))}
@@ -185,7 +183,7 @@ export function CompleteRegistrationModal() {
                                                 label="Nome"
                                                 name="name"
                                                 autoComplete="name"
-                                                Svg={<User className="text-blue-400" size={20} />}
+                                                Svg={<User className="text-primary" size={20} />}
                                                 value={field.value}
                                                 onChange={field.onChange}
                                                 required
@@ -207,7 +205,7 @@ export function CompleteRegistrationModal() {
                                                 name="tel"
                                                 autoComplete="tel"
                                                 inputMode="tel"
-                                                Svg={<Phone className="text-blue-400" size={20} />}
+                                                Svg={<Phone className="text-primary" size={20} />}
                                                 value={maskPhone(field.value)}
                                                 onChange={(e: any) => field.onChange(e.target.value)}
                                                 required
@@ -229,7 +227,7 @@ export function CompleteRegistrationModal() {
                                                 label="CPF ou CNPJ"
                                                 name="cpf"
                                                 inputMode="numeric"
-                                                Svg={<Hash className="text-blue-400" size={20} />}
+                                                Svg={<Hash className="text-primary" size={20} />}
                                                 value={field.value}
                                                 onChange={(e: any) =>
                                                     field.onChange(maskCpfCnpj(e.target.value))
@@ -248,7 +246,7 @@ export function CompleteRegistrationModal() {
                                         type="submit"
                                         disabled={isLoading || !form.formState.isValid}
                                         className={cn(
-                                            "group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 py-4 text-sm font-bold text-white shadow-xl shadow-blue-500/20 transition-all duration-300 hover:shadow-blue-500/40 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 disabled:pointer-events-none flex items-center justify-center gap-2",
+                                            "group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-primary to-black py-4 text-sm font-bold text-white shadow-xl shadow-primary/20 transition-all duration-300 hover:shadow-primary/40 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 disabled:pointer-events-none flex items-center justify-center gap-2",
                                         )}
                                     >
                                         <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
@@ -266,7 +264,7 @@ export function CompleteRegistrationModal() {
                                         )}
                                     </button>
                                     <p className="mt-6 text-center text-xs text-slate-400 font-medium">
-                                        Ao continuar, você aceita nossos <span className="text-blue-600 cursor-pointer hover:underline font-semibold">Termos de Uso</span> e <span className="text-blue-600 cursor-pointer hover:underline font-semibold">Política de Privacidade</span>.
+                                        Ao continuar, você aceita nossos <span className="text-primary cursor-pointer hover:underline font-semibold">Termos de Uso</span> e <span className="text-primary cursor-pointer hover:underline font-semibold">Política de Privacidade</span>.
                                     </p>
                                 </div>
                             </form>

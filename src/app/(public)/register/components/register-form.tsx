@@ -139,7 +139,7 @@ const RegisterForm = () => {
                                 label="Nome"
                                 name="name"
                                 autoComplete="name"
-                                Svg={<User className="text-blue-400" size={20} />}
+                                Svg={<User className="text-primary" size={20} />}
                                 value={field.value}
                                 onChange={field.onChange}
                                 required
@@ -162,7 +162,7 @@ const RegisterForm = () => {
                                 type="email"
                                 autoComplete="email"
                                 inputMode="email"
-                                Svg={<Mail className="text-blue-400" size={20} />}
+                                Svg={<Mail className="text-primary" size={20} />}
                                 value={field.value}
                                 onChange={field.onChange}
                                 required
@@ -185,7 +185,7 @@ const RegisterForm = () => {
                                     name="tel"
                                     autoComplete="tel"
                                     inputMode="tel"
-                                    Svg={<Phone className="text-blue-400" size={20} />}
+                                    Svg={<Phone className="text-primary" size={20} />}
                                     value={maskPhone(field.value)}
                                     onChange={(e: any) => field.onChange(e.target.value)}
                                     required
@@ -206,7 +206,7 @@ const RegisterForm = () => {
                                     label="CPF ou CNPJ"
                                     name="cpf"
                                     inputMode="numeric"
-                                    Svg={<Hash className="text-blue-400" size={20} />}
+                                    Svg={<Hash className="text-primary" size={20} />}
                                     value={field.value}
                                     onChange={(e: any) =>
                                         field.onChange(maskCpfCnpj(e.target.value))
@@ -232,7 +232,7 @@ const RegisterForm = () => {
                                     label="Senha"
                                     name="new-password"
                                     autoComplete="new-password"
-                                    Svg={<LockIcon className="text-blue-400" size={20} />}
+                                    Svg={<LockIcon className="text-primary" size={20} />}
                                     type={showPassword ? "text" : "password"}
                                     value={field.value}
                                     onChange={field.onChange}
@@ -263,7 +263,7 @@ const RegisterForm = () => {
                                     label="Confirmar Senha"
                                     name="confirm-password"
                                     autoComplete="new-password"
-                                    Svg={<LockIcon className="text-blue-400" size={20} />}
+                                    Svg={<LockIcon className="text-primary" size={20} />}
                                     type={showRememberPassword ? "text" : "password"}
                                     value={field.value}
                                     onChange={field.onChange}
@@ -294,7 +294,7 @@ const RegisterForm = () => {
                 <button
                     onClick={handleNext}
                     disabled={isCreating}
-                    className="w-full rounded-xl bg-primary px-4 py-3 font-semibold text-white shadow-sm transition hover:bg-blue-600 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full rounded-xl bg-primary px-4 py-3 font-semibold text-white shadow-sm transition hover:bg-primary disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                     {isCreating ? (
                         <>

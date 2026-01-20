@@ -30,11 +30,11 @@ export function SelectedPatientTableItem({ recording }: Props) {
     >
       <TableCell className="w-[40%] py-4 pl-6 text-start">
         <div className="flex items-center gap-4">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 shadow-md shadow-sky-500/20 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-sky-500/30">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary shadow-md shadow-primary/20 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-primary/30">
             <ContactsIcon className="h-5 w-5 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="text-sm font-bold text-gray-900 transition-colors group-hover:text-blue-600">
+            <span className="text-sm font-bold text-gray-900 transition-colors group-hover:text-primary">
               {recording.name || "Sem título"}
             </span>
             <span className="text-xs font-medium text-gray-500">
@@ -47,7 +47,7 @@ export function SelectedPatientTableItem({ recording }: Props) {
         {moment(recording.createdAt).format("HH:mm")}
       </TableCell>
       <TableCell className="py-4 text-start">
-        <span className="inline-flex items-center rounded-lg bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600 group-hover:bg-blue-50 group-hover:text-blue-700">
+        <span className="inline-flex items-center rounded-lg bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600 group-hover:bg-blue-50 group-hover:text-black">
           {recording.duration || "00:00"}
         </span>
       </TableCell>

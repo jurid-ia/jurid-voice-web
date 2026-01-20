@@ -2,12 +2,12 @@
 import { AudioRecorder } from "@/components/audio-recorder/audio-recorder";
 import { CustomPagination } from "@/components/ui/blocks/custom-pagination";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
 } from "@/components/ui/blocks/table";
 import { useGeneralContext } from "@/context/GeneralContext";
 import { cn } from "@/utils/cn";
@@ -148,7 +148,7 @@ export function GeneralRecordingsTable() {
                         className="h-24"
                       >
                         <div className="flex items-start text-start">
-                          <AudioRecorder buttonClassName="rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-sky-500/25 transition-all hover:shadow-sky-500/40 active:scale-95 mx-auto" />
+                          <AudioRecorder buttonClassName="rounded-lg bg-gradient-to-r from-primary to-primary px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40 active:scale-95 mx-auto" />
                         </div>
                       </TableCell>
                     </TableRow>

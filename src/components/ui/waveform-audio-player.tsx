@@ -206,7 +206,7 @@ export function WaveformAudioPlayer({
               onClick={() => handleSeek(index)}
               className={cn(
                 "w-1 shrink-0 cursor-pointer rounded-full transition-all duration-100",
-                isActive ? "bg-blue-600" : "bg-blue-200 hover:bg-blue-400",
+                isActive ? "bg-primary" : "bg-primary/10 hover:bg-primary",
               )}
               style={{
                 height: `${height}%`,
@@ -227,7 +227,7 @@ export function WaveformAudioPlayer({
         <button
           onClick={handleRestart}
           className={cn(
-            "flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-gray-700 transition-all hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none",
+            "flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-gray-700 transition-all hover:bg-gray-100 focus:ring-2 focus:ring-primary focus:outline-none",
             currentTime > 0.5 ? "opacity-100" : "pointer-events-none opacity-0",
           )}
         >
@@ -237,7 +237,7 @@ export function WaveformAudioPlayer({
         {/* Play/Pause Button */}
         <button
           onClick={togglePlay}
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-gray-700 transition-colors hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-gray-700 transition-colors hover:bg-gray-100 focus:ring-2 focus:ring-primary focus:outline-none"
         >
           {isPlaying ? (
             <Pause size={20} fill="currentColor" className="text-gray-600" />

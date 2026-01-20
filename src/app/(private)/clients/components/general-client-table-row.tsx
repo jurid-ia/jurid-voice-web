@@ -2,10 +2,10 @@
 import { ClientProps } from "@/@types/general-client";
 import { TableCell, TableRow } from "@/components/ui/blocks/table";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
 } from "@/components/ui/blocks/tooltip";
 import { useGeneralContext } from "@/context/GeneralContext";
 import { cn } from "@/utils/cn";
@@ -44,7 +44,7 @@ export function GeneralClientTableItem({ client }: Props) {
     >
       <TableCell className="py-4 pl-4 text-start">
         <div className="flex items-center gap-4">
-          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-blue-600 text-white shadow-md shadow-blue-500/20 transition-transform group-hover:scale-105">
+          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary text-white shadow-md shadow-primary/20 transition-transform group-hover:scale-105">
             <span className="text-sm font-bold">
               {client.name?.slice(0, 2).toUpperCase()}
             </span>

@@ -5,15 +5,15 @@ import { Prompt } from "@/components/chatPopup/types";
 import { useSession } from "@/context/auth";
 import { cn } from "@/utils/cn";
 import {
-  ArrowLeft,
-  Camera,
-  FileText,
-  Lightbulb,
-  Maximize2,
-  Minimize2,
-  PanelLeftOpen,
-  Plus,
-  Stethoscope,
+    ArrowLeft,
+    Camera,
+    FileText,
+    Lightbulb,
+    Maximize2,
+    Minimize2,
+    PanelLeftOpen,
+    Plus,
+    Stethoscope,
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -131,7 +131,7 @@ export default function ChatBusiness() {
     }
   };
   const styles = {
-    iconGradient: "bg-gradient-to-br from-sky-500 to-blue-600",
+    iconGradient: "bg-gradient-to-br from-primary to-primary",
     border: "border-sky-200",
   };
 
@@ -187,7 +187,7 @@ export default function ChatBusiness() {
           <div className="lg:hidden">
             <button
               onClick={handleNewChat}
-              className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-sky-500/25 transition-all hover:shadow-sky-500/40 active:scale-95"
+              className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40 active:scale-95"
             >
               <Plus className="h-4 w-4" />
               Nova Conversa

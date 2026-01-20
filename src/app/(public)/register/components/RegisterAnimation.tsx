@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { Bot, Check, Database, Fingerprint, Lock, ShieldCheck, Sparkles } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { Bot, Check, Database, Fingerprint, Lock, Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const RegisterAnimation = () => {
     const [activeStep, setActiveStep] = useState(0);
@@ -17,15 +17,15 @@ const RegisterAnimation = () => {
             icon: Fingerprint,
             title: "Autenticação Segura",
             desc: "Validação Biométrica Digital",
-            color: "text-blue-400",
-            bg: "bg-blue-500/20"
+            color: "text-primary",
+            bg: "bg-primary/20"
         },
         {
             icon: Database,
             title: "Sincronização Cloud",
             desc: "Ambiente Protegido HIPAA",
             color: "text-indigo-400",
-            bg: "bg-indigo-500/20"
+            bg: "bg-black/20"
         },
         {
             icon: Bot,
@@ -46,7 +46,7 @@ const RegisterAnimation = () => {
                     scale: [1, 1.2, 1]
                 }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl pointer-events-none"
+                className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-primary/20 blur-3xl pointer-events-none"
             />
 
             {/* Header */}
@@ -111,7 +111,7 @@ const RegisterAnimation = () => {
                                             {step.title}
                                         </p>
                                         {isActive && (
-                                            <span className="text-[10px] font-semibold text-blue-300 bg-blue-500/10 px-1.5 py-0.5 rounded">
+                                            <span className="text-[10px] font-semibold text-blue-300 bg-primary/10 px-1.5 py-0.5 rounded">
                                                 PROCESSANDO
                                             </span>
                                         )}
@@ -126,7 +126,7 @@ const RegisterAnimation = () => {
                                             animate={{ opacity: 1 }}
                                         >
                                             <motion.div
-                                                className="h-full bg-blue-400"
+                                                className="h-full bg-primary"
                                                 initial={{ width: "0%" }}
                                                 animate={{ width: "100%" }}
                                                 transition={{ duration: 1.5, ease: "linear" }}

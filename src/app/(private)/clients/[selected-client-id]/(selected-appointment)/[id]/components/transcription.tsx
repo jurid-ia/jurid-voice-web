@@ -45,7 +45,7 @@ export function Transcription() {
       "bg-amber-100 text-amber-600",
       "bg-rose-100 text-rose-600",
       "bg-cyan-100 text-cyan-600",
-      "bg-indigo-100 text-indigo-600",
+      "bg-indigo-100 text-black",
       "bg-lime-100 text-lime-600",
       "bg-orange-100 text-orange-600",
     ];
@@ -80,7 +80,7 @@ export function Transcription() {
                   className={cn(
                     "flex items-center justify-between rounded-xl border p-3 transition-all",
                     isActive
-                      ? "border-blue-500 bg-blue-50 ring-1 ring-blue-500"
+                      ? "border-primary bg-primary/10 ring-1 ring-primary"
                       : "border-slate-200 hover:border-slate-300 hover:bg-slate-50",
                   )}
                 >
@@ -89,7 +89,7 @@ export function Transcription() {
                       className={cn(
                         "flex h-9 w-9 items-center justify-center rounded-full text-xs font-bold",
                         isActive
-                          ? "bg-blue-600 text-white"
+                          ? "bg-primary text-white"
                           : getSpeakerColor(index),
                       )}
                     >
@@ -104,13 +104,13 @@ export function Transcription() {
                     <span
                       className={cn(
                         "text-sm font-medium",
-                        isActive ? "text-blue-900" : "text-slate-700",
+                        isActive ? "text-black" : "text-slate-700",
                       )}
                     >
                       {speaker.name || `Locutor ${index + 1}`}
                     </span>
                   </div>
-                  {isActive && <Check className="h-5 w-5 text-blue-600" />}
+                  {isActive && <Check className="h-5 w-5 text-primary" />}
                 </button>
               );
             })}
@@ -119,7 +119,7 @@ export function Transcription() {
           <div className="flex justify-end pt-2">
             <button
               onClick={() => setIsModalOpen(false)}
-              className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+              className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-black"
             >
               Concluir
             </button>
@@ -139,7 +139,7 @@ export function Transcription() {
           <div className="flex flex-1 items-center justify-end">
             <button
               onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 px-3 py-1.5 font-medium text-white transition-all hover:shadow-lg hover:shadow-sky-500/25 active:scale-95"
+              className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary px-3 py-1.5 font-medium text-white transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-95"
             >
               <Plus className="h-6 w-6" />
               Organizar Locutores
@@ -161,7 +161,7 @@ export function Transcription() {
                   className={cn(
                     "flex h-8 w-8 min-w-[2rem] items-center justify-center rounded-full text-xs font-bold shadow-sm",
                     isPro
-                      ? "bg-blue-100 text-blue-600"
+                      ? "bg-primary/10 text-primary"
                       : getSpeakerColor(speech.index),
                   )}
                 >
@@ -188,7 +188,7 @@ export function Transcription() {
                     className={cn(
                       "rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm",
                       isPro
-                        ? "rounded-tr-none bg-blue-600 text-white"
+                        ? "rounded-tr-none bg-primary text-white"
                         : "rounded-tl-none border border-gray-100 bg-white text-gray-700",
                     )}
                   >

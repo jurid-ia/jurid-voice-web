@@ -42,7 +42,7 @@ export function GeneralReminderCardItem({ reminder, index }: Props) {
         {/* Header with Icon, Title and Date */}
         <div className="flex items-start justify-between gap-3">
           <div className="flex flex-row items-center justify-center gap-3">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-sky-400 text-white shadow-lg shadow-blue-500/20 transition-transform group-hover:scale-105">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-black text-white shadow-lg shadow-primary/20 transition-transform group-hover:scale-105">
               <FileAudio className="h-6 w-6 text-white" />
             </div>
             <div className="flex flex-col">
@@ -67,10 +67,10 @@ export function GeneralReminderCardItem({ reminder, index }: Props) {
 
         {/* Reminder Info Section */}
         <div className="flex flex-col gap-3 py-1">
-          <div className="group-hover:bg-blue-50 flex items-center justify-between rounded-2xl bg-gray-50 p-4 transition-colors">
+          <div className="group-hover:bg-primary/10 flex items-center justify-between rounded-2xl bg-gray-50 p-4 transition-colors">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm ring-1 ring-gray-100">
-                <AlarmClock className="h-5 w-5 text-blue-500" />
+                <AlarmClock className="h-5 w-5 text-primary" />
               </div>
               <div className="flex flex-col">
                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
@@ -84,7 +84,7 @@ export function GeneralReminderCardItem({ reminder, index }: Props) {
 
             <button
               onClick={handleOpenEdit}
-              className="flex items-center gap-1.5 rounded-xl bg-white px-3 py-2 text-[10px] font-bold text-blue-600 shadow-sm ring-1 ring-gray-100 transition-all hover:bg-blue-600 hover:text-white hover:ring-blue-600"
+              className="flex items-center gap-1.5 rounded-xl bg-white px-3 py-2 text-[10px] font-bold text-primary shadow-sm ring-1 ring-gray-100 transition-all hover:bg-primary hover:text-white hover:ring-primary"
             >
               <Pencil className="h-3 w-3" />
               Alterar
@@ -100,7 +100,7 @@ export function GeneralReminderCardItem({ reminder, index }: Props) {
 
           <button
             onClick={handleNavigation}
-            className="group-hover:bg-primary flex items-center gap-1.5 rounded-xl bg-gray-50 px-4 py-2 text-xs font-bold text-gray-600 transition-all duration-300 group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-500/25"
+            className="group-hover:bg-primary flex items-center gap-1.5 rounded-xl bg-gray-50 px-4 py-2 text-xs font-bold text-gray-600 transition-all duration-300 group-hover:text-white group-hover:shadow-lg group-hover:shadow-primary/25"
           >
             <span>Acessar</span>
             <ChevronRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />

@@ -1,17 +1,17 @@
 import { ClientProps, RecordingDetailsProps } from "@/@types/general-client";
 import { TableCell, TableRow } from "@/components/ui/blocks/table";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
 } from "@/components/ui/blocks/tooltip";
 import {
-  ContactsIcon,
-  NotesIcon,
-  OtherIcon,
-  StudyIcon,
-  TranscriptionIcon,
+    ContactsIcon,
+    NotesIcon,
+    OtherIcon,
+    StudyIcon,
+    TranscriptionIcon,
 } from "@/components/ui/custom-icons";
 import { useGeneralContext } from "@/context/GeneralContext";
 import { cn } from "@/utils/cn";
@@ -118,7 +118,7 @@ export function GeneralRecordingTableItem({ recording }: Props) {
             <TooltipTrigger asChild>
               <div
                 className={cn(
-                  "flex w-max items-center gap-2 rounded-2xl border-2 bg-gradient-to-br from-sky-500 to-blue-600 p-1 text-xs text-white",
+                  "flex w-max items-center gap-2 rounded-2xl border-2 bg-gradient-to-br from-primary to-primary p-1 text-xs text-white",
                 )}
               >
                 <div

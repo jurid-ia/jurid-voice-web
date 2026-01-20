@@ -2,16 +2,16 @@
 
 import { useGeneralContext } from "@/context/GeneralContext";
 import {
-  Activity,
-  AlertTriangle,
-  Beaker,
-  CheckCircle2,
-  Clock,
-  FileText,
-  GitBranch,
-  Info,
-  Pill,
-  Stethoscope,
+    Activity,
+    AlertTriangle,
+    Beaker,
+    CheckCircle2,
+    Clock,
+    FileText,
+    GitBranch,
+    Info,
+    Pill,
+    Stethoscope,
 } from "lucide-react";
 
 export function Diagnosis() {
@@ -102,7 +102,7 @@ export function Diagnosis() {
       <div className="rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50/50 to-white p-6 shadow-sm ring-1 ring-blue-100/50">
         <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
           <div className="flex items-start gap-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-200">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary text-white shadow-lg shadow-blue-200">
               <Stethoscope className="h-8 w-8" />
             </div>
             <div>
@@ -110,7 +110,7 @@ export function Diagnosis() {
                 <h2 className="text-2xl font-bold text-gray-900">
                   {diagnosisData.mainCondition}
                 </h2>
-                <span className="rounded-full border border-blue-200 bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-700">
+                <span className="rounded-full border border-blue-200 bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-black">
                   CID: {diagnosisData.cid}
                 </span>
               </div>
@@ -134,7 +134,7 @@ export function Diagnosis() {
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5 rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-gray-600 shadow-sm ring-1 ring-gray-200">
-                  <Clock className="h-4 w-4 text-blue-500" />
+                  <Clock className="h-4 w-4 text-primary" />
                   Evolução:{" "}
                   <span className="text-gray-900">
                     {diagnosisData.evolution}
@@ -146,7 +146,7 @@ export function Diagnosis() {
         </div>
 
         <div className="mt-6 rounded-xl border border-blue-100 bg-white/60 p-5">
-          <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-blue-900">
+          <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-black">
             <FileText className="h-4 w-4" />
             Justificativa Clínica
           </h3>
@@ -270,7 +270,7 @@ export function Diagnosis() {
 
               <div>
                 <h4 className="mb-3 flex items-center gap-2 text-sm font-semibold text-gray-700">
-                  <span className="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary"></span>
                   Estilo de Vida
                 </h4>
                 <ul className="space-y-2">
@@ -279,7 +279,7 @@ export function Diagnosis() {
                       key={idx}
                       className="flex items-center gap-3 rounded-lg border border-transparent p-2 text-sm text-gray-600 hover:border-gray-100 hover:bg-gray-50"
                     >
-                      <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-blue-500" />
+                      <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-primary" />
                       {item}
                     </li>
                   ))}
@@ -343,7 +343,7 @@ export function Diagnosis() {
           {/* Suggested Exams */}
           <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
             <div className="mb-4 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-500">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-black">
                 <Beaker className="h-5 w-5" />
               </div>
               <h3 className="font-semibold text-gray-900">Exames Sugeridos</h3>
@@ -359,7 +359,7 @@ export function Diagnosis() {
                   </span>
                   <div className="flex items-center gap-2">
                     <span
-                      className={`h-2 w-2 rounded-full ${exam.priority === "Alta" ? "bg-red-400" : "bg-blue-400"}`}
+                      className={`h-2 w-2 rounded-full ${exam.priority === "Alta" ? "bg-red-400" : "bg-primary"}`}
                     />
                     <span className="text-xs text-gray-500">
                       {exam.priority}

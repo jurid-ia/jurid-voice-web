@@ -2,16 +2,16 @@
 
 import { useGeneralContext } from "@/context/GeneralContext";
 import {
-  Activity,
-  AlertCircle,
-  Cigarette,
-  Dna,
-  FileText,
-  History,
-  Pill,
-  User,
-  Users,
-  Wine,
+    Activity,
+    AlertCircle,
+    Cigarette,
+    Dna,
+    FileText,
+    History,
+    Pill,
+    User,
+    Users,
+    Wine,
 } from "lucide-react";
 
 export function MedicalRecord() {
@@ -101,7 +101,7 @@ export function MedicalRecord() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         <div className="rounded-2xl border border-blue-100 bg-white p-4 shadow-sm md:col-span-1">
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-500">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-primary">
               <User className="h-5 w-5" />
             </div>
             <h3 className="font-semibold text-gray-900">Biometria</h3>
@@ -159,7 +159,7 @@ export function MedicalRecord() {
         {/* Chronic Conditions */}
         <div className="rounded-2xl border border-indigo-100 bg-indigo-50/30 p-4 shadow-sm md:col-span-1">
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-100 text-indigo-600">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-100 text-black">
               <Activity className="h-5 w-5" />
             </div>
             <h3 className="font-semibold text-indigo-900">Condições</h3>
@@ -285,7 +285,7 @@ export function MedicalRecord() {
               <History className="h-5 w-5 text-gray-400" />
               Histórico de Atendimentos
             </h3>
-            <button className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline">
+            <button className="text-sm font-medium text-primary hover:text-black hover:underline">
               Ver histórico completo
             </button>
           </div>
@@ -294,7 +294,7 @@ export function MedicalRecord() {
             {medicalData.history.map((record, index) => (
               <div key={index} className="group relative pl-8">
                 {/* Timeline Dot */}
-                <div className="absolute top-0 -left-[9px] h-4 w-4 rounded-full border-2 border-white bg-blue-500 ring-4 ring-blue-50 transition-all group-hover:ring-blue-100"></div>
+                <div className="absolute top-0 -left-[9px] h-4 w-4 rounded-full border-2 border-white bg-primary ring-4 ring-blue-50 transition-all group-hover:ring-blue-100"></div>
 
                 <div className="mb-3 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                   <div>
@@ -305,7 +305,7 @@ export function MedicalRecord() {
                       {record.specialty} • {record.doctor}
                     </span>
                   </div>
-                  <span className="w-max rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-600">
+                  <span className="w-max rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-bold text-primary">
                     {record.date}
                   </span>
                 </div>

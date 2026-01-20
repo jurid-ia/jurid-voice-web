@@ -1,8 +1,8 @@
 "use client";
 
 import { cn } from "@/utils/cn";
-import { LucideIcon } from "lucide-react";
 import { motion } from "framer-motion";
+import { LucideIcon } from "lucide-react";
 
 interface KPICardProps {
     title: string;
@@ -20,20 +20,20 @@ interface KPICardProps {
 // Unified style - all variants now use white background with blue accent
 const variantStyles = {
     primary: {
-        iconGradient: "bg-gradient-to-br from-sky-500 to-blue-600",
-        border: "border-sky-200",
+        iconGradient: "bg-gradient-to-br from-primary to-primary",
+        border: "border-primary",
     },
     success: {
-        iconGradient: "bg-gradient-to-br from-sky-500 to-blue-600",
-        border: "border-sky-200",
+        iconGradient: "bg-gradient-to-br from-primary to-primary",
+        border: "border-primary",
     },
     warning: {
-        iconGradient: "bg-gradient-to-br from-sky-500 to-blue-600",
-        border: "border-sky-200",
+        iconGradient: "bg-gradient-to-br from-primary to-primary",
+        border: "border-primary",
     },
     info: {
-        iconGradient: "bg-gradient-to-br from-sky-500 to-blue-600",
-        border: "border-sky-200",
+        iconGradient: "bg-gradient-to-br from-primary to-primary",
+        border: "border-primary",
     },
 };
 

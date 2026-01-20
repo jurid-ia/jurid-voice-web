@@ -65,7 +65,7 @@ export function RecordingsChart({ data, className }: RecordingsChartProps) {
                     </p>
                 </div>
                 <div className="flex items-center gap-2">
-                    <div className="h-3 w-3 rounded-full bg-gradient-to-r from-sky-500 to-blue-600" />
+                    <div className="h-3 w-3 rounded-full bg-gradient-to-r from-primary to-primary" />
                     <span className="text-xs text-gray-500">Gravações</span>
                 </div>
             </div>
@@ -78,8 +78,8 @@ export function RecordingsChart({ data, className }: RecordingsChartProps) {
                     >
                         <defs>
                             <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stopColor="#0ea5e9" />
-                                <stop offset="100%" stopColor="#2563eb" />
+                                <stop offset="0%" stopColor="#a78f69" />
+                                <stop offset="100%" stopColor="#b79f79" />
                             </linearGradient>
                         </defs>
                         <CartesianGrid

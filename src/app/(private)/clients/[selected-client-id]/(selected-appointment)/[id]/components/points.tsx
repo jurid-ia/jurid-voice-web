@@ -1,16 +1,16 @@
 "use client";
 
 import {
-  CalendarClock,
-  CheckCircle,
-  ChevronRight,
-  ClipboardCheck,
-  Download,
-  FileOutput,
-  FileSignature,
-  FileText,
-  Pill,
-  UserPlus,
+    CalendarClock,
+    CheckCircle,
+    ChevronRight,
+    ClipboardCheck,
+    Download,
+    FileOutput,
+    FileSignature,
+    FileText,
+    Pill,
+    UserPlus,
 } from "lucide-react";
 
 export function Points() {
@@ -232,7 +232,7 @@ export function Points() {
       <section>
         <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-md shadow-blue-200">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary text-white shadow-md shadow-blue-200">
               <FileOutput className="h-5 w-5" />
             </div>
             <div>
@@ -245,7 +245,7 @@ export function Points() {
               </p>
             </div>
           </div>
-          <button className="flex items-center gap-1.5 rounded-lg bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-100">
+          <button className="flex items-center gap-1.5 rounded-lg bg-blue-50 px-3 py-1.5 text-sm font-medium text-primary transition-colors hover:bg-blue-100">
             <Download className="h-4 w-4" />
             Baixar Guias
           </button>
@@ -263,7 +263,7 @@ export function Points() {
                   </span>
                   <span className="text-xs text-gray-400">{ex.date}</span>
                 </div>
-                <span className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-600">
+                <span className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-primary">
                   {ex.items.length} itens
                 </span>
               </div>
@@ -275,7 +275,7 @@ export function Points() {
                   >
                     <div className="flex items-center gap-2">
                       <div
-                        className={`h-2 w-2 rounded-full ${item.priority === "Alta" ? "bg-red-400" : "bg-blue-400"}`}
+                        className={`h-2 w-2 rounded-full ${item.priority === "Alta" ? "bg-red-400" : "bg-primary"}`}
                       />
                       <span className="text-sm font-medium text-gray-700">
                         {item.name}

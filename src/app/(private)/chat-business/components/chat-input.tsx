@@ -2,14 +2,14 @@
 
 import { WaveformAudioPlayer } from "@/components/ui/waveform-audio-player";
 import {
-  ArrowUp,
-  FileAudio,
-  FileText,
-  Image as ImageIcon,
-  Mic,
-  Paperclip,
-  Square,
-  X,
+    ArrowUp,
+    FileAudio,
+    FileText,
+    Image as ImageIcon,
+    Mic,
+    Paperclip,
+    Square,
+    X,
 } from "lucide-react";
 import { useRef } from "react";
 
@@ -102,7 +102,7 @@ export function ChatInput({
                   <WaveformAudioPlayer
                     audioUrl={url}
                     barCount={20}
-                    className="border border-blue-100 bg-white py-2 shadow-sm [&_button]:bg-blue-50 [&_button]:text-blue-600 [&_button]:hover:bg-blue-100 [&_span]:text-blue-600 [&_svg]:fill-blue-600 [&_svg]:text-blue-600"
+                    className="border border-blue-100 bg-white py-2 shadow-sm [&_button]:bg-blue-50 [&_button]:text-primary [&_button]:hover:bg-blue-100 [&_span]:text-primary [&_svg]:fill-primary [&_svg]:text-primary"
                     videoDuration="00:00"
                   />
                   <button
@@ -120,7 +120,7 @@ export function ChatInput({
                 key={fileKey}
                 className="group relative flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 shadow-sm"
               >
-                <div className="text-blue-500">{getFileIcon(file)}</div>
+                <div className="text-primary">{getFileIcon(file)}</div>
                 <span className="max-w-[150px] truncate text-xs text-gray-700">
                   {file.name}
                 </span>
@@ -140,7 +140,7 @@ export function ChatInput({
       <div className="relative flex min-w-[80%] items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-3 shadow-sm transition-shadow focus-within:shadow-md">
         <button
           onClick={() => fileInputRef.current?.click()}
-          className="group text-primary relative flex h-8 w-8 items-center justify-center rounded-lg from-sky-500 to-blue-600 transition-all hover:scale-105 hover:bg-gradient-to-br hover:text-white active:scale-95"
+          className="group text-primary relative flex h-8 w-8 items-center justify-center rounded-lg from-primary to-primary transition-all hover:scale-105 hover:bg-gradient-to-br hover:text-white active:scale-95"
           title="Anexar arquivos"
         >
           <Paperclip className="h-4 w-4" />
@@ -166,7 +166,7 @@ export function ChatInput({
             className={`group text-primary relative flex h-8 w-8 items-center justify-center rounded-lg transition-all hover:scale-105 active:scale-95 ${
               isRecording
                 ? "animate-pulse bg-red-500 hover:bg-red-600"
-                : "text-primary from-sky-500 to-blue-600 hover:bg-gradient-to-br hover:text-white"
+                : "text-primary from-primary to-primary hover:bg-gradient-to-br hover:text-white"
             }`}
           >
             {isRecording ? (
@@ -182,7 +182,7 @@ export function ChatInput({
             }
             className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${
               (value.trim() || files.length > 0) && !isLoading && !isRecording
-                ? "bg-blue-500 text-white hover:bg-blue-600"
+                ? "bg-primary text-white hover:bg-primary"
                 : "cursor-not-allowed bg-gray-200 text-gray-400"
             }`}
           >

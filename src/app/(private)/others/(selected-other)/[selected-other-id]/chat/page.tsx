@@ -8,15 +8,15 @@ import { useGeneralContext } from "@/context/GeneralContext";
 import { cn } from "@/utils/cn";
 import { generalPrompt } from "@/utils/prompts";
 import {
-  ArrowLeft,
-  BookOpen, // Resumir
-  CheckSquare, // Extrair Tarefas
-  FileText, // Gerar Ata
-  Heart, // Sentimento
-  Maximize2,
-  Minimize2,
-  Plus,
-  X,
+    ArrowLeft,
+    BookOpen, // Resumir
+    CheckSquare, // Extrair Tarefas
+    FileText, // Gerar Ata
+    Heart, // Sentimento
+    Maximize2,
+    Minimize2,
+    Plus,
+    X,
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -151,7 +151,7 @@ export default function ChatPage() {
   }, [messages.length, selectedRecording]);
 
   const styles = {
-    iconGradient: "bg-gradient-to-br from-sky-500 to-blue-600",
+    iconGradient: "bg-gradient-to-br from-primary to-primary",
     border: "border-sky-200",
   };
 
@@ -177,7 +177,7 @@ export default function ChatPage() {
         {!isChatEmpty && (
           <button
             onClick={handleNewChat}
-            className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-sky-500/25 transition-all hover:shadow-sky-500/40 active:scale-95"
+            className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40 active:scale-95"
           >
             <Plus className="h-4 w-4" />
             Nova Conversa
