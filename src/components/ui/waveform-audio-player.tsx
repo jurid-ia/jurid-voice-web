@@ -206,7 +206,7 @@ export function WaveformAudioPlayer({
               onClick={() => handleSeek(index)}
               className={cn(
                 "w-1 shrink-0 cursor-pointer rounded-full transition-all duration-100",
-                isActive ? "bg-blue-600" : "bg-blue-200 hover:bg-blue-400",
+                isActive ? "bg-stone-800" : "bg-stone-200 hover:bg-stone-400",
               )}
               style={{
                 height: `${height}%`,
@@ -227,7 +227,7 @@ export function WaveformAudioPlayer({
         <button
           onClick={handleRestart}
           className={cn(
-            "flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-gray-700 transition-all hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none",
+            "flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-gray-700 transition-all hover:bg-gray-100 focus:ring-2 focus:ring-stone-700 focus:outline-none",
             currentTime > 0.5 ? "opacity-100" : "pointer-events-none opacity-0",
           )}
         >

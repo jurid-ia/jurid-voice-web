@@ -53,7 +53,7 @@ export default function Clients() {
             </div>
           </div>
           <AudioRecorder
-            buttonClassName="flex items-center gap-2 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-sky-500/25 transition-all hover:shadow-sky-500/40 active:scale-95"
+            buttonClassName="flex items-center gap-2 rounded-lg bg-gradient-to-r from-stone-600 to-stone-800 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-stone-700/25 transition-all hover:shadow-stone-700/40 active:scale-95"
             skipToClient={true}
             customLabel="Nova Gravação"
             customIcon={Plus}

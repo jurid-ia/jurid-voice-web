@@ -17,15 +17,15 @@ const RegisterAnimation = () => {
             icon: Fingerprint,
             title: "Autenticação Segura",
             desc: "Validação Biométrica Digital",
-            color: "text-blue-400",
-            bg: "bg-blue-500/20"
+            color: "text-stone-600",
+            bg: "bg-stone-700/20"
         },
         {
             icon: Database,
             title: "Sincronização Cloud",
             desc: "Ambiente Protegido HIPAA",
-            color: "text-indigo-400",
-            bg: "bg-indigo-500/20"
+            color: "text-stone-700",
+            bg: "bg-stone-800/20"
         },
         {
             icon: Bot,
@@ -46,7 +46,7 @@ const RegisterAnimation = () => {
                     scale: [1, 1.2, 1]
                 }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl pointer-events-none"
+                className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-stone-700/20 blur-3xl pointer-events-none"
             />
 
             {/* Header */}
@@ -58,7 +58,7 @@ const RegisterAnimation = () => {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                         </span>
-                        <p className="text-xs text-blue-200/70">Online & Criptografado</p>
+                        <p className="text-xs text-stone-200/70">Online & Criptografado</p>
                     </div>
                 </div>
                 <div className="h-8 w-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
@@ -111,12 +111,12 @@ const RegisterAnimation = () => {
                                             {step.title}
                                         </p>
                                         {isActive && (
-                                            <span className="text-[10px] font-semibold text-blue-300 bg-blue-500/10 px-1.5 py-0.5 rounded">
+                                            <span className="text-[10px] font-semibold text-stone-700 bg-stone-800/10 px-1.5 py-0.5 rounded">
                                                 PROCESSANDO
                                             </span>
                                         )}
                                     </div>
-                                    <p className="text-xs text-blue-200/50">{step.desc}</p>
+                                    <p className="text-xs text-stone-200/50">{step.desc}</p>
 
                                     {/* Mini Progress Bar for active step */}
                                     {isActive && (
@@ -126,7 +126,7 @@ const RegisterAnimation = () => {
                                             animate={{ opacity: 1 }}
                                         >
                                             <motion.div
-                                                className="h-full bg-blue-400"
+                                                className="h-full bg-stone-600"
                                                 initial={{ width: "0%" }}
                                                 animate={{ width: "100%" }}
                                                 transition={{ duration: 1.5, ease: "linear" }}
@@ -146,8 +146,8 @@ const RegisterAnimation = () => {
                 animate={{ opacity: [0.6, 1, 0.6] }}
                 transition={{ duration: 2, repeat: Infinity }}
             >
-                <Sparkles size={14} className="text-blue-300" />
-                <span className="text-xs font-medium text-blue-200/80">
+                <Sparkles size={14} className="text-stone-600" />
+                <span className="text-xs font-medium text-stone-200/80">
                     {activeStep === 3 ? "Sistema Pronto para Uso" : "Inicializando Ambiente Seguro..."}
                 </span>
             </motion.div>

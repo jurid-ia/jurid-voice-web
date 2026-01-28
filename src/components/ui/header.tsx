@@ -214,7 +214,7 @@ export function Header() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <div className="group flex h-10 cursor-pointer items-center gap-2 rounded-full bg-white/10 px-1 pr-3 text-white transition-all duration-200 hover:bg-white/20">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 text-sm font-semibold text-white shadow-inner">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-stone-700 to-stone-800 text-sm font-semibold text-white shadow-inner">
                     {profile?.name?.charAt(0)?.toUpperCase() || "?"}
                   </div>
                   <span className="max-w-[120px] truncate text-sm font-medium">
@@ -228,7 +228,7 @@ export function Header() {
                 className="w-72 overflow-hidden rounded-2xl border-none bg-white p-0 shadow-2xl shadow-gray-300/50"
               >
                 {/* User Info Header */}
-                <div className="bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 p-4">
+                <div className="bg-gradient-to-br from-stone-800 via-stone-900 to-stone-900 p-4">
                   <div className="flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-lg font-bold text-white backdrop-blur-sm">
                       {profile?.name?.charAt(0)?.toUpperCase() || "?"}
@@ -251,9 +251,9 @@ export function Header() {
                       e.preventDefault();
                       setIsProfileModalOpen(true);
                     }}
-                    className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-blue-50 focus:bg-blue-50"
+                    className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-stone-50 focus:bg-stone-50"
                   >
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 text-white transition-colors group-hover:bg-blue-500 group-hover:text-white">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-stone-700 to-stone-900 text-white transition-colors group-hover:bg-stone-800 group-hover:text-white">
                       <SettingsIcon className="h-5 w-5" />
                     </div>
                     <div className="flex flex-col">
@@ -271,7 +271,7 @@ export function Header() {
                     onSelect={() => window.open(appUrl, "_blank")}
                     className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-green-50 focus:bg-green-50"
                   >
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 text-white transition-colors group-hover:bg-green-500 group-hover:text-white">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-stone-700 to-stone-900 text-white transition-colors group-hover:bg-green-500 group-hover:text-white">
                       <SmartphoneIcon className="h-5 w-5" />
                     </div>
                     <div className="flex flex-col">
@@ -291,7 +291,7 @@ export function Header() {
                     }
                     className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-emerald-50 focus:bg-emerald-50"
                   >
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 text-white transition-colors group-hover:bg-emerald-500 group-hover:text-white">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-stone-700 to-stone-900 text-white transition-colors group-hover:bg-emerald-500 group-hover:text-white">
                       <SupportIcon className="h-5 w-5" />
                     </div>
                     <div className="flex flex-col">

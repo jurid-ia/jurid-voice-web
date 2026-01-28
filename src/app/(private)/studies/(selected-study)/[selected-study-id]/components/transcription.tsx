@@ -65,7 +65,7 @@ export function Transcription() {
                         className={cn(
                           "flex h-7 w-max items-center justify-center rounded-full px-3 text-[10px] font-bold uppercase tracking-wider",
                           speech.index === 0
-                            ? "bg-blue-600 text-white shadow-sm"
+                            ? "bg-stone-800 text-white shadow-sm"
                             : "bg-white text-slate-500 ring-1 ring-slate-200",
                         )}
                       >
@@ -106,7 +106,7 @@ export function Transcription() {
                   {/* Header do Conteúdo */}
                   <div className="mb-8 flex items-center justify-between border-b border-slate-100 pb-6">
                     <div className="flex items-center gap-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-stone-50 text-stone-800">
                         <Mic className="h-6 w-6" />
                       </div>
                       <div>
@@ -121,7 +121,7 @@ export function Transcription() {
 
                     <button
                       onClick={handleCopy}
-                      className="group flex items-center gap-2 rounded-xl bg-slate-50 px-4 py-2.5 text-sm font-bold text-slate-600 transition-all hover:bg-blue-600 hover:text-white"
+                      className="group flex items-center gap-2 rounded-xl bg-slate-50 px-4 py-2.5 text-sm font-bold text-slate-600 transition-all hover:bg-stone-800 hover:text-white"
                     >
                       {copied ? (
                         <Check className="h-4 w-4" />
@@ -134,7 +134,7 @@ export function Transcription() {
 
                   {/* Texto em si */}
                   <div className="prose prose-blue prose-lg max-w-none lg:prose-xl">
-                    <div className="whitespace-pre-wrap text-justify leading-loose text-slate-700 decoration-slate-200 outline-none selection:bg-blue-100">
+                    <div className="whitespace-pre-wrap text-justify leading-loose text-slate-700 decoration-slate-200 outline-none selection:bg-stone-100">
                       <ReactMarkdown remarkPlugins={[remarkGfm]}>
                         {selectedRecording.transcription}
                       </ReactMarkdown>

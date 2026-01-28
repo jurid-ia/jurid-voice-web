@@ -44,7 +44,7 @@ export function ChronicConditionsCard({
         >
           <Icon className="h-5 w-5" />
         </div>
-        <h3 className={`font-semibold ${variant === "indigo" ? "text-indigo-900" : "text-gray-900"}`}>
+        <h3 className={`font-semibold ${variant === "indigo" ? "text-stone-950" : "text-gray-900"}`}>
           {title}
         </h3>
       </div>
@@ -57,7 +57,7 @@ export function ChronicConditionsCard({
             >
               <div className="flex items-start justify-between">
                 <span
-                  className={`text-sm font-medium ${variant === "indigo" ? "text-indigo-900" : "text-gray-900"}`}
+                  className={`text-sm font-medium ${variant === "indigo" ? "text-stone-950" : "text-gray-900"}`}
                 >
                   {item.primary}
                 </span>

@@ -75,7 +75,7 @@ export function TreatmentPlanCard({
 
         <div>
           <h4 className="mb-3 flex items-center gap-2 text-sm font-semibold text-gray-700">
-            <span className="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+            <span className="h-1.5 w-1.5 rounded-full bg-stone-800"></span>
             Estilo de Vida
           </h4>
           <ul className="space-y-2">
@@ -85,7 +85,7 @@ export function TreatmentPlanCard({
                   key={idx}
                   className="flex items-center gap-3 rounded-lg border border-transparent p-2 text-sm text-gray-600 hover:border-gray-100 hover:bg-gray-50"
                 >
-                  <CheckIcon className="h-4 w-4 flex-shrink-0 text-blue-500" />
+                  <CheckIcon className="h-4 w-4 flex-shrink-0 text-stone-800" />
                   {item}
                 </li>
               ))

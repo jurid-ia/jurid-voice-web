@@ -48,7 +48,7 @@ export function GeneralOthersTableHeader() {
         forcePersonalType="OTHER"
         customLabel="Nova Gravação"
         customIcon={Plus}
-        buttonClassName="bg-gradient-to-r from-sky-500 to-blue-600 px-4 py-2.5 rounded-lg text-sm font-semibold text-white shadow-lg shadow-sky-500/25 transition-all hover:shadow-sky-500/40 active:scale-95"
+        buttonClassName="bg-gradient-to-r from-stone-600 to-stone-800 px-4 py-2.5 rounded-lg text-sm font-semibold text-white shadow-lg shadow-stone-700/25 transition-all hover:shadow-stone-700/40 active:scale-95"
       />
     </div>
   );

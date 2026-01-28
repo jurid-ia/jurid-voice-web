@@ -257,7 +257,7 @@ const RegisterForm = () => {
                                 label="Nome"
                                 name="name"
                                 autoComplete="name"
-                                Svg={<User className="text-blue-400" size={20} />}
+                                Svg={<User className="text-stone-600" size={20} />}
                                 value={field.value}
                                 onChange={field.onChange}
                                 required
@@ -280,7 +280,7 @@ const RegisterForm = () => {
                                 type="email"
                                 autoComplete="email"
                                 inputMode="email"
-                                Svg={<Mail className="text-blue-400" size={20} />}
+                                Svg={<Mail className="text-stone-600" size={20} />}
                                 value={field.value}
                                 onChange={field.onChange}
                                 required
@@ -302,7 +302,7 @@ const RegisterForm = () => {
                                     label="Senha"
                                     name="new-password"
                                     autoComplete="new-password"
-                                    Svg={<LockIcon className="text-blue-400" size={20} />}
+                                    Svg={<LockIcon className="text-stone-600" size={20} />}
                                     type={showPassword ? "text" : "password"}
                                     value={field.value}
                                     onChange={field.onChange}
@@ -333,7 +333,7 @@ const RegisterForm = () => {
                                     label="Confirmar Senha"
                                     name="confirm-password"
                                     autoComplete="new-password"
-                                    Svg={<LockIcon className="text-blue-400" size={20} />}
+                                    Svg={<LockIcon className="text-stone-600" size={20} />}
                                     type={showRememberPassword ? "text" : "password"}
                                     value={field.value}
                                     onChange={field.onChange}
@@ -364,7 +364,7 @@ const RegisterForm = () => {
                 <button
                     onClick={form.handleSubmit(handleRegister)}
                     disabled={isCreating}
-                    className="w-full rounded-xl bg-primary px-4 py-3 font-semibold text-white shadow-sm transition hover:bg-blue-600 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full rounded-xl bg-primary px-4 py-3 font-semibold text-white shadow-sm transition hover:bg-stone-900 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                     {isCreating ? (
                         <>

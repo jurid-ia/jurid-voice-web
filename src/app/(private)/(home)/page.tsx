@@ -215,7 +215,7 @@ export default function HomePage() {
         <div className="relative min-h-[400px] lg:col-span-2">
           {isGettingDashboardStats && (
             <div className="absolute inset-0 z-10 flex items-center justify-center rounded-2xl bg-white/80">
-              <Loader2 className="h-8 w-8 animate-spin text-sky-500" />
+              <Loader2 className="h-8 w-8 animate-spin text-stone-600" />
             </div>
           )}
           <RecordingsChart data={chartData} className="h-full" />

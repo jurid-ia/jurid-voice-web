@@ -102,7 +102,7 @@ export function ChatInput({
                   <WaveformAudioPlayer
                     audioUrl={url}
                     barCount={20}
-                    className="w-64 border border-blue-100 bg-white py-2 shadow-sm [&_button]:bg-blue-50 [&_button]:text-blue-600 [&_button]:hover:bg-blue-100 [&_span]:text-blue-600 [&_svg]:fill-blue-600 [&_svg]:text-blue-600"
+                    className="w-64 border border-stone-100 bg-white py-2 shadow-sm [&_button]:bg-stone-50 [&_button]:text-stone-900 [&_button]:hover:bg-stone-100 [&_span]:text-stone-900 [&_svg]:fill-stone-900 [&_svg]:text-stone-900"
                     videoDuration="00:00"
                   />
                   <button
@@ -120,7 +120,7 @@ export function ChatInput({
                 key={fileKey}
                 className="group relative flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 shadow-sm"
               >
-                <div className="text-blue-500">{getFileIcon(file)}</div>
+                <div className="text-stone-900">{getFileIcon(file)}</div>
                 <span className="max-w-[150px] truncate text-xs text-gray-700">
                   {file.name}
                 </span>
@@ -140,7 +140,7 @@ export function ChatInput({
       <div className="relative flex min-w-[80%] items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-3 shadow-sm transition-shadow focus-within:shadow-md">
         <button
           onClick={() => fileInputRef.current?.click()}
-          className="group text-primary relative flex h-8 w-8 items-center justify-center rounded-lg from-sky-500 to-blue-600 transition-all hover:scale-105 hover:bg-gradient-to-br hover:text-white active:scale-95"
+          className="group text-primary relative flex h-8 w-8 items-center justify-center rounded-lg from-stone-700 to-stone-900 transition-all hover:scale-105 hover:bg-gradient-to-br hover:text-white active:scale-95"
           title="Anexar arquivos"
         >
           <Paperclip className="h-4 w-4" />
@@ -166,7 +166,7 @@ export function ChatInput({
             className={`group text-primary relative flex h-8 w-8 items-center justify-center rounded-lg transition-all hover:scale-105 active:scale-95 ${
               isRecording
                 ? "animate-pulse bg-red-500 hover:bg-red-600"
-                : "text-primary from-sky-500 to-blue-600 hover:bg-gradient-to-br hover:text-white"
+                : "text-primary from-stone-700 to-stone-900 hover:bg-gradient-to-br hover:text-white"
             }`}
           >
             {isRecording ? (
@@ -182,7 +182,7 @@ export function ChatInput({
             }
             className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${
               (value.trim() || files.length > 0) && !isLoading && !isRecording
-                ? "bg-blue-500 text-white hover:bg-blue-600"
+                ? "bg-stone-900 text-white hover:bg-stone-950"
                 : "cursor-not-allowed bg-gray-200 text-gray-400"
             }`}
           >

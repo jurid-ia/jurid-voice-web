@@ -173,13 +173,13 @@ export function DateRangePicker({
                 cell: "text-center text-sm p-0 relative [&:has([aria-selected])]:bg-sky-50/50 first:[&:has([aria-selected])]:rounded-l-lg last:[&:has([aria-selected])]:rounded-r-lg focus-within:relative focus-within:z-20",
                 day: "h-9 w-9 p-0 font-medium text-sm text-gray-700 aria-selected:opacity-100 hover:bg-gray-100/80 hover:text-gray-900 rounded-lg transition-all duration-200",
                 day_selected:
-                  "bg-gradient-to-br from-sky-500 to-blue-600 text-white shadow-md shadow-sky-500/20 hover:from-sky-600 hover:to-blue-700 hover:shadow-lg hover:shadow-sky-500/30",
+                  "bg-gradient-to-br from-stone-700 to-stone-900 text-white shadow-md shadow-stone-800/20 hover:from-stone-800 hover:to-stone-950 hover:shadow-lg hover:shadow-stone-800/30",
                 day_today:
                   "bg-gray-100 text-gray-900 font-bold ring-1 ring-gray-200",
                 day_outside: "text-gray-300 opacity-50",
                 day_disabled: "text-gray-300",
                 day_range_middle:
-                  "bg-gradient-to-br from-sky-500 to-blue-600 text-white shadow-md shadow-sky-500/20 hover:from-sky-600 hover:to-blue-700 hover:shadow-lg hover:shadow-sky-500/30",
+                  "bg-gradient-to-br from-stone-700 to-stone-900 text-white shadow-md shadow-stone-800/20 hover:from-stone-800 hover:to-stone-950 hover:shadow-lg hover:shadow-stone-800/30",
                 day_range_start: "rounded-l-lg",
                 day_range_end: "rounded-r-lg",
                 day_hidden: "invisible",

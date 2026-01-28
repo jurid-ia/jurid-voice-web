@@ -15,7 +15,7 @@ export function Overview() {
     return (
       <div className="flex h-64 w-full items-center justify-center rounded-lg border border-gray-200 bg-gray-50">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <Loader2 className="h-8 w-8 animate-spin text-stone-800" />
           <p className="text-sm text-gray-500">Carregando gravação...</p>
         </div>
       </div>

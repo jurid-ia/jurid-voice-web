@@ -109,7 +109,7 @@ export function RequestTranscription() {
       case "USER":
         return "bg-purple-100 text-purple-800";
       case "COMPANY":
-        return "bg-blue-100 text-blue-800";
+        return "bg-stone-100 text-stone-800";
       case "GLOBAL":
         return "bg-green-100 text-green-800";
       default:
@@ -215,7 +215,7 @@ export function RequestTranscription() {
                       isRequesting && "cursor-not-allowed opacity-50",
                     )}
                   >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-blue-600">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-stone-600 to-stone-800">
                       <PromptIcon
                         icon={prompt.icon}
                         size={20}

@@ -56,7 +56,7 @@ export function LastRecordingsSlider() {
     <div className="flex w-full flex-col rounded-lg bg-gray-50 p-6 shadow-sm">
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-stone-100 text-stone-900">
             <FileAudio className="h-4 w-4" />
           </div>
           <h3 className="text-lg font-bold text-gray-900">Últimas Gravações</h3>

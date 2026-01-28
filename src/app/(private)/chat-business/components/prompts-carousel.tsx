@@ -23,8 +23,8 @@ export function PromptsCarousel({
   }
 
   const styles = {
-    iconGradient: "bg-gradient-to-br from-sky-500 to-blue-600",
-    border: "border-blue-500",
+    iconGradient: "bg-gradient-to-br from-stone-700 to-stone-900",
+    border: "border-stone-800",
   };
 
   return (
@@ -62,7 +62,7 @@ export function PromptsCarousel({
               className={cn(
                 "group relative cursor-pointer overflow-hidden rounded-xl border bg-white px-3 py-2 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-black/5 min-w-[240px]",
                 selectedPromptId === prompt.id
-                  ? "border-blue-600 bg-blue-50"
+                  ? "border-stone-900 bg-stone-50"
                   : styles.border,
               )}
             >
@@ -73,7 +73,7 @@ export function PromptsCarousel({
                   className={cn(
                     "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-all duration-300 group-hover:scale-105",
                     selectedPromptId === prompt.id
-                      ? "bg-blue-600"
+                      ? "bg-stone-900"
                       : styles.iconGradient,
                   )}
                 >
@@ -89,7 +89,7 @@ export function PromptsCarousel({
                     className={cn(
                       "text-sm leading-tight font-medium truncate",
                       selectedPromptId === prompt.id
-                        ? "text-blue-900"
+                        ? "text-stone-950"
                         : "text-gray-800",
                     )}
                   >

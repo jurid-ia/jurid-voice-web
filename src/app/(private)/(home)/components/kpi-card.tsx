@@ -17,23 +17,23 @@ interface KPICardProps {
     className?: string;
 }
 
-// Unified style - all variants now use white background with blue accent
+// Unified style - all variants now use white background with soft brown accent
 const variantStyles = {
     primary: {
-        iconGradient: "bg-gradient-to-br from-sky-500 to-blue-600",
-        border: "border-sky-200",
+        iconGradient: "bg-gradient-to-br from-stone-700 to-stone-900",
+        border: "border-stone-200",
     },
     success: {
-        iconGradient: "bg-gradient-to-br from-sky-500 to-blue-600",
-        border: "border-sky-200",
+        iconGradient: "bg-gradient-to-br from-stone-700 to-stone-900",
+        border: "border-stone-200",
     },
     warning: {
-        iconGradient: "bg-gradient-to-br from-sky-500 to-blue-600",
-        border: "border-sky-200",
+        iconGradient: "bg-gradient-to-br from-stone-700 to-stone-900",
+        border: "border-stone-200",
     },
     info: {
-        iconGradient: "bg-gradient-to-br from-sky-500 to-blue-600",
-        border: "border-sky-200",
+        iconGradient: "bg-gradient-to-br from-stone-700 to-stone-900",
+        border: "border-stone-200",
     },
 };
 

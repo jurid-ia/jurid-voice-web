@@ -106,7 +106,7 @@ export function UpcomingReminders({
             {/* Header Clean */}
             <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 shadow-md shadow-blue-500/20">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-stone-700 to-stone-900 shadow-md shadow-stone-800/20">
                         <Bell className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -122,7 +122,7 @@ export function UpcomingReminders({
                 <div className="flex items-center gap-2">
                     <button
                         onClick={handleAdd}
-                        className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 px-3 py-1.5 text-xs font-medium text-white transition-all hover:shadow-lg hover:shadow-sky-500/25 active:scale-95"
+                        className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-stone-700 to-stone-900 px-3 py-1.5 text-xs font-medium text-white transition-all hover:shadow-lg hover:shadow-stone-800/25 active:scale-95"
                     >
                         <Plus className="h-3.5 w-3.5" />
                         Novo
@@ -223,7 +223,7 @@ export function UpcomingReminders({
                                             className={cn(
                                                 "flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs font-bold transition-colors",
                                                 reminder.status === 'pending'
-                                                    ? "bg-white text-gray-600 shadow-sm ring-1 ring-gray-200 group-hover:text-blue-600 group-hover:ring-sky-200"
+                                                    ? "bg-white text-gray-600 shadow-sm ring-1 ring-gray-200 group-hover:text-stone-900 group-hover:ring-stone-200"
                                                     : reminder.status === 'completed'
                                                         ? "bg-green-100 text-green-700 hover:bg-green-200"
                                                         : "bg-red-100 text-red-700 hover:bg-red-200"

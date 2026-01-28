@@ -82,7 +82,7 @@ export default function AITestPage() {
     return (
       <div className="flex h-screen w-full items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <Loader2 className="h-8 w-8 animate-spin text-stone-900" />
           <p className="text-sm text-gray-500">Carregando gravação...</p>
         </div>
       </div>
@@ -114,7 +114,7 @@ export default function AITestPage() {
           <span>ID: {recordingId}</span>
           <span>Status: {recording?.transcriptionStatus}</span>
           {recording?.structuredSummary && <span className="text-green-600">✓ Structured Summary</span>}
-          {recording?.specificSummary && <span className="text-blue-600">✓ Specific Summary</span>}
+          {recording?.specificSummary && <span className="text-stone-900">✓ Specific Summary</span>}
         </div>
       </div>
 
@@ -162,7 +162,7 @@ export default function AITestPage() {
       {specificSummary ? (
         <div className="flex w-full flex-col gap-4">
           <div className="flex items-center gap-3 border-b border-gray-200 pb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 text-white shadow-md">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-stone-700 to-stone-900 text-white shadow-md">
               <svg
                 className="h-5 w-5"
                 fill="none"

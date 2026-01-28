@@ -65,7 +65,7 @@ export function RecordingsChart({ data, className }: RecordingsChartProps) {
                     </p>
                 </div>
                 <div className="flex items-center gap-2">
-                    <div className="h-3 w-3 rounded-full bg-gradient-to-r from-sky-500 to-blue-600" />
+                    <div className="h-3 w-3 rounded-full bg-gradient-to-r from-stone-700 to-stone-900" />
                     <span className="text-xs text-gray-500">Gravações</span>
                 </div>
             </div>

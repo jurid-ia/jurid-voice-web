@@ -80,9 +80,9 @@ export function MainDiagnosisCard({
                     {field.label.toLowerCase().includes('confiança') || field.label.toLowerCase().includes('confidence') ? (
                       <ActivityIcon className="h-4 w-4 text-emerald-500" />
                     ) : field.label.toLowerCase().includes('severidade') || field.label.toLowerCase().includes('severity') ? (
-                      <AlertIcon className="h-4 w-4 text-amber-500" />
+                      <AlertIcon className="h-4 w-4 text-stone-600" />
                     ) : field.label.toLowerCase().includes('evolução') || field.label.toLowerCase().includes('evolution') ? (
-                      <ClockIcon className="h-4 w-4 text-blue-500" />
+                      <ClockIcon className="h-4 w-4 text-stone-800" />
                     ) : null}
                     {field.label}: <span className="text-gray-900">{field.value}</span>
                   </div>

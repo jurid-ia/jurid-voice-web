@@ -91,8 +91,8 @@ export default function ChatBusiness() {
   };
 
   const styles = {
-    iconGradient: "bg-gradient-to-br from-sky-500 to-blue-600",
-    border: "border-sky-200",
+    iconGradient: "bg-gradient-to-br from-stone-700 to-stone-900",
+    border: "border-stone-200",
   };
 
   const isChatEmpty = engine.messages.length === 0;
@@ -180,7 +180,7 @@ export default function ChatBusiness() {
                       className={cn(
                         "cursor-pointer",
                         selectedPrompt?.id === prompt.id &&
-                          "bg-blue-50 text-blue-700"
+                          "bg-stone-50 text-stone-900"
                       )}
                     >
                       <div className="flex flex-col gap-0.5">
@@ -207,7 +207,7 @@ export default function ChatBusiness() {
             <div className="lg:hidden">
               <button
                 onClick={handleNewChat}
-                className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-sky-500/25 transition-all hover:shadow-sky-500/40 active:scale-95"
+                className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-stone-700 to-stone-900 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-stone-800/25 transition-all hover:shadow-stone-800/40 active:scale-95"
               >
                 <Plus className="h-4 w-4" />
                 Nova Conversa

@@ -92,7 +92,7 @@ export function ExamsCard({
                 return (
                   <div
                     key={i}
-                    className="flex items-center gap-2 rounded-lg bg-gray-50 p-2.5 transition-colors hover:bg-blue-50/50"
+                    className="flex items-center gap-2 rounded-lg bg-gray-50 p-2.5 transition-colors hover:bg-stone-50/50"
                   >
                     <div
                       className={`h-2 w-2 rounded-full ${
@@ -100,7 +100,7 @@ export function ExamsCard({
                           ? "bg-red-400"
                           : priority.toLowerCase().includes("média") || priority.toLowerCase().includes("media")
                             ? "bg-yellow-400"
-                            : "bg-blue-400"
+                            : "bg-stone-700"
                       }`}
                     />
                     <span className="text-sm font-medium text-gray-700">

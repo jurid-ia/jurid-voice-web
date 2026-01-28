@@ -118,7 +118,7 @@ export function GeneralRecordingTableItem({ recording }: Props) {
             <TooltipTrigger asChild>
               <div
                 className={cn(
-                  "flex w-max items-center gap-2 rounded-2xl border-2 bg-gradient-to-br from-sky-500 to-blue-600 p-1 text-xs text-white",
+                  "flex w-max items-center gap-2 rounded-2xl border-2 bg-gradient-to-br from-stone-600 to-stone-800 p-1 text-xs text-white",
                 )}
               >
                 <div

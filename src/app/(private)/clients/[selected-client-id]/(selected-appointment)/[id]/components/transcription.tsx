@@ -129,10 +129,10 @@ export function Transcription() {
     const colors = [
       "bg-emerald-100 text-emerald-600",
       "bg-purple-100 text-purple-600",
-      "bg-amber-100 text-amber-600",
+      "bg-stone-100 text-stone-700",
       "bg-rose-100 text-rose-600",
       "bg-cyan-100 text-cyan-600",
-      "bg-indigo-100 text-indigo-600",
+      "bg-stone-100 text-stone-900",
       "bg-lime-100 text-lime-600",
       "bg-orange-100 text-orange-600",
     ];
@@ -254,7 +254,7 @@ export function Transcription() {
     <>
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-lg overflow-hidden p-0 sm:rounded-2xl">
-          <div className="bg-gradient-to-br from-blue-600 to-indigo-700 px-6 py-5">
+          <div className="bg-gradient-to-br from-stone-900 to-stone-950 px-6 py-5">
             <DialogHeader>
               <DialogTitle className="flex items-center gap-3 text-xl font-bold text-white">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
@@ -262,7 +262,7 @@ export function Transcription() {
                 </div>
                 Organizar Locutores
               </DialogTitle>
-              <DialogDescription className="mt-2 text-blue-100">
+              <DialogDescription className="mt-2 text-stone-100">
                 Configure os participantes da conversa. O profissional aparecerá
                 à direita e os demais à esquerda.
               </DialogDescription>
@@ -273,8 +273,8 @@ export function Transcription() {
             {/* Legend */}
             <div className="flex items-center gap-4 rounded-lg bg-slate-50 px-4 py-3">
               <div className="flex items-center gap-2">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100">
-                  <Stethoscope className="h-3 w-3 text-blue-600" />
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-stone-100">
+                  <Stethoscope className="h-3 w-3 text-stone-900" />
                 </div>
                 <span className="text-xs font-medium text-slate-600">
                   Profissional (direita)
@@ -303,7 +303,7 @@ export function Transcription() {
                     className={cn(
                       "group flex items-center gap-3 rounded-xl border-2 p-3 transition-all",
                       isActive
-                        ? "border-blue-500 bg-blue-50/50"
+                        ? "border-stone-800 bg-stone-50/50"
                         : "border-slate-200 hover:border-slate-300 hover:bg-slate-50/50",
                     )}
                   >
@@ -317,7 +317,7 @@ export function Transcription() {
                       className={cn(
                         "flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-all",
                         isActive
-                          ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30"
+                          ? "bg-stone-900 text-white shadow-lg shadow-stone-900/30"
                           : getSpeakerColor(index),
                       )}
                       title={
@@ -344,12 +344,12 @@ export function Transcription() {
                             onChange={(e) => setEditValue(e.target.value)}
                             onKeyDown={handleKeyDown}
                             onBlur={handleSaveEdit}
-                            className="flex-1 rounded-lg border border-blue-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 outline-none ring-2 ring-blue-500/20 focus:border-blue-500"
+                            className="flex-1 rounded-lg border border-stone-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 outline-none ring-2 ring-stone-800/20 focus:border-stone-800"
                             placeholder="Nome do locutor"
                           />
                           <button
                             onClick={handleSaveEdit}
-                            className="rounded-lg bg-blue-600 p-1.5 text-white hover:bg-blue-700"
+                            className="rounded-lg bg-stone-900 p-1.5 text-white hover:bg-stone-950"
                           >
                             <Check className="h-4 w-4" />
                           </button>
@@ -365,7 +365,7 @@ export function Transcription() {
                           <span
                             className={cn(
                               "text-sm font-medium",
-                              isActive ? "text-blue-900" : "text-slate-700",
+                              isActive ? "text-stone-950" : "text-slate-700",
                             )}
                           >
                             {config.customName || config.name}
@@ -386,7 +386,7 @@ export function Transcription() {
 
                     {/* Status indicator */}
                     {isActive && (
-                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600">
+                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-stone-900">
                         <Check className="h-4 w-4 text-white" />
                       </div>
                     )}
@@ -403,7 +403,7 @@ export function Transcription() {
               <button
                 onClick={handleSaveSpeakerConfigs}
                 disabled={isSaving}
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all hover:shadow-xl hover:shadow-blue-600/30 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
+                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-stone-900 to-stone-950 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-stone-900/25 transition-all hover:shadow-xl hover:shadow-stone-900/30 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isSaving ? (
                   <>
@@ -431,7 +431,7 @@ export function Transcription() {
           <div className="flex flex-1 items-center justify-end">
             <button
               onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition-all hover:shadow-lg hover:shadow-blue-600/30 active:scale-[0.98]"
+              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-stone-900 to-stone-950 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-stone-900/20 transition-all hover:shadow-lg hover:shadow-stone-900/30 active:scale-[0.98]"
             >
               <Users className="h-4 w-4" />
               Organizar Locutores
@@ -458,7 +458,7 @@ export function Transcription() {
                     className={cn(
                       "flex h-8 w-8 min-w-[2rem] items-center justify-center rounded-full text-xs font-bold shadow-sm",
                       isPro
-                        ? "bg-blue-100 text-blue-600"
+                        ? "bg-stone-100 text-stone-900"
                         : getSpeakerColor(speech.index),
                     )}
                   >
@@ -485,7 +485,7 @@ export function Transcription() {
                       className={cn(
                         "rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm",
                         isPro
-                          ? "rounded-tr-none bg-blue-600 text-white"
+                          ? "rounded-tr-none bg-stone-900 text-white"
                           : "rounded-tl-none border border-gray-100 bg-white text-gray-700",
                       )}
                     >

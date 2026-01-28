@@ -26,7 +26,7 @@ export function MedicalHistoryTimelineCard({
           <HistoryIcon className="h-5 w-5 text-gray-400" />
           {title}
         </h3>
-        <button className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline">
+        <button className="text-sm font-medium text-stone-900 hover:text-stone-950 hover:underline">
           Ver histórico completo
         </button>
       </div>
@@ -36,7 +36,7 @@ export function MedicalHistoryTimelineCard({
           data.history.map((record, index) => (
             <div key={index} className="group relative pl-8">
               {/* Timeline Dot */}
-              <div className="absolute top-0 -left-[9px] h-4 w-4 rounded-full border-2 border-white bg-blue-500 ring-4 ring-blue-50 transition-all group-hover:ring-blue-100"></div>
+              <div className="absolute top-0 -left-[9px] h-4 w-4 rounded-full border-2 border-white bg-stone-800 ring-4 ring-stone-50 transition-all group-hover:ring-stone-100"></div>
 
               <div className="mb-3 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div>
@@ -50,13 +50,13 @@ export function MedicalHistoryTimelineCard({
                   )}
                 </div>
                 {record.date && (
-                  <span className="w-max rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-600">
+                  <span className="w-max rounded-full border border-stone-100 bg-stone-50 px-3 py-1 text-xs font-bold text-stone-900">
                     {record.date}
                   </span>
                 )}
               </div>
 
-              <div className="rounded-xl border border-gray-100 bg-gray-50/50 p-5 transition-all hover:border-blue-100 hover:bg-white hover:shadow-md">
+              <div className="rounded-xl border border-gray-100 bg-gray-50/50 p-5 transition-all hover:border-stone-100 hover:bg-white hover:shadow-md">
                 {record.note && (
                   <p className="mb-4 text-sm leading-relaxed text-gray-600">
                     {record.note}

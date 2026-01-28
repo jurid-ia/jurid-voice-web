@@ -26,7 +26,7 @@ export default function Login() {
             <h2 className="mb-2 text-2xl font-bold text-white">
               Seu Escritório Inteligente
             </h2>
-            <p className="text-blue-50">
+            <p className="text-stone-50">
               Grave suas reuniões e deixe nossa IA gerar resumos perfeitos
               automaticamente.
             </p>
@@ -71,7 +71,7 @@ export default function Login() {
                   Não tem uma conta?{" "}
                   <Link
                     href="/register"
-                    className="text-primary font-semibold transition-colors hover:text-blue-700"
+                    className="text-primary font-semibold transition-colors hover:text-stone-900"
                   >
                     Cadastre-se
                   </Link>
@@ -80,7 +80,7 @@ export default function Login() {
               {forgot && (
                 <button
                   onClick={() => setForgot(false)}
-                  className="text-primary font-semibold transition-colors hover:text-blue-700"
+                  className="text-primary font-semibold transition-colors hover:text-stone-900"
                 >
                   Voltar ao login
                 </button>

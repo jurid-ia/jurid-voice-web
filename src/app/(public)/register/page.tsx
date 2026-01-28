@@ -8,11 +8,11 @@ export default function Register() {
     return (
         <div className="flex min-h-screen w-full bg-white">
             {/* Esquerda - Branding / Marketing */}
-            <div className="from-primary relative hidden w-1/2 flex-col items-center justify-center bg-gradient-to-br to-blue-700 p-12 lg:flex">
+            <div className="from-primary relative hidden w-1/2 flex-col items-center justify-center bg-gradient-to-br to-stone-900 p-12 lg:flex">
                 {/* Background Effects */}
                 <div className="absolute inset-0 overflow-hidden">
                     <div className="absolute top-[20%] -left-[10%] h-[30rem] w-[30rem] rounded-full bg-white/10 blur-[120px]" />
-                    <div className="absolute -right-[10%] bottom-[20%] h-[30rem] w-[30rem] rounded-full bg-blue-900/20 blur-[120px]" />
+                    <div className="absolute -right-[10%] bottom-[20%] h-[30rem] w-[30rem] rounded-full bg-stone-950/20 blur-[120px]" />
                 </div>
 
                 <div className="relative z-10 flex flex-col items-center gap-12">
@@ -22,7 +22,7 @@ export default function Register() {
                         <h2 className="mb-2 text-2xl font-bold text-white">
                             Evolua seu Atendimento
                         </h2>
-                        <p className="text-blue-50">
+                        <p className="text-stone-50">
                             Cadastre-se para acessar a tecnologia que transforma suas consultas em registros perfeitos.
                         </p>
                     </div>
@@ -59,7 +59,7 @@ export default function Register() {
                                 Já tem uma conta?{" "}
                                 <Link
                                     href="/login"
-                                    className="font-semibold text-primary hover:text-blue-700 transition-colors"
+                                    className="font-semibold text-primary hover:text-stone-900 transition-colors"
                                 >
                                     Faça login
                                 </Link>

@@ -21,8 +21,8 @@ export function General() {
       {/* Reminder Info Card */}
       <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
         <div className="mb-4 flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50">
-            <Info className="h-5 w-5 text-blue-500" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-stone-50">
+            <Info className="h-5 w-5 text-stone-700" />
           </div>
           <h2 className="text-lg font-bold text-gray-900">
             Informações do Lembrete
@@ -31,7 +31,7 @@ export function General() {
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div className="flex items-center gap-3 rounded-xl bg-gray-50 p-4">
-            <Calendar className="h-5 w-5 text-blue-500" />
+            <Calendar className="h-5 w-5 text-stone-700" />
             <div>
               <p className="text-xs text-gray-500">Data</p>
               <p className="font-semibold text-gray-900">
@@ -41,7 +41,7 @@ export function General() {
           </div>
 
           <div className="flex items-center gap-3 rounded-xl bg-gray-50 p-4">
-            <AlarmClock className="h-5 w-5 text-blue-500" />
+            <AlarmClock className="h-5 w-5 text-stone-700" />
             <div>
               <p className="text-xs text-gray-500">Horário</p>
               <p className="font-semibold text-gray-900">
@@ -51,7 +51,7 @@ export function General() {
           </div>
 
           <div className="flex items-center gap-3 rounded-xl bg-gray-50 p-4">
-            <FileAudio className="h-5 w-5 text-blue-500" />
+            <FileAudio className="h-5 w-5 text-stone-700" />
             <div>
               <p className="text-xs text-gray-500">Gravação</p>
               <p className="font-semibold text-gray-900">
@@ -62,8 +62,8 @@ export function General() {
         </div>
 
         {selectedReminder.description && (
-          <div className="mt-4 rounded-xl bg-blue-50 p-4">
-            <p className="text-sm text-blue-800">
+          <div className="mt-4 rounded-xl bg-stone-50 p-4">
+            <p className="text-sm text-stone-800">
               {selectedReminder.description}
             </p>
           </div>

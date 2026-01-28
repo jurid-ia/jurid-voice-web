@@ -66,7 +66,7 @@ export function SuggestedExamsCard({
                           ? "bg-red-400"
                           : priority.toLowerCase().includes("média") || priority.toLowerCase().includes("media")
                             ? "bg-yellow-400"
-                            : "bg-blue-400"
+                            : "bg-stone-700"
                       }`}
                     />
                     <span className="text-xs text-gray-500">{priority}</span>

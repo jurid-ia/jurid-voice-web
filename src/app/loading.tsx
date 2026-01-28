@@ -76,8 +76,8 @@ export default function Loading() {
             {/* Background Glows */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
                 <div className="absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
-                <div className="absolute top-1/4 left-1/4 h-[300px] w-[300px] rounded-full bg-blue-400/5 blur-[100px]" />
-                <div className="absolute bottom-1/4 right-1/4 h-[300px] w-[300px] rounded-full bg-indigo-400/5 blur-[100px]" />
+                <div className="absolute top-1/4 left-1/4 h-[300px] w-[300px] rounded-full bg-stone-600/5 blur-[100px]" />
+                <div className="absolute bottom-1/4 right-1/4 h-[300px] w-[300px] rounded-full bg-stone-700/5 blur-[100px]" />
             </div>
         </div>
     );

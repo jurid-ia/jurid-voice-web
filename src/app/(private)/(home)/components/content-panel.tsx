@@ -164,7 +164,7 @@ export function ContentPanel({ className }: ContentPanelProps) {
             {/* Header */}
             <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 shadow-md shadow-blue-500/20">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-stone-700 to-stone-900 shadow-md shadow-stone-800/20">
                         <FileText className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -179,7 +179,7 @@ export function ContentPanel({ className }: ContentPanelProps) {
 
                 <button 
                     onClick={handleViewAll}
-                    className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 px-3 py-1.5 text-xs font-medium text-white transition-all hover:shadow-lg hover:shadow-sky-500/25 active:scale-95"
+                    className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-stone-700 to-stone-900 px-3 py-1.5 text-xs font-medium text-white transition-all hover:shadow-lg hover:shadow-stone-800/25 active:scale-95"
                 >
                     Ver todas
                     <ChevronRight className="h-3 w-3" />

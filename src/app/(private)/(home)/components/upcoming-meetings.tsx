@@ -65,8 +65,8 @@ export function UpcomingMeetings({
                 );
             case "zoom":
                 return (
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100">
-                        <Video className="h-4 w-4 text-blue-600" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-stone-100">
+                        <Video className="h-4 w-4 text-stone-900" />
                     </div>
                 );
             default:
@@ -91,7 +91,7 @@ export function UpcomingMeetings({
             {/* Overlay "Em Breve" */}
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60 backdrop-blur-sm">
                 <div className="flex flex-col items-center gap-2">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-sky-500 to-blue-600 shadow-lg">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-stone-700 to-stone-900 shadow-lg">
                         <Calendar className="h-8 w-8 text-white" />
                     </div>
                     <span className="text-xl font-bold text-gray-800">Em Breve</span>
@@ -101,7 +101,7 @@ export function UpcomingMeetings({
 
             <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-blue-600">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-stone-700 to-stone-900">
                         <Calendar className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -115,7 +115,7 @@ export function UpcomingMeetings({
                 {!isConnected && (
                     <button
                         onClick={onConnect}
-                        className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 px-3 py-1.5 text-xs font-medium text-white transition-all hover:shadow-lg hover:shadow-sky-500/25"
+                        className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-stone-700 to-stone-900 px-3 py-1.5 text-xs font-medium text-white transition-all hover:shadow-lg hover:shadow-stone-800/25"
                     >
                         Conectar
                         <ExternalLink className="h-3 w-3" />
