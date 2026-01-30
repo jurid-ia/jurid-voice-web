@@ -33,7 +33,7 @@ export function GeneralClientsTable() {
   const [isCreateClientSheetOpen, setIsCreateClientSheetOpen] = useState(false);
 
   const GeneralClientsColumns = [
-    { key: "NAME", label: "Nome do Cliente", sortable: true },
+    { key: "NAME", label: "Nome do Contato", sortable: true },
     { key: "BIRTH_DATE", label: "Data de Nascimento", sortable: true },
     { key: "DESCRIPTION", label: "Descrição", sortable: true },
     { key: "ACTIONS", label: "Ações", sortable: false },
@@ -115,7 +115,7 @@ export function GeneralClientsTable() {
                   className={cn(
                     "h-12 text-xs font-semibold tracking-wider text-gray-500 uppercase",
                     column.sortable &&
-                      "cursor-pointer select-none hover:text-gray-700",
+                    "cursor-pointer select-none hover:text-gray-700",
                   )}
                   onClick={() =>
                     column.sortable && handleSort(column.key as SortableColumn)
@@ -138,37 +138,37 @@ export function GeneralClientsTable() {
           <TableBody className="relative">
             {isGettingClients
               ? Array.from({ length: 5 }).map((_, index) => (
-                  <TableRow key={index}>
-                    {GeneralClientsColumns.map((col, idx) => (
-                      <TableCell
-                        key={idx}
-                        className="h-16 animate-pulse bg-gray-50"
-                      />
-                    ))}
-                  </TableRow>
-                ))
+                <TableRow key={index}>
+                  {GeneralClientsColumns.map((col, idx) => (
+                    <TableCell
+                      key={idx}
+                      className="h-16 animate-pulse bg-gray-50"
+                    />
+                  ))}
+                </TableRow>
+              ))
               : !isGettingClients && clients.length !== 0
                 ? clients.map((row) => (
-                    <GeneralClientTableItem key={row.id} client={row} />
-                  ))
+                  <GeneralClientTableItem key={row.id} client={row} />
+                ))
                 : !isGettingClients &&
-                  clients.length === 0 && (
-                    <TableRow>
-                      <TableCell
-                        colSpan={GeneralClientsColumns.length}
-                        className="h-64 text-center"
-                      >
-                        <div className="flex flex-col items-center justify-center gap-2 text-gray-400">
-                          <span className="text-lg font-medium">
-                            Nenhum paciente encontrado
-                          </span>
-                          <span className="text-sm">
-                            Cadastre um novo paciente para começar
-                          </span>
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  )}
+                clients.length === 0 && (
+                  <TableRow>
+                    <TableCell
+                      colSpan={GeneralClientsColumns.length}
+                      className="h-64 text-center"
+                    >
+                      <div className="flex flex-col items-center justify-center gap-2 text-gray-400">
+                        <span className="text-lg font-medium">
+                          Nenhum contato encontrado
+                        </span>
+                        <span className="text-sm">
+                          Cadastre um novo contato para começar
+                        </span>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                )}
           </TableBody>
         </Table>
         {!isGettingClients && clientsTotalPages > 1 && (

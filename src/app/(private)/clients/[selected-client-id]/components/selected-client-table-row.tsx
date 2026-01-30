@@ -26,15 +26,15 @@ export function SelectedPatientTableItem({ recording }: Props) {
     <TableRow
       onClick={handleNavigation}
       key={recording.id}
-      className="group h-20 cursor-pointer border-b border-gray-100 bg-white transition-all duration-300 hover:bg-slate-50 hover:shadow-sm"
+      className="group h-20 cursor-pointer border-b border-gray-100 bg-white transition-all duration-300 hover:bg-[#AB8E63]/5 hover:shadow-sm"
     >
       <TableCell className="w-[40%] py-4 pl-6 text-start">
         <div className="flex items-center gap-4">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-stone-600 to-stone-800 shadow-md shadow-stone-700/20 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-stone-700/30">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#AB8E63] to-[#8f7652] shadow-md shadow-[#AB8E63]/20 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-[#AB8E63]/30">
             <ContactsIcon className="h-5 w-5 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="text-sm font-bold text-gray-900 transition-colors group-hover:text-stone-800">
+            <span className="text-sm font-bold text-gray-900 transition-colors group-hover:text-[#AB8E63]">
               {recording.name || "Sem título"}
             </span>
             <span className="text-xs font-medium text-gray-500">
@@ -47,7 +47,7 @@ export function SelectedPatientTableItem({ recording }: Props) {
         {moment(recording.createdAt).format("HH:mm")}
       </TableCell>
       <TableCell className="py-4 text-start">
-        <span className="inline-flex items-center rounded-lg bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600 group-hover:bg-stone-50 group-hover:text-stone-800">
+        <span className="inline-flex items-center rounded-lg bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600 transition-colors group-hover:bg-[#AB8E63]/10 group-hover:text-[#AB8E63]">
           {recording.duration || "00:00"}
         </span>
       </TableCell>
@@ -55,7 +55,7 @@ export function SelectedPatientTableItem({ recording }: Props) {
         <div className="flex items-center justify-end">
           <button
             onClick={handleNavigation}
-            className="group-hover:border-primary/20 group-hover:bg-primary/5 group-hover:text-primary hover:!bg-primary hover:shadow-primary/25 flex items-center gap-1 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-600 shadow-sm transition-all duration-300 hover:!text-white"
+            className="group-hover:border-[#AB8E63]/20 group-hover:bg-[#AB8E63]/10 group-hover:text-[#AB8E63] hover:!bg-[#AB8E63] hover:shadow-[#AB8E63]/25 flex items-center gap-1 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-600 shadow-sm transition-all duration-300 hover:!text-white"
           >
             <span>Acessar</span>
             <ChevronRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />

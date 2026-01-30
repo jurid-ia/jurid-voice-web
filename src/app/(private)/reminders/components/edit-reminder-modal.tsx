@@ -64,7 +64,7 @@ export function EditReminderModal({
             <div className="w-full max-w-md animate-in fade-in zoom-in duration-200 rounded-3xl bg-white p-8 shadow-2xl">
                 <div className="mb-6 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-stone-50 text-stone-800">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#AB8E63]/10 text-[#AB8E63]">
                             <Bell className="h-6 w-6" />
                         </div>
                         <div>
@@ -90,7 +90,7 @@ export function EditReminderModal({
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-stone-700 focus:bg-white focus:outline-none focus:ring-4 focus:ring-stone-700/10 transition-all"
+                            className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 transition-all focus:border-[#AB8E63] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#AB8E63]/10"
                             placeholder="Nome do lembrete..."
                             required
                         />
@@ -106,7 +106,7 @@ export function EditReminderModal({
                                 type="date"
                                 value={date}
                                 onChange={(e) => setDate(e.target.value)}
-                                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-900 focus:border-stone-700 focus:bg-white focus:outline-none focus:ring-4 focus:ring-stone-700/10 transition-all"
+                                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-900 transition-all focus:border-[#AB8E63] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#AB8E63]/10"
                                 required
                             />
                         </div>
@@ -119,7 +119,7 @@ export function EditReminderModal({
                                 type="time"
                                 value={time}
                                 onChange={(e) => setTime(e.target.value)}
-                                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-900 focus:border-stone-700 focus:bg-white focus:outline-none focus:ring-4 focus:ring-stone-700/10 transition-all"
+                                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-900 transition-all focus:border-[#AB8E63] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#AB8E63]/10"
                                 required
                             />
                         </div>
@@ -134,24 +134,26 @@ export function EditReminderModal({
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             rows={3}
-                            className="w-full resize-none rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-stone-700 focus:bg-white focus:outline-none focus:ring-4 focus:ring-stone-700/10 transition-all"
+                            className="w-full resize-none rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 transition-all focus:border-[#AB8E63] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#AB8E63]/10"
                             placeholder="Descreva o que deve ser lembrado..."
                             required
                         />
                     </div>
 
-                    <div className="mt-2 flex gap-3">
+
+
+                    <div className="mt-6 flex items-center justify-end gap-3">
                         <button
                             type="button"
                             onClick={onClose}
-                            className="flex-1 rounded-2xl border border-gray-200 py-3.5 text-sm font-bold text-gray-600 hover:bg-gray-50 transition-colors"
+                            className="rounded-xl border border-gray-200 px-6 py-2.5 text-sm font-semibold text-gray-600 transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200"
                         >
                             Cancelar
                         </button>
                         <button
                             type="submit"
                             disabled={loading}
-                            className="flex-1 rounded-2xl bg-gradient-to-r from-stone-800 to-stone-600 py-3.5 text-sm font-bold text-white shadow-lg shadow-stone-700/25 hover:shadow-stone-700/40 active:scale-95 disabled:opacity-50 transition-all flex items-center justify-center gap-2"
+                            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#AB8E63] to-[#8f7652] px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#AB8E63]/25 transition-all hover:shadow-[#AB8E63]/40 focus:outline-none focus:ring-2 focus:ring-[#AB8E63]/20 active:scale-95 disabled:opacity-50"
                         >
                             {loading ? (
                                 <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
@@ -164,7 +166,7 @@ export function EditReminderModal({
                         </button>
                     </div>
                 </form>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }

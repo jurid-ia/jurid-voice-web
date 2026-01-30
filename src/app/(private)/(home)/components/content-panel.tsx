@@ -1,6 +1,7 @@
 "use client";
 
 import { RecordingDetailsProps } from "@/@types/general-client";
+import { Button } from "@/components/ui/blocks/button";
 import { useGeneralContext } from "@/context/GeneralContext";
 import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
@@ -40,7 +41,7 @@ const formatRelativeDate = (date: Date): string => {
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const yesterday = new Date(today);
     yesterday.setDate(yesterday.getDate() - 1);
-    
+
     const recordingDate = new Date(date);
     const recordingDay = new Date(recordingDate.getFullYear(), recordingDate.getMonth(), recordingDate.getDate());
 
@@ -56,7 +57,7 @@ const formatRelativeDate = (date: Date): string => {
 // Helper para formatar tipo
 const formatType = (type: string): string => {
     switch (type) {
-        case "CLIENT": return "Consulta";
+        case "CLIENT": return "Reunião";
         case "REMINDER": return "Lembrete";
         case "STUDY": return "Estudo";
         case "OTHER": return "Outro";
@@ -164,7 +165,7 @@ export function ContentPanel({ className }: ContentPanelProps) {
             {/* Header */}
             <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-stone-700 to-stone-900 shadow-md shadow-stone-800/20">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-md shadow-[#AB8E63]/20">
                         <FileText className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -177,13 +178,15 @@ export function ContentPanel({ className }: ContentPanelProps) {
                     </div>
                 </div>
 
-                <button 
+                <Button
                     onClick={handleViewAll}
-                    className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-stone-700 to-stone-900 px-3 py-1.5 text-xs font-medium text-white transition-all hover:shadow-lg hover:shadow-stone-800/25 active:scale-95"
+                    size="sm"
+                    color="default"
+                    className="gap-2 text-xs"
                 >
                     Ver todas
                     <ChevronRight className="h-3 w-3" />
-                </button>
+                </Button>
             </div>
 
             {/* Toolbar: Search + Navigation */}
@@ -196,7 +199,7 @@ export function ContentPanel({ className }: ContentPanelProps) {
                         placeholder="Buscar..."
                         value={searchTerm}
                         onChange={handleSearch}
-                        className="w-full rounded-lg border border-gray-100 bg-gray-50 py-1.5 pl-8 pr-3 text-xs text-gray-700 outline-none transition-all placeholder:text-gray-400 focus:border-sky-200 focus:bg-white focus:ring-1 focus:ring-sky-200"
+                        className="w-full rounded-lg border border-gray-100 bg-gray-50 py-1.5 pl-8 pr-3 text-xs text-gray-700 outline-none transition-all placeholder:text-gray-400 focus:border-[#AB8E63]/50 focus:bg-white focus:ring-1 focus:ring-[#AB8E63]/20"
                     />
                 </div>
 
@@ -211,14 +214,14 @@ export function ContentPanel({ className }: ContentPanelProps) {
                         <button
                             onClick={prevSlide}
                             disabled={currentIndex === 0 || filteredRecordings.length === 0}
-                            className="flex h-7 w-7 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-400 transition-all hover:border-sky-200 hover:text-sky-600 disabled:opacity-30 disabled:hover:border-gray-100 disabled:hover:text-gray-400"
+                            className="flex h-7 w-7 items-center justify-center rounded-lg bg-white text-gray-400 transition-all hover:bg-sky-50 hover:text-[#AB8E63] disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-gray-400"
                         >
                             <ChevronLeft className="h-4 w-4" />
                         </button>
                         <button
                             onClick={nextSlide}
                             disabled={currentIndex === maxIndex || filteredRecordings.length === 0}
-                            className="flex h-7 w-7 items-center justify-center rounded-lg border border-gray-100 bg-white text-gray-400 transition-all hover:border-sky-200 hover:text-sky-600 disabled:opacity-30 disabled:hover:border-gray-100 disabled:hover:text-gray-400"
+                            className="flex h-7 w-7 items-center justify-center rounded-lg bg-white text-gray-400 transition-all hover:bg-sky-50 hover:text-[#AB8E63] disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-gray-400"
                         >
                             <ChevronRight className="h-4 w-4" />
                         </button>
@@ -227,7 +230,7 @@ export function ContentPanel({ className }: ContentPanelProps) {
             </div>
 
             {/* Content Slider container */}
-            <div className="flex-1 overflow-hidden">
+            <div className="flex-1 overflow-hidden p-1">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentIndex}
@@ -235,11 +238,11 @@ export function ContentPanel({ className }: ContentPanelProps) {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -10 }}
                         transition={{ duration: 0.2 }}
-                        className="grid h-full grid-cols-1 gap-4 sm:grid-cols-2"
+                        className="grid h-full grid-cols-1 gap-4 p-1 sm:grid-cols-2"
                     >
                         {isGettingRecordings ? (
                             <div className="col-span-2 flex h-full flex-col items-center justify-center text-gray-400">
-                                <Loader2 className="mb-2 h-8 w-8 animate-spin text-sky-500" />
+                                <Loader2 className="mb-2 h-8 w-8 animate-spin text-[#AB8E63]" />
                                 <p className="text-sm">Carregando gravações...</p>
                             </div>
                         ) : currentRecordings.length === 0 ? (
@@ -252,15 +255,15 @@ export function ContentPanel({ className }: ContentPanelProps) {
                                 <div
                                     key={recording.id}
                                     onClick={() => handleRecordingClick(recording.id, recording.type)}
-                                    className="group relative flex cursor-pointer flex-col justify-between rounded-xl border border-gray-100 bg-gray-50/50 p-4 transition-all hover:-translate-y-0.5 hover:border-sky-200 hover:bg-white hover:shadow-sm"
+                                    className="group relative flex cursor-pointer flex-col justify-between rounded-xl border border-gray-100 bg-gray-50/50 p-4 transition-all duration-300 hover:scale-[1.02] hover:border-[#AB8E63]/50 hover:bg-white hover:shadow-lg hover:shadow-[#AB8E63]/10"
                                 >
                                     {/* Top Section */}
                                     <div className="mb-3 flex items-start justify-between gap-3">
-                                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-sky-500 shadow-sm transition-transform group-hover:scale-110 group-hover:bg-sky-500 group-hover:text-white">
+                                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-[#AB8E63] shadow-sm transition-transform group-hover:scale-110 group-hover:bg-[#AB8E63] group-hover:text-white">
                                             <Play className="h-3.5 w-3.5 fill-current ml-0.5" />
                                         </div>
                                         <div className="flex-1 text-right">
-                                            <span className="inline-block rounded-md bg-sky-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-sky-700">
+                                            <span className="inline-block rounded-md bg-[#AB8E63]/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#AB8E63]">
                                                 {recording.type}
                                             </span>
                                         </div>
@@ -268,7 +271,7 @@ export function ContentPanel({ className }: ContentPanelProps) {
 
                                     {/* Middle - Patient & Details */}
                                     <div className="mb-3 space-y-1">
-                                        <h4 className="line-clamp-1 text-sm font-bold text-gray-800 group-hover:text-sky-700">
+                                        <h4 className="line-clamp-1 text-sm font-bold text-gray-800 group-hover:text-[#AB8E63]">
                                             {recording.title}
                                         </h4>
                                         <div className="flex items-center gap-2 text-xs text-gray-500">
@@ -284,15 +287,19 @@ export function ContentPanel({ className }: ContentPanelProps) {
                                     {/* Footer Actions */}
                                     <div className="mt-auto flex items-center justify-between border-t border-gray-100 pt-2">
                                         <div className="flex gap-1">
-                                            {recording.tags.slice(0, 2).map(tag => (
-                                                <span key={tag} className="inline-block max-w-[70px] truncate rounded bg-gray-100 px-1.5 py-0.5 text-[9px] text-gray-600">
-                                                    {tag}
-                                                </span>
-                                            ))}
+                                            <span className="inline-block truncate rounded bg-gray-100 px-1.5 py-0.5 text-[10px] font-medium text-gray-600 capitalize">
+                                                Compartilhar {recording.type.toLowerCase()}
+                                            </span>
                                         </div>
 
-                                        <div className="flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-                                            <button className="rounded p-1 text-gray-400 hover:bg-sky-50 hover:text-sky-600">
+                                        <div className="flex gap-1">
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    // Handle share
+                                                }}
+                                                className="rounded p-1 text-gray-400 hover:bg-[#AB8E63]/10 hover:text-[#AB8E63] transition-colors"
+                                            >
                                                 <Share2 className="h-3 w-3" />
                                             </button>
                                         </div>

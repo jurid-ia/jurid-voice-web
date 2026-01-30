@@ -63,7 +63,7 @@ export function ChatSidebar({
       {/* New Chat Button */}
       <button
         onClick={onNewChat}
-        className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-br from-stone-700 to-stone-900 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-stone-800/20 transition-all hover:scale-[1.02] hover:shadow-stone-800/30 active:scale-95"
+        className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white shadow-lg shadow-[#AB8E63]/25 transition-all hover:scale-[1.02] hover:bg-primary/90 hover:shadow-[#AB8E63]/30 active:scale-95"
       >
         <Plus className="h-4 w-4" />
         Nova Conversa

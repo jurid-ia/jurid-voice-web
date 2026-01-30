@@ -1,7 +1,7 @@
 import { cn } from "@/utils/cn";
 import React from "react";
 
-interface IconProps extends React.SVGProps<SVGSVGElement> {}
+interface IconProps extends React.SVGProps<SVGSVGElement> { }
 
 export const AnalyticsIcon: React.FC<IconProps> = ({ className, ...props }) => (
   <svg
@@ -607,38 +607,44 @@ export const MedicalRecordIcon: React.FC<IconProps> = ({
     className={cn("h-4 w-4", className)}
     {...props}
   >
-    <path
-      d="M8 2V5"
+    <rect
+      x="14"
+      y="5"
+      width="6"
+      height="6"
+      rx="2"
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <path
-      d="M16 2V5"
+      d="M4 9H10"
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <path
-      d="M3.5 9.18412C3.5 6.45261 3.5 5.08726 4.30232 4.10825C5.10464 3.12924 6.35703 2.92429 8.86182 2.5144C10.6865 2.21583 13.3135 2.21583 15.1382 2.5144C17.643 2.92429 18.8954 3.12924 19.6977 4.10825C20.5 5.08726 20.5 6.45262 20.5 9.18413V15.8159C20.5 18.5474 20.5 19.9127 19.6977 20.8918C18.8954 21.8708 17.643 22.0757 15.1382 22.4856C13.3135 22.7842 10.6865 22.7842 8.86182 22.4856C6.35703 22.0757 5.10464 21.8708 4.30232 20.8918C3.5 19.9127 3.5 18.5474 3.5 15.8159V9.18412Z"
-      stroke="currentColor"
-      strokeWidth="1.5"
-    />
-    <path
-      opacity="0.5"
-      d="M8 12H16"
+      d="M4 6H10"
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
-      opacity="0.5"
-      d="M8 16H13"
+      d="M4 15H20"
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M4 19H20"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );

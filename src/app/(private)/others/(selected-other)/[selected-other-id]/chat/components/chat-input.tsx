@@ -42,7 +42,7 @@ export function ChatInput({
     <div className="mx-auto flex w-full flex-col items-center justify-center px-4 py-2 pb-1">
       <div className="invisible mb-1 text-center text-xs text-gray-400">""</div>
       <div className="relative flex min-w-[80%] items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-3 shadow-sm transition-shadow focus-within:shadow-md">
-        <button className="group text-primary relative flex h-8 w-8 items-center justify-center rounded-lg from-stone-600 to-stone-800 transition-all hover:scale-105 hover:bg-gradient-to-br hover:text-white active:scale-95">
+        <button className="group text-[#AB8E63] relative flex h-8 w-8 items-center justify-center rounded-lg transition-all hover:scale-105 hover:bg-[#AB8E63] hover:text-white active:scale-95">
           <Paperclip className="h-4 w-4" />
         </button>
 
@@ -63,11 +63,10 @@ export function ChatInput({
         <div className="flex items-center gap-2">
           <button
             onClick={handleMicClick}
-            className={`group text-primary relative flex h-8 w-8 items-center justify-center rounded-lg transition-all hover:scale-105 active:scale-95 ${
-              isRecording
-                ? "animate-pulse bg-red-500 hover:bg-red-600"
-                : "text-primary from-stone-600 to-stone-800 hover:bg-gradient-to-br hover:text-white"
-            }`}
+            className={`group relative flex h-8 w-8 items-center justify-center rounded-lg transition-all hover:scale-105 active:scale-95 ${isRecording
+                ? "animate-pulse bg-red-500 hover:bg-red-600 text-white"
+                : "text-[#AB8E63] hover:bg-[#AB8E63] hover:text-white"
+              }`}
           >
             {isRecording ? (
               <Square className="h-4 w-4 fill-current" />
@@ -78,18 +77,17 @@ export function ChatInput({
           <button
             onClick={onSend}
             disabled={!value.trim() || isLoading || isRecording}
-            className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${
-              value.trim() && !isLoading && !isRecording
-                ? "bg-stone-800 text-white hover:bg-stone-900"
+            className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${value.trim() && !isLoading && !isRecording
+                ? "bg-[#AB8E63] text-white hover:bg-[#AB8E63]/90"
                 : "cursor-not-allowed bg-gray-200 text-gray-400"
-            }`}
+              }`}
           >
             <ArrowUp className="h-5 w-5" />
           </button>
         </div>
       </div>
       <div className="mt-1 text-center text-xs text-gray-400">
-        O HealthVoice pode cometer erros. Considere verificar informações
+        A Jurid.IA Voice pode cometer erros. Considere verificar informações
         importantes.
       </div>
     </div>

@@ -30,7 +30,7 @@ export function GeneralStudiesTableItem({ recording }: Props) {
     >
       <TableCell className="w-[40%] py-4 pl-6 text-start">
         <div className="flex items-center gap-4">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-stone-600 to-stone-800 shadow-md shadow-stone-700/20 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-stone-700/30">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#AB8E63] to-[#8f7652] shadow-md shadow-[#AB8E63]/20 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-[#AB8E63]/30">
             <StudyIcon className="h-5 w-5 text-white" />
           </div>
           <div className="flex flex-col">

@@ -36,11 +36,11 @@ export default function Clients() {
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Suas Consultas</h1>
           <p className="text-sm text-gray-500">
-            Gerencie suas consultas do paciente {selectedClient?.name}
+            Gerencie suas consultas do contato {selectedClient?.name}
           </p>
         </div>
         <div className="flex flex-row items-center gap-4">
-          <div className="flex items-center gap-2 rounded-xl border border-gray-100 bg-gray-50 p-1">
+          <div className="flex items-center gap-2 rounded-xl border border-gray-100 bg-gray-50 p-1 transition-all focus-within:border-[#AB8E63] focus-within:bg-white focus-within:ring-4 focus-within:ring-[#AB8E63]/10">
             <div className="relative h-10 w-full sm:w-80">
               <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-400" />
               <input
@@ -53,7 +53,7 @@ export default function Clients() {
             </div>
           </div>
           <AudioRecorder
-            buttonClassName="flex items-center gap-2 rounded-lg bg-gradient-to-r from-stone-600 to-stone-800 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-stone-700/25 transition-all hover:shadow-stone-700/40 active:scale-95"
+            buttonClassName="flex items-center gap-2 rounded-lg bg-gradient-to-r from-[#AB8E63] to-[#8f7652] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#AB8E63]/25 transition-all hover:shadow-[#AB8E63]/40 active:scale-95"
             skipToClient={true}
             customLabel="Nova Gravação"
             customIcon={Plus}

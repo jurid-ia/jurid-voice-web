@@ -9,7 +9,7 @@ export default function OverviewPage() {
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Resumo Geral</h1>
           <p className="text-sm text-gray-500">
-            Resumo estruturado da consulta com componentes gerados pela IA.
+            Resumo estruturado da reunião com componentes gerados pela IA.
           </p>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { cn } from "@/utils/cn";
 import { debounce } from "lodash";
 import { Bell, Folder, GraduationCap, Search, Stethoscope } from "lucide-react";
 import { useCallback, useState } from "react";
+import Image from "next/image";
 import { GeneralRecordingsTable } from "./components/general-recording-table";
 
 type SortableColumn = "NAME" | "CREATED_AT" | "DURATION" | null;
@@ -70,7 +71,7 @@ export default function Recordings() {
                   currentType === "CLIENT" && "fill-current",
                 )}
               />
-              Consulta
+              Reunião
             </button>
             <button
               onClick={() => handleTypeFilter("REMINDER")}

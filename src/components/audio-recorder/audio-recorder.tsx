@@ -80,7 +80,7 @@ export function AudioRecorder({
   const [pendingClientName, setPendingClientName] = useState<string | null>(
     null,
   ); // New strategy
-  const resetRecorderRef = useRef(() => {});
+  const resetRecorderRef = useRef(() => { });
   const {
     currentStep,
     setCurrentStep,
@@ -224,13 +224,23 @@ export function AudioRecorder({
   }, [currentStep, recorder.mediaUrl, currentMediaType]); // ← ADICIONA currentMediaType como dependência
 
   const handleDropdownOpenChange = (open: boolean) => {
-    if (open && skipToClient) {
-      // Se está tentando abrir E skipToClient é true, abre direto o save dialog
-      openSaveDialog("CLIENT");
-    } else {
-      // Caso contrário, comportamento normal do dropdown
-      setIsDropdownOpen(open);
+    if (open) {
+      if (skipToClient) {
+        openSaveDialog("CLIENT");
+        return;
+      }
+      if (forcePersonalType) {
+        // Se forcePersonalType estiver definido, já configura o tipo e abre o dialog
+        updateMetadata({
+          recordingType: "PERSONAL",
+          personalRecordingType: forcePersonalType,
+          consultationType: null,
+        });
+        setCurrentStep("save-dialog");
+        return;
+      }
     }
+    setIsDropdownOpen(open);
   };
 
   const getDerivedTitle = () => {
@@ -413,7 +423,7 @@ export function AudioRecorder({
     const IconComponent = CustomIcon || Mic;
     const label = customLabel || "Nova Gravação";
 
-    if (skipToClient) {
+    if (skipToClient || forcePersonalType) {
       return (
         <div
           onClick={() => handleDropdownOpenChange(true)}
@@ -450,7 +460,7 @@ export function AudioRecorder({
             <div className="flex items-center gap-2">
               <Video size={18} className="text-stone-900" />
               <div>
-                <p className="font-semibold text-gray-800">Consulta</p>
+                <p className="font-semibold text-gray-800">Reunião</p>
                 <p className="text-xs text-gray-500">Presencial ou Online</p>
               </div>
             </div>
@@ -494,7 +504,7 @@ export function AudioRecorder({
                 <div className="mb-6 flex items-center justify-between">
                   <h2 className="text-2xl font-bold text-gray-800">
                     {metadata.recordingType === "CLIENT"
-                      ? "Nova Consulta"
+                      ? "Nova Reunião"
                       : "Nova Gravação Pessoal"}
                   </h2>
                   <button
@@ -526,7 +536,7 @@ export function AudioRecorder({
                       onChange={(e) => updateMetadata({ name: e.target.value })}
                       placeholder={
                         metadata.recordingType === "CLIENT"
-                          ? "Ex: Consulta - João Silva"
+                          ? "Ex: Reunião - João Silva"
                           : metadata.personalRecordingType === "REMINDER"
                             ? "Ex: Lembrete - Assinar documento"
                             : metadata.personalRecordingType === "STUDY"
@@ -669,7 +679,7 @@ export function AudioRecorder({
                   {metadata.recordingType === "CLIENT" && (
                     <div>
                       <label className="mb-2 block text-sm font-medium text-gray-700">
-                        Tipo de Consulta
+                        Tipo de Reunião
                       </label>
                       <div className="grid grid-cols-2 gap-3">
                         <button
@@ -748,7 +758,7 @@ export function AudioRecorder({
                   {metadata.recordingType === "CLIENT" && (
                     <div>
                       <label className="mb-2 block text-sm font-medium text-gray-700">
-                        Selecionar Paciente
+                        Selecionar Contato
                       </label>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
@@ -761,13 +771,13 @@ export function AudioRecorder({
                                 );
                                 const foundInTemp =
                                   tempCreatedClient?.id ===
-                                  metadata.selectedClientId
+                                    metadata.selectedClientId
                                     ? tempCreatedClient
                                     : null;
 
                                 return metadata.selectedClientId
                                   ? foundInList?.name || foundInTemp?.name || ""
-                                  : "Selecione um Paciente";
+                                  : "Selecione um Contato";
                               })()}
                               className="w-full cursor-pointer text-black outline-none"
                               required
@@ -786,7 +796,7 @@ export function AudioRecorder({
                             className="sticky top-0 z-10 mb-2 flex items-center justify-start gap-2 border-b border-gray-100 bg-white py-3 font-semibold text-stone-900 hover:bg-neutral-50"
                           >
                             <UserPlus size={16} />
-                            Cadastrar Novo Paciente
+                            Cadastrar Novo Contato
                           </DropdownMenuItem>
                           {clients.length !== 0 ? (
                             clients.map((client, index) => (
@@ -819,7 +829,7 @@ export function AudioRecorder({
 
                   <button
                     onClick={handleStartRecording}
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-stone-900 py-4 font-semibold text-white transition-colors hover:bg-stone-950"
+                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-4 font-semibold text-white transition-colors hover:bg-primary/90"
                   >
                     {currentMediaType === "video" ? (
                       <>
@@ -917,7 +927,7 @@ export function AudioRecorder({
                     </button>
                     <button
                       onClick={handleStartVideoRecording}
-                      className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-stone-900 py-4 font-semibold text-white transition-colors hover:bg-stone-950"
+                      className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary py-4 font-semibold text-white transition-colors hover:bg-primary/90"
                     >
                       <Video size={20} />
                       Iniciar Gravação
@@ -1066,7 +1076,7 @@ export function AudioRecorder({
                     </button>
                     <button
                       onClick={handleConfirmRecording}
-                      className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-green-600 py-4 font-semibold text-white transition-colors hover:bg-green-700"
+                      className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary py-4 font-semibold text-white transition-colors hover:bg-primary/90"
                     >
                       <Send size={20} />
                       Confirmar e Enviar

@@ -37,7 +37,7 @@ export function GeneralClientsTableHeader({ onOpenNewClient }: Props) {
           <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
-            placeholder="Buscar paciente..."
+            placeholder="Buscar contato..."
             value={localQuery}
             onChange={handleChange}
             className="h-full w-full rounded-lg bg-transparent px-9 text-sm text-gray-700 outline-none placeholder:text-gray-400"

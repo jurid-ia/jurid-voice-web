@@ -164,7 +164,7 @@ export function CreateClientSheet({
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-text-100">Nome do Cliente</FormLabel>
+                <FormLabel className="text-text-100">Nome do Contato</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Digite..."
@@ -190,7 +190,7 @@ export function CreateClientSheet({
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-text-100">
-                  Data de Nascimento do Cliente
+                  Data de Nascimento do Contato
                 </FormLabel>
                 <FormControl>
                   <Input
@@ -212,7 +212,7 @@ export function CreateClientSheet({
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-text-100">
-                  Descrição do Cliente
+                  Descrição do Contato
                 </FormLabel>
                 <FormControl>
                   <Textarea
@@ -239,14 +239,14 @@ export function CreateClientSheet({
               onClick={() => handleNext(form)}
               disabled={isLoading}
               className={cn(
-                "border-primary bg-primary hover:text-primary my-4 flex h-10 min-w-40 items-center justify-center rounded-md border px-2 font-semibold text-white transition duration-200 hover:bg-transparent",
-                isLoading && "text-primary bg-white",
+                "my-4 flex h-10 min-w-40 items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#AB8E63]/25 transition-all hover:bg-[#AB8E63]/90 hover:shadow-[#AB8E63]/40 active:scale-95",
+                isLoading && "opacity-70 cursor-not-allowed",
               )}
             >
               {isLoading ? (
                 <Loader2 className="animate-spin" />
               ) : (
-                "Criar Cliente"
+                "Criar Contato"
               )}
             </button>
           </div>

@@ -1,12 +1,12 @@
 "use client";
 
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/blocks/dropdown-menu";
 import { useSession } from "@/context/auth";
 import { Prompt, useChatPage } from "@/context/chatContext";
@@ -14,10 +14,10 @@ import { useChatEngine } from "@/hooks/useChatEngine";
 import { cn } from "@/utils/cn";
 import { PromptIcon } from "@/utils/prompt-icon";
 import {
-    ArrowLeft,
-    ChevronDown,
-    PanelLeftOpen,
-    Plus,
+  ArrowLeft,
+  ChevronDown,
+  PanelLeftOpen,
+  Plus,
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -91,7 +91,7 @@ export default function ChatBusiness() {
   };
 
   const styles = {
-    iconGradient: "bg-gradient-to-br from-stone-700 to-stone-900",
+    iconGradient: "bg-gradient-to-br from-[#AB8E63] to-[#8f7652]",
     border: "border-stone-200",
   };
 
@@ -180,7 +180,7 @@ export default function ChatBusiness() {
                       className={cn(
                         "cursor-pointer",
                         selectedPrompt?.id === prompt.id &&
-                          "bg-stone-50 text-stone-900"
+                        "bg-stone-50 text-stone-900"
                       )}
                     >
                       <div className="flex flex-col gap-0.5">
@@ -192,8 +192,8 @@ export default function ChatBusiness() {
                             {prompt.source === "USER"
                               ? "Meu Prompt"
                               : prompt.source === "COMPANY"
-                              ? "Empresa"
-                              : "Global"}
+                                ? "Empresa"
+                                : "Global"}
                           </span>
                         )}
                       </div>
@@ -207,7 +207,7 @@ export default function ChatBusiness() {
             <div className="lg:hidden">
               <button
                 onClick={handleNewChat}
-                className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-stone-700 to-stone-900 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-stone-800/25 transition-all hover:shadow-stone-800/40 active:scale-95"
+                className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#AB8E63]/25 transition-all hover:bg-primary/90 hover:shadow-[#AB8E63]/40 active:scale-95"
               >
                 <Plus className="h-4 w-4" />
                 Nova Conversa

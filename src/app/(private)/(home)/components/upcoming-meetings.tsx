@@ -25,7 +25,7 @@ interface UpcomingMeetingsProps {
 const mockMeetings: Meeting[] = [
     {
         id: "1",
-        title: "Consulta - Maria Silva",
+        title: "Reunião - Maria Silva",
         time: "14:00 - 14:30",
         date: "Hoje",
         attendees: ["Maria Silva"],
@@ -41,7 +41,7 @@ const mockMeetings: Meeting[] = [
     },
     {
         id: "3",
-        title: "Primeira consulta - Ana Costa",
+        title: "Primeira reunião - Ana Costa",
         time: "09:00 - 10:00",
         date: "Amanhã",
         attendees: ["Ana Costa"],
@@ -91,7 +91,7 @@ export function UpcomingMeetings({
             {/* Overlay "Em Breve" */}
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60 backdrop-blur-sm">
                 <div className="flex flex-col items-center gap-2">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-stone-700 to-stone-900 shadow-lg">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary shadow-lg shadow-[#AB8E63]/30">
                         <Calendar className="h-8 w-8 text-white" />
                     </div>
                     <span className="text-xl font-bold text-gray-800">Em Breve</span>
@@ -101,8 +101,8 @@ export function UpcomingMeetings({
 
             <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-stone-700 to-stone-900">
-                        <Calendar className="h-5 w-5 text-white" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-md shadow-[#AB8E63]/20">
+                        <Calendar className="h-5 w-5" />
                     </div>
                     <div>
                         <h3 className="text-lg font-semibold text-gray-800">
@@ -115,7 +115,7 @@ export function UpcomingMeetings({
                 {!isConnected && (
                     <button
                         onClick={onConnect}
-                        className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-stone-700 to-stone-900 px-3 py-1.5 text-xs font-medium text-white transition-all hover:shadow-lg hover:shadow-stone-800/25"
+                        className="flex items-center gap-2 rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-white transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-[#AB8E63]/25"
                     >
                         Conectar
                         <ExternalLink className="h-3 w-3" />

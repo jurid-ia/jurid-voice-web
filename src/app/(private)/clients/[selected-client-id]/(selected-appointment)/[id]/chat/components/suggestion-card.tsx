@@ -19,8 +19,8 @@ export function SuggestionCard({
 }: SuggestionCardProps) {
   // Reusing the "primary" variant style from KPICard for consistency
   const styles = {
-    iconGradient: "bg-gradient-to-br from-stone-700 to-stone-900",
-    border: "border-stone-800",
+    iconGradient: "bg-gradient-to-br from-[#AB8E63] to-[#8f7652]",
+    border: "border-stone-200 group-hover:border-[#AB8E63]/30",
   };
 
   return (

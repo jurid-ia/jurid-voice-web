@@ -206,7 +206,7 @@ export function WaveformAudioPlayer({
               onClick={() => handleSeek(index)}
               className={cn(
                 "w-1 shrink-0 cursor-pointer rounded-full transition-all duration-100",
-                isActive ? "bg-stone-800" : "bg-stone-200 hover:bg-stone-400",
+                isActive ? "bg-[#AB8E63]" : "bg-stone-200 hover:bg-stone-400",
               )}
               style={{
                 height: `${height}%`,

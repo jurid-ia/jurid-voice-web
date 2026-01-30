@@ -28,10 +28,10 @@ export function MedicalRecord() {
       <div className="flex w-full flex-col items-center justify-center rounded-lg border border-gray-200 bg-gray-50 p-12">
         <div className="text-center">
           <h3 className="text-lg font-semibold text-gray-900">
-            Prontuário Médico não disponível
+            Governança Jurídica não disponível
           </h3>
           <p className="mt-2 text-sm text-gray-500">
-            Esta gravação ainda não possui um prontuário médico estruturado gerado pela IA.
+            Esta gravação ainda não possui uma governança jurídica estruturada gerada pela IA.
             {selectedRecording.summary && (
               <span className="mt-4 block">
                 Você pode visualizar o resumo em texto na aba "Geral".

@@ -40,9 +40,9 @@ export default function HomePage() {
       // Se não tiver "to", usar o mesmo dia que "from" (seleção de um único dia)
       const startDate = formatDateForAPI(dateRange.from);
       const endDate = formatDateForAPI(dateRange.to || dateRange.from);
-      
+
       console.log(`[HomePage] Fetching stats: ${startDate} to ${endDate}`);
-      
+
       GetDashboardStats({
         startDate,
         endDate,
@@ -90,7 +90,7 @@ export default function HomePage() {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const secs = Math.floor(seconds % 60);
-    
+
     if (hours > 0) {
       return `${hours}h ${minutes}m`;
     } else if (minutes > 0) {
@@ -166,7 +166,7 @@ export default function HomePage() {
     {
       title: "Contatos atendidos",
       value: isGettingDashboardStats ? "..." : totalClients,
-      subtitle: "pacientes únicos",
+      subtitle: "contatos únicos",
       icon: Users,
       variant: "success" as const,
       trend: clientsTrend,

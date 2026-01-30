@@ -140,7 +140,7 @@ export function ChatInput({
       <div className="relative flex min-w-[80%] items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-3 shadow-sm transition-shadow focus-within:shadow-md">
         <button
           onClick={() => fileInputRef.current?.click()}
-          className="group text-primary relative flex h-8 w-8 items-center justify-center rounded-lg from-stone-700 to-stone-900 transition-all hover:scale-105 hover:bg-gradient-to-br hover:text-white active:scale-95"
+          className="group text-[#AB8E63] relative flex h-8 w-8 items-center justify-center rounded-lg transition-all hover:scale-105 hover:bg-gradient-to-br hover:from-[#AB8E63] hover:to-[#8f7652] hover:text-white active:scale-95"
           title="Anexar arquivos"
         >
           <Paperclip className="h-4 w-4" />
@@ -163,11 +163,10 @@ export function ChatInput({
         <div className="flex items-center gap-2">
           <button
             onClick={handleMicClick}
-            className={`group text-primary relative flex h-8 w-8 items-center justify-center rounded-lg transition-all hover:scale-105 active:scale-95 ${
-              isRecording
-                ? "animate-pulse bg-red-500 hover:bg-red-600"
-                : "text-primary from-stone-700 to-stone-900 hover:bg-gradient-to-br hover:text-white"
-            }`}
+            className={`group text-primary relative flex h-8 w-8 items-center justify-center rounded-lg transition-all hover:scale-105 active:scale-95 ${isRecording
+              ? "animate-pulse bg-red-500 hover:bg-red-600"
+              : "text-[#AB8E63] hover:bg-gradient-to-br hover:from-[#AB8E63] hover:to-[#8f7652] hover:text-white"
+              }`}
           >
             {isRecording ? (
               <Square className="h-4 w-4 fill-current" />
@@ -180,18 +179,17 @@ export function ChatInput({
             disabled={
               (!value.trim() && files.length === 0) || isLoading || isRecording
             }
-            className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${
-              (value.trim() || files.length > 0) && !isLoading && !isRecording
-                ? "bg-stone-900 text-white hover:bg-stone-950"
-                : "cursor-not-allowed bg-gray-200 text-gray-400"
-            }`}
+            className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${(value.trim() || files.length > 0) && !isLoading && !isRecording
+              ? "bg-gradient-to-r from-[#AB8E63] to-[#8f7652] text-white hover:shadow-lg hover:shadow-[#AB8E63]/25"
+              : "cursor-not-allowed bg-gray-200 text-gray-400"
+              }`}
           >
             <ArrowUp className="h-5 w-5" />
           </button>
         </div>
       </div>
       <div className="mt-1 text-center text-xs text-gray-400">
-        O HealthVoice pode cometer erros. Considere verificar informações
+        A Jurid.IA Voice pode cometer erros. Considere verificar informações
         importantes.
       </div>
     </div>

@@ -97,7 +97,7 @@ const SignIn = ({ onClick }: SignInProps) => {
     setIsLoggingIn(true);
     try {
       const { email, password } = data;
-      console.log("entrando com email:",email, "e senha",password)
+      console.log("entrando com email:", email, "e senha", password)
       const { isSignedIn } = await signIn({
         username: email.trim(),
         password: password.trim(),
@@ -105,10 +105,10 @@ const SignIn = ({ onClick }: SignInProps) => {
           authFlowType: "USER_PASSWORD_AUTH",
         },
       });
-      console.log("resposta do email ",isSignedIn)
+      console.log("resposta do email ", isSignedIn)
       if (isSignedIn) {
         const tokensReady = await waitForTokens();
-        console.log("token ready?", )
+        console.log("token ready?",)
         if (!tokensReady) {
           toast.error("Erro ao carregar sessão. Tente novamente.");
           return;
@@ -245,7 +245,7 @@ const SignIn = ({ onClick }: SignInProps) => {
         <button
           type="submit"
           disabled={isLoggingIn}
-          className="bg-primary hover:bg-primary/80 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 font-semibold text-white shadow-sm transition disabled:cursor-not-allowed disabled:opacity-70"
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-[#AB8E63]/25 transition-all hover:bg-[#AB8E63]/90 hover:shadow-[#AB8E63]/40 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed"
         >
           {isLoggingIn ? (
             <>

@@ -22,7 +22,9 @@ import {
   Users,
   X,
 } from "lucide-react";
+import { motion, Reorder } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 
 interface SpeakerConfig {
   id: string;
@@ -160,7 +162,8 @@ export function Transcription() {
     );
   };
 
-  const handleStartEdit = (config: SpeakerConfig) => {
+  const handleStartEdit = (config: SpeakerConfig, e: React.MouseEvent) => {
+    e.stopPropagation();
     setEditingId(config.id);
     setEditValue(config.customName || config.name);
   };
@@ -254,7 +257,7 @@ export function Transcription() {
     <>
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-lg overflow-hidden p-0 sm:rounded-2xl">
-          <div className="bg-gradient-to-br from-stone-900 to-stone-950 px-6 py-5">
+          <div className="bg-gradient-to-br from-[#AB8E63] to-[#8f7652] px-6 py-5">
             <DialogHeader>
               <DialogTitle className="flex items-center gap-3 text-xl font-bold text-white">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
@@ -271,10 +274,16 @@ export function Transcription() {
 
           <div className="flex flex-col gap-4 p-6">
             {/* Legend */}
-            <div className="flex items-center gap-4 rounded-lg bg-slate-50 px-4 py-3">
+            <div className="flex items-center justify-center gap-4 rounded-lg bg-slate-50 px-4 py-3">
               <div className="flex items-center gap-2">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-stone-100">
-                  <Stethoscope className="h-3 w-3 text-stone-900" />
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#AB8E63]">
+                  <Image
+                    src="/icons/user.svg"
+                    alt="Profissional"
+                    width={16}
+                    height={16}
+                    className="h-3 w-3 brightness-0 invert"
+                  />
                 </div>
                 <span className="text-xs font-medium text-slate-600">
                   Profissional (direita)
@@ -282,28 +291,42 @@ export function Transcription() {
               </div>
               <div className="h-4 w-px bg-slate-300" />
               <div className="flex items-center gap-2">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100">
-                  <User className="h-3 w-3 text-emerald-600" />
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#282A3B]/50">
+                  <Image
+                    src="/icons/newIcons/contacts.svg"
+                    alt="Contatos"
+                    width={16}
+                    height={16}
+                    className="h-3 w-3 brightness-0 invert"
+                  />
                 </div>
                 <span className="text-xs font-medium text-slate-600">
-                  Paciente/Outro (esquerda)
+                  Contatos (esquerda)
                 </span>
               </div>
             </div>
 
-            {/* Speaker List */}
-            <div className="flex max-h-[50vh] flex-col gap-2 overflow-y-auto">
+            {/* Speaker List - Reorderable */}
+            <Reorder.Group
+              layoutScroll
+              axis="y"
+              values={speakerConfigs}
+              onReorder={setSpeakerConfigs}
+              className="flex max-h-[50vh] flex-col gap-2 overflow-y-auto"
+            >
               {speakerConfigs.map((config, index) => {
                 const isActive = config.isProfessional;
                 const isEditing = editingId === config.id;
 
                 return (
-                  <div
+                  <Reorder.Item
+                    value={config}
                     key={config.id}
+                    onClick={() => !isEditing && handleSetProfessional(config.id)}
                     className={cn(
-                      "group flex items-center gap-3 rounded-xl border-2 p-3 transition-all",
+                      "group flex cursor-pointer items-center gap-3 rounded-xl border-2 p-3 transition-colors",
                       isActive
-                        ? "border-stone-800 bg-stone-50/50"
+                        ? "border-[#AB8E63]/60 bg-stone-50/50"
                         : "border-slate-200 hover:border-slate-300 hover:bg-slate-50/50",
                     )}
                   >
@@ -312,31 +335,31 @@ export function Transcription() {
                     </div>
 
                     {/* Avatar */}
-                    <button
-                      onClick={() => handleSetProfessional(config.id)}
+                    <div
                       className={cn(
                         "flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-all",
                         isActive
-                          ? "bg-stone-900 text-white shadow-lg shadow-stone-900/30"
+                          ? "bg-gradient-to-br from-[#AB8E63] to-[#8f7652] text-white shadow-lg shadow-[#AB8E63]/30"
                           : getSpeakerColor(index),
                       )}
-                      title={
-                        isActive
-                          ? "Profissional selecionado"
-                          : "Clique para definir como profissional"
-                      }
                     >
                       {isActive ? (
-                        <Stethoscope className="h-5 w-5" />
+                        <Image
+                          src="/icons/user.svg"
+                          alt="Professional"
+                          width={20}
+                          height={20}
+                          className="h-5 w-5 fill-white text-white brightness-0 invert"
+                        />
                       ) : (
                         getSpeakerInitials(config.customName || config.name)
                       )}
-                    </button>
+                    </div>
 
                     {/* Name */}
                     <div className="flex flex-1 flex-col gap-1">
                       {isEditing ? (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
                           <input
                             ref={inputRef}
                             type="text"
@@ -371,7 +394,7 @@ export function Transcription() {
                             {config.customName || config.name}
                           </span>
                           <button
-                            onClick={() => handleStartEdit(config)}
+                            onClick={(e) => handleStartEdit(config, e)}
                             className="rounded p-1 text-slate-400 opacity-0 transition-opacity hover:bg-slate-200 hover:text-slate-600 group-hover:opacity-100"
                             title="Editar nome"
                           >
@@ -380,30 +403,34 @@ export function Transcription() {
                         </div>
                       )}
                       <span className="text-xs text-slate-400">
-                        {isActive ? "Profissional" : "Paciente/Outro"}
+                        {isActive ? "Profissional" : "Contatos"}
                       </span>
                     </div>
 
                     {/* Status indicator */}
                     {isActive && (
-                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-stone-900">
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className="flex h-6 w-6 items-center justify-center rounded-full bg-[#AB8E63]"
+                      >
                         <Check className="h-4 w-4 text-white" />
-                      </div>
+                      </motion.div>
                     )}
-                  </div>
+                  </Reorder.Item>
                 );
               })}
-            </div>
+            </Reorder.Group>
 
             {/* Actions */}
             <div className="flex items-center justify-between border-t border-slate-200 pt-4">
               <p className="text-xs text-slate-500">
-                Clique no avatar para alternar o papel
+                Clique no Speaker para alternar o papel
               </p>
               <button
                 onClick={handleSaveSpeakerConfigs}
                 disabled={isSaving}
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-stone-900 to-stone-950 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-stone-900/25 transition-all hover:shadow-xl hover:shadow-stone-900/30 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
+                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#AB8E63] to-[#8f7652] px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#AB8E63]/25 transition-all hover:shadow-xl hover:shadow-[#AB8E63]/30 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isSaving ? (
                   <>
@@ -431,7 +458,7 @@ export function Transcription() {
           <div className="flex flex-1 items-center justify-end">
             <button
               onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-stone-900 to-stone-950 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-stone-900/20 transition-all hover:shadow-lg hover:shadow-stone-900/30 active:scale-[0.98]"
+              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#AB8E63] to-[#8f7652] px-4 py-2 text-sm font-semibold text-white shadow-md shadow-[#AB8E63]/20 transition-all hover:shadow-lg hover:shadow-[#AB8E63]/30 active:scale-[0.98]"
             >
               <Users className="h-4 w-4" />
               Organizar Locutores
@@ -458,7 +485,7 @@ export function Transcription() {
                     className={cn(
                       "flex h-8 w-8 min-w-[2rem] items-center justify-center rounded-full text-xs font-bold shadow-sm",
                       isPro
-                        ? "bg-stone-100 text-stone-900"
+                        ? "bg-[#AB8E63]/20 text-[#AB8E63]"
                         : getSpeakerColor(speech.index),
                     )}
                   >
@@ -485,8 +512,8 @@ export function Transcription() {
                       className={cn(
                         "rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm",
                         isPro
-                          ? "rounded-tr-none bg-stone-900 text-white"
-                          : "rounded-tl-none border border-gray-100 bg-white text-gray-700",
+                          ? "rounded-tr-none bg-[#AB8E63]/90 text-white shadow-md shadow-[#AB8E63]/10"
+                          : "rounded-tl-none border border-stone-200 bg-stone-50/50 text-stone-700",
                       )}
                     >
                       {speech.text}

@@ -50,7 +50,7 @@ export function SelectedClientTableHeader() {
       <AudioRecorder
         skipToClient
         initialClientId={selectedClientId}
-        customLabel="Nova Consulta"
+        customLabel="Nova Reunião"
         customIcon={Plus}
         buttonClassName="bg-gradient-to-r from-stone-700 to-stone-900 px-4 py-2.5 rounded-lg text-sm font-semibold text-white shadow-lg shadow-stone-800/25 transition-all hover:shadow-stone-800/40 active:scale-95"
       />

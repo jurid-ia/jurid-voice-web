@@ -72,7 +72,7 @@ export function GeneralRecordingTableItem({ recording }: Props) {
     switch (recording.type) {
       case "CLIENT":
         return {
-          label: "Consulta",
+          label: "Reunião",
           icon: ContactsIcon,
           className: "text-white",
         };
@@ -118,7 +118,7 @@ export function GeneralRecordingTableItem({ recording }: Props) {
             <TooltipTrigger asChild>
               <div
                 className={cn(
-                  "flex w-max items-center gap-2 rounded-2xl border-2 bg-gradient-to-br from-stone-600 to-stone-800 p-1 text-xs text-white",
+                  "flex w-max items-center gap-2 rounded-2xl bg-gradient-to-br from-[#AB8E63] to-[#8f7652] p-1 text-xs text-white shadow-lg shadow-[#AB8E63]/25",
                 )}
               >
                 <div

@@ -35,9 +35,9 @@ export default function Clients() {
     <div className="flex w-full flex-col gap-4">
       <div className="mb-4 flex w-full flex-row items-center justify-between gap-2">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Seus Pacientes</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Seus Contatos</h1>
           <p className="text-sm text-gray-500">
-            Gerencie todos os seus pacientes
+            Gerencie todos os seus contatos
           </p>
         </div>
         <div className="flex flex-row items-center gap-4">
@@ -55,10 +55,10 @@ export default function Clients() {
           </div>
           <button
             onClick={onOpenNewClient}
-            className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-stone-600 to-stone-800 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-stone-700/25 transition-all hover:shadow-stone-700/40 active:scale-95"
+            className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#AB8E63]/25 transition-all hover:bg-[#AB8E63]/90 hover:shadow-[#AB8E63]/40 active:scale-95"
           >
             <Plus className="h-4 w-4" />
-            Novo Paciente
+            Novo Contato
           </button>
         </div>
       </div>

@@ -42,7 +42,7 @@ export function GeneralReminderCardItem({ reminder, index }: Props) {
         {/* Header with Icon, Title and Date */}
         <div className="flex items-start justify-between gap-3">
           <div className="flex flex-row items-center justify-center gap-3">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-stone-700 to-stone-600 text-white shadow-lg shadow-stone-700/20 transition-transform group-hover:scale-105">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#AB8E63] to-[#8f7652] text-white shadow-lg shadow-[#AB8E63]/20 transition-transform group-hover:scale-105">
               <FileAudio className="h-6 w-6 text-white" />
             </div>
             <div className="flex flex-col">
@@ -84,7 +84,7 @@ export function GeneralReminderCardItem({ reminder, index }: Props) {
 
             <button
               onClick={handleOpenEdit}
-              className="flex items-center gap-1.5 rounded-xl bg-white px-3 py-2 text-[10px] font-bold text-stone-800 shadow-sm ring-1 ring-gray-100 transition-all hover:bg-stone-800 hover:text-white hover:ring-stone-800"
+              className="flex items-center gap-1.5 rounded-xl bg-white px-3 py-2 text-[10px] font-bold text-stone-800 shadow-sm ring-1 ring-gray-100 transition-all hover:bg-primary hover:text-white hover:ring-primary"
             >
               <Pencil className="h-3 w-3" />
               Alterar
@@ -107,7 +107,7 @@ export function GeneralReminderCardItem({ reminder, index }: Props) {
 
           <button
             onClick={handleNavigation}
-            className="group-hover:bg-primary flex items-center gap-1.5 rounded-xl bg-gray-50 px-4 py-2 text-xs font-bold text-gray-600 transition-all duration-300 group-hover:text-white group-hover:shadow-lg group-hover:shadow-stone-700/25"
+            className="group-hover:bg-primary flex items-center gap-1.5 rounded-xl bg-gray-50 px-4 py-2 text-xs font-bold text-gray-600 transition-all duration-300 group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#AB8E63]/25"
           >
             <span>Acessar</span>
             <ChevronRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />

@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { AlarmClock, Bell, Check, ChevronLeft, ChevronRight, Loader2, Plus, X } from "lucide-react";
 import { useState, useRef, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
+import { AudioRecorder } from "@/components/audio-recorder/audio-recorder";
 
 interface LocalReminder {
     id: string;
@@ -26,7 +27,7 @@ export function UpcomingReminders({
 }: UpcomingRemindersProps) {
     const router = useRouter();
     const { reminders: apiReminders, isGettingReminders } = useGeneralContext();
-    
+
     // Filtrar apenas os lembretes de hoje
     const todayReminders = useMemo(() => {
         const today = new Date();
@@ -89,10 +90,6 @@ export function UpcomingReminders({
         setEditingId(null);
     };
 
-    const handleAdd = () => {
-        router.push("/reminders");
-    };
-
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -106,7 +103,7 @@ export function UpcomingReminders({
             {/* Header Clean */}
             <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-stone-700 to-stone-900 shadow-md shadow-stone-800/20">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-md shadow-[#AB8E63]/20">
                         <Bell className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -120,13 +117,14 @@ export function UpcomingReminders({
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <button
-                        onClick={handleAdd}
-                        className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-stone-700 to-stone-900 px-3 py-1.5 text-xs font-medium text-white transition-all hover:shadow-lg hover:shadow-stone-800/25 active:scale-95"
-                    >
-                        <Plus className="h-3.5 w-3.5" />
-                        Novo
-                    </button>
+                    <AudioRecorder
+                        buttonClassName="flex items-center gap-2 rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-white transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-[#AB8E63]/25 active:scale-95"
+                        skipToClient={false}
+                        customLabel="Novo"
+                        customIcon={Plus}
+                        initialClientId={undefined}
+                        forcePersonalType="REMINDER"
+                    />
 
                     {totalPages > 1 && (
                         <div className="flex items-center rounded-lg bg-gray-50 p-0.5">
@@ -158,7 +156,7 @@ export function UpcomingReminders({
                             animate={{ opacity: 1 }}
                             className="flex flex-1 flex-col items-center justify-center gap-3 py-8 text-gray-300"
                         >
-                            <Loader2 className="h-8 w-8 animate-spin text-sky-500" />
+                            <Loader2 className="h-8 w-8 animate-spin text-[#AB8E63]" />
                             <p className="text-sm font-medium text-gray-400">Carregando lembretes...</p>
                         </motion.div>
                     ) : paginatedReminders.length === 0 ? (
@@ -184,7 +182,7 @@ export function UpcomingReminders({
                                 className={cn(
                                     "group relative flex items-center gap-3 rounded-xl border px-3 py-2.5 transition-all duration-200",
                                     reminder.status === "pending"
-                                        ? "border-transparent bg-gray-50/80 hover:border-sky-100 hover:bg-white hover:shadow-sm"
+                                        ? "border-transparent bg-gray-50/80 hover:border-[#AB8E63]/30 hover:bg-white hover:shadow-sm"
                                         : reminder.status === "completed"
                                             ? "border-transparent bg-green-50/40 opacity-75"
                                             : "border-transparent bg-red-50/40 opacity-75"
@@ -195,18 +193,18 @@ export function UpcomingReminders({
                                     {editingId === reminder.id ? (
                                         <div
                                             ref={timeInputRef}
-                                            className="absolute -left-1 -top-1 z-10 flex items-center gap-1 rounded-lg border border-sky-200 bg-white p-1 shadow-lg"
+                                            className="absolute -left-1 -top-1 z-10 flex items-center gap-1 rounded-lg border border-[#AB8E63]/40 bg-white p-1 shadow-lg"
                                         >
                                             <input
                                                 type="time"
                                                 value={tempTime}
                                                 onChange={(e) => setTempTime(e.target.value)}
-                                                className="w-16 rounded bg-gray-50 px-1 py-0.5 text-xs font-semibold text-gray-700 outline-none focus:ring-1 focus:ring-sky-400"
+                                                className="w-16 rounded bg-gray-50 px-1 py-0.5 text-xs font-semibold text-gray-700 outline-none focus:ring-1 focus:ring-[#AB8E63]"
                                                 autoFocus
                                             />
                                             <button
                                                 onClick={() => updateTime(reminder.id)}
-                                                className="rounded bg-sky-500 p-0.5 text-white hover:bg-sky-600"
+                                                className="rounded bg-[#AB8E63] p-0.5 text-white hover:bg-[#8f7652]"
                                             >
                                                 <Check className="h-3 w-3" />
                                             </button>

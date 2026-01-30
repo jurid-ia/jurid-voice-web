@@ -42,10 +42,10 @@ export default function ChatPage() {
 
   const hookPrompt: Prompt | undefined = selectedSuggestion
     ? {
-        id: "transcription-prompt",
-        name: selectedSuggestion.title,
-        prompt: selectedSuggestion.prompt,
-      }
+      id: "transcription-prompt",
+      name: selectedSuggestion.title,
+      prompt: selectedSuggestion.prompt,
+    }
     : selectedPrompt;
 
   const {
@@ -159,9 +159,8 @@ export default function ChatPage() {
 
   return (
     <div
-      className={`flex w-full flex-col gap-6 ${
-        isExpanded ? "" : "h-[calc(100vh-10rem)] overflow-hidden"
-      }`}
+      className={`flex w-full flex-col gap-6 ${isExpanded ? "" : "h-[calc(100vh-10rem)] overflow-hidden"
+        }`}
     >
       {/* Header Standardized - STATIC */}
       <div className="flex w-full items-center justify-between">
@@ -177,7 +176,7 @@ export default function ChatPage() {
         {!isChatEmpty && (
           <button
             onClick={handleNewChat}
-            className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-stone-600 to-stone-800 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-stone-700/25 transition-all hover:shadow-stone-700/40 active:scale-95"
+            className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#AB8E63]/25 transition-all hover:shadow-[#AB8E63]/40 active:scale-95"
           >
             <Plus className="h-4 w-4" />
             Nova Conversa
@@ -187,9 +186,8 @@ export default function ChatPage() {
 
       {/* Chat Container */}
       <div
-        className={`relative flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-500 ease-in-out ${
-          isExpanded ? "h-[95vh]" : "min-h-0 flex-1"
-        }`}
+        className={`relative flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-500 ease-in-out ${isExpanded ? "h-[95vh]" : "min-h-0 flex-1"
+          }`}
       >
         {/* Toggle Expand Button - Top Right */}
         <button
@@ -237,16 +235,15 @@ export default function ChatPage() {
                 <div className="flex flex-col items-center gap-6">
                   <div
                     className={cn(
-                      "flex h-20 w-20 shrink-0 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110",
-                      styles.iconGradient,
+                      "flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-[#AB8E63]/60 transition-all duration-300 group-hover:scale-110",
                     )}
                   >
                     <Image
-                      className="h-12 w-12"
-                      src={"/logos/iconWhite.png"}
+                      className="h-[70px] w-[70px]"
+                      src={"/logos/icon.png"}
                       alt="Icon"
-                      width={48}
-                      height={48}
+                      width={70}
+                      height={70}
                     />
                   </div>
                   <div className="max-w-md space-y-2">

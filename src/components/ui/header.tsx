@@ -20,10 +20,12 @@ import {
 import {
   ChatBusinessIcon,
   ChatIcon,
+  ContactsIcon,
   GeneralVisionIcon,
   HomeIcon,
   LastRecordIcon,
   LogoutIcon,
+  MedicalRecordIcon,
   NotesIcon,
   OtherIcon,
   SettingsIcon,
@@ -57,7 +59,7 @@ export function Header() {
       const pathSegments = pathname.split("/").filter(Boolean);
 
       breadcrumbs.push({
-        label: "Clientes",
+        label: "Contatos",
         href: "/clients",
         isActive: pathname === "/clients",
       });
@@ -190,7 +192,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className="bg-primary z-10 flex w-full flex-col gap-4 px-4 pb-20 text-white">
+    <header className="bg-gradient-to-b from-[#9E8258] to-[#7D6546] z-10 flex w-full flex-col gap-4 px-4 pb-20 text-white shadow-lg shadow-[#8f7652]/20">
       <ProfileModal
         isOpen={isProfileModalOpen}
         onOpenChange={setIsProfileModalOpen}
@@ -202,7 +204,7 @@ export function Header() {
           quality={100}
           width={1250}
           height={500}
-          className="h-8 w-max cursor-pointer object-contain"
+          className="h-14 w-max cursor-pointer object-contain"
           onClick={() => router.push("/")}
         />
 
@@ -214,7 +216,7 @@ export function Header() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <div className="group flex h-10 cursor-pointer items-center gap-2 rounded-full bg-white/10 px-1 pr-3 text-white transition-all duration-200 hover:bg-white/20">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-stone-700 to-stone-800 text-sm font-semibold text-white shadow-inner">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#AB8E63] to-[#8f7652] text-sm font-semibold text-white shadow-inner">
                     {profile?.name?.charAt(0)?.toUpperCase() || "?"}
                   </div>
                   <span className="max-w-[120px] truncate text-sm font-medium">
@@ -228,7 +230,7 @@ export function Header() {
                 className="w-72 overflow-hidden rounded-2xl border-none bg-white p-0 shadow-2xl shadow-gray-300/50"
               >
                 {/* User Info Header */}
-                <div className="bg-gradient-to-br from-stone-800 via-stone-900 to-stone-900 p-4">
+                <div className="bg-gradient-to-br from-[#AB8E63] to-[#8f7652] p-4">
                   <div className="flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-lg font-bold text-white backdrop-blur-sm">
                       {profile?.name?.charAt(0)?.toUpperCase() || "?"}
@@ -251,58 +253,58 @@ export function Header() {
                       e.preventDefault();
                       setIsProfileModalOpen(true);
                     }}
-                    className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-stone-50 focus:bg-stone-50"
+                    className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-[#AB8E63]/10 focus:bg-[#AB8E63]/10"
                   >
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-stone-700 to-stone-900 text-white transition-colors group-hover:bg-stone-800 group-hover:text-white">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#AB8E63] to-[#8f7652] text-white transition-colors group-hover:bg-[#AB8E63] group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#AB8E63]/20">
                       <SettingsIcon className="h-5 w-5" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-sm font-medium text-gray-700">
+                      <span className="text-sm font-medium text-gray-700 group-hover:text-[#AB8E63] transition-colors">
                         Gerenciar Perfil
                       </span>
-                      <span className="text-xs text-gray-400">
+                      <span className="text-xs text-gray-400 group-hover:text-[#AB8E63]/70 transition-colors">
                         Edite suas informações
                       </span>
                     </div>
-                    <ChevronRight className="ml-auto h-4 w-4 text-gray-300" />
+                    <ChevronRight className="ml-auto h-4 w-4 text-gray-300 group-hover:text-[#AB8E63]" />
                   </DropdownMenuItem>
 
                   <DropdownMenuItem
                     onSelect={() => window.open(appUrl, "_blank")}
-                    className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-green-50 focus:bg-green-50"
+                    className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-[#AB8E63]/10 focus:bg-[#AB8E63]/10"
                   >
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-stone-700 to-stone-900 text-white transition-colors group-hover:bg-green-500 group-hover:text-white">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#AB8E63] to-[#8f7652] text-white transition-colors group-hover:bg-[#AB8E63] group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#AB8E63]/20">
                       <SmartphoneIcon className="h-5 w-5" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-sm font-medium text-gray-700">
+                      <span className="text-sm font-medium text-gray-700 group-hover:text-[#AB8E63] transition-colors">
                         Acessar Aplicativo
                       </span>
-                      <span className="text-xs text-gray-400">
+                      <span className="text-xs text-gray-400 group-hover:text-[#AB8E63]/70 transition-colors">
                         Baixe o app mobile
                       </span>
                     </div>
-                    <ChevronRight className="ml-auto h-4 w-4 text-gray-300" />
+                    <ChevronRight className="ml-auto h-4 w-4 text-gray-300 group-hover:text-[#AB8E63]" />
                   </DropdownMenuItem>
 
                   <DropdownMenuItem
                     onSelect={() =>
                       window.open("https://wa.me/5541997819114", "_blank")
                     }
-                    className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-emerald-50 focus:bg-emerald-50"
+                    className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-[#AB8E63]/10 focus:bg-[#AB8E63]/10"
                   >
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-stone-700 to-stone-900 text-white transition-colors group-hover:bg-emerald-500 group-hover:text-white">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#AB8E63] to-[#8f7652] text-white transition-colors group-hover:bg-[#AB8E63] group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#AB8E63]/20">
                       <SupportIcon className="h-5 w-5" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-sm font-medium text-gray-700">
+                      <span className="text-sm font-medium text-gray-700 group-hover:text-[#AB8E63] transition-colors">
                         Falar com Suporte
                       </span>
-                      <span className="text-xs text-gray-400">
+                      <span className="text-xs text-gray-400 group-hover:text-[#AB8E63]/70 transition-colors">
                         WhatsApp disponível
                       </span>
                     </div>
-                    <ChevronRight className="ml-auto h-4 w-4 text-gray-300" />
+                    <ChevronRight className="ml-auto h-4 w-4 text-gray-300 group-hover:text-[#AB8E63]" />
                   </DropdownMenuItem>
 
                   {/* Separator */}
@@ -361,7 +363,7 @@ export function Header() {
 
         <div className="flex w-full items-center justify-between overflow-x-scroll pb-4 md:overflow-x-hidden">
           {pathname.includes("/clients") &&
-          pathname.split("/").filter(Boolean).length >= 3 ? (
+            pathname.split("/").filter(Boolean).length >= 3 ? (
             <div className="flex h-8 w-full flex-col items-center gap-4 md:flex-row md:justify-between">
               <div className="flex items-center gap-4">
                 <button
@@ -439,7 +441,7 @@ export function Header() {
                     <TranscriptionIcon />
                     Transcrição
                   </span>
-                  <span
+                  {/* <span
                     className={cn(
                       "flex h-full w-max cursor-pointer items-center gap-2 border-b px-4 transition duration-150 hover:border-b-white hover:text-white",
                       pathname.includes("/medical-record")
@@ -452,9 +454,9 @@ export function Header() {
                       )
                     }
                   >
-                    <TranscriptionIcon />
-                    Prontuário Médico
-                  </span>
+                    <MedicalRecordIcon />
+                    Governança Jurídica
+                  </span> */}
                 </div>
               </div>
               <div className="flex items-center gap-2 text-white/50">
@@ -784,7 +786,8 @@ export function Header() {
                   )}
                   onClick={() => router.push("/clients")}
                 >
-                  Clientes
+                  <ContactsIcon />
+                  Contatos
                 </span>
                 <span
                   className={cn(
@@ -820,7 +823,7 @@ export function Header() {
                   onClick={() => router.push("/chat-business")}
                 >
                   <ChatBusinessIcon />
-                  AI Health
+                  Jurid.IA
                 </span>
               </div>
               <div className="hidden items-center gap-2 md:flex">

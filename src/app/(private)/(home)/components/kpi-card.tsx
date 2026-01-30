@@ -20,19 +20,19 @@ interface KPICardProps {
 // Unified style - all variants now use white background with soft brown accent
 const variantStyles = {
     primary: {
-        iconGradient: "bg-gradient-to-br from-stone-700 to-stone-900",
+        iconGradient: "bg-gradient-to-br from-[#AB8E63] to-[#8f7652] shadow-lg shadow-[#AB8E63]/20",
         border: "border-stone-200",
     },
     success: {
-        iconGradient: "bg-gradient-to-br from-stone-700 to-stone-900",
+        iconGradient: "bg-gradient-to-br from-[#AB8E63] to-[#8f7652] shadow-lg shadow-[#AB8E63]/20",
         border: "border-stone-200",
     },
     warning: {
-        iconGradient: "bg-gradient-to-br from-stone-700 to-stone-900",
+        iconGradient: "bg-gradient-to-br from-[#AB8E63] to-[#8f7652] shadow-lg shadow-[#AB8E63]/20",
         border: "border-stone-200",
     },
     info: {
-        iconGradient: "bg-gradient-to-br from-stone-700 to-stone-900",
+        iconGradient: "bg-gradient-to-br from-[#AB8E63] to-[#8f7652] shadow-lg shadow-[#AB8E63]/20",
         border: "border-stone-200",
     },
 };

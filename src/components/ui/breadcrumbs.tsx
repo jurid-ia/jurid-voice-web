@@ -21,7 +21,7 @@ export function BreadCrumbs() {
       const pathSegments = pathname.split("/").filter(Boolean);
 
       breadcrumbs.push({
-        label: "Pacientes",
+        label: "Contatos",
         href: "/clients",
         isActive: pathname === "/clients",
       });
@@ -39,7 +39,7 @@ export function BreadCrumbs() {
           const recordingId = pathSegments[2];
 
           breadcrumbs.push({
-            label: selectedRecording?.name || "Consulta",
+            label: selectedRecording?.name || "Reunião",
             href: `/clients/${clientId}/${recordingId}`,
             isActive: true,
           });
