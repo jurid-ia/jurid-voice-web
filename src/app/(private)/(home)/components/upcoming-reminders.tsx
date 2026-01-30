@@ -1,23 +1,32 @@
 "use client";
 
 import { ReminderProps } from "@/@types/general-client";
+import { AudioRecorder } from "@/components/audio-recorder/audio-recorder";
 import { useGeneralContext } from "@/context/GeneralContext";
 import { cn } from "@/utils/cn";
-import { motion, AnimatePresence } from "framer-motion";
-import { AlarmClock, Bell, Check, ChevronLeft, ChevronRight, Loader2, Plus, X } from "lucide-react";
-import { useState, useRef, useEffect, useMemo } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  AlarmClock,
+  Bell,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  Loader2,
+  Plus,
+  X,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
-import { AudioRecorder } from "@/components/audio-recorder/audio-recorder";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 interface LocalReminder {
-    id: string;
-    text: string;
-    time: string;
-    status: "pending" | "completed" | "cancelled";
+  id: string;
+  text: string;
+  time: string;
+  status: "pending" | "completed" | "cancelled";
 }
 
 interface UpcomingRemindersProps {
-    className?: string;
+  className?: string;
 }
 
 const ITEMS_PER_PAGE = 6;
@@ -35,60 +44,65 @@ export function UpcomingReminders({
         const tomorrow = new Date(today);
         tomorrow.setDate(tomorrow.getDate() + 1);
 
-        return apiReminders
-            .filter((reminder: ReminderProps) => {
-                const reminderDate = new Date(reminder.date);
-                reminderDate.setHours(0, 0, 0, 0);
-                return reminderDate >= today && reminderDate < tomorrow;
-            })
-            .map((reminder: ReminderProps): LocalReminder => ({
-                id: reminder.id,
-                text: reminder.name,
-                time: reminder.time,
-                status: "pending" as const,
-            }))
-            .sort((a, b) => a.time.localeCompare(b.time));
-    }, [apiReminders]);
+  // Filtrar apenas os lembretes de hoje
+  const todayReminders = useMemo(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
 
-    const [localStatuses, setLocalStatuses] = useState<Record<string, "pending" | "completed" | "cancelled">>({});
-    const [currentPage, setCurrentPage] = useState(0);
-    const [editingId, setEditingId] = useState<string | null>(null);
-    const [tempTime, setTempTime] = useState<string>("");
-    const timeInputRef = useRef<HTMLInputElement>(null);
+    return apiReminders
+      .filter((reminder: ReminderProps) => {
+        const reminderDate = new Date(reminder.date);
+        reminderDate.setHours(0, 0, 0, 0);
+        return reminderDate >= today && reminderDate < tomorrow;
+      })
+      .map(
+        (reminder: ReminderProps): LocalReminder => ({
+          id: reminder.id,
+          text: reminder.name,
+          time: reminder.time,
+          status: "pending" as const,
+        }),
+      )
+      .sort((a, b) => a.time.localeCompare(b.time));
+  }, [apiReminders]);
 
-    // Combinar dados da API com status local
-    const reminders = useMemo(() => {
-        return todayReminders.map(reminder => ({
-            ...reminder,
-            status: localStatuses[reminder.id] || reminder.status,
-        }));
-    }, [todayReminders, localStatuses]);
+  const [localStatuses, setLocalStatuses] = useState<
+    Record<string, "pending" | "completed" | "cancelled">
+  >({});
+  const [currentPage, setCurrentPage] = useState(0);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [tempTime, setTempTime] = useState<string>("");
+  const timeInputRef = useRef<HTMLInputElement>(null);
 
-    const totalPages = Math.ceil(reminders.length / ITEMS_PER_PAGE);
-    const paginatedReminders = reminders.slice(
-        currentPage * ITEMS_PER_PAGE,
-        (currentPage + 1) * ITEMS_PER_PAGE
-    );
+  // Combinar dados da API com status local
+  const reminders = useMemo(() => {
+    return todayReminders.map((reminder) => ({
+      ...reminder,
+      status: localStatuses[reminder.id] || reminder.status,
+    }));
+  }, [todayReminders, localStatuses]);
 
-    // Fechar editor ao clicar fora
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
-            if (timeInputRef.current && !timeInputRef.current.contains(event.target as Node)) {
-                setEditingId(null);
-            }
-        }
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+  const totalPages = Math.ceil(reminders.length / ITEMS_PER_PAGE);
+  const paginatedReminders = reminders.slice(
+    currentPage * ITEMS_PER_PAGE,
+    (currentPage + 1) * ITEMS_PER_PAGE,
+  );
 
-    const updateStatus = (id: string, status: LocalReminder["status"]) => {
-        setLocalStatuses(prev => ({ ...prev, [id]: status }));
-    };
-
-    const updateTime = (id: string) => {
-        // TODO: Implementar atualização via API
+  // Fechar editor ao clicar fora
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        timeInputRef.current &&
+        !timeInputRef.current.contains(event.target as Node)
+      ) {
         setEditingId(null);
-    };
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
     return (
         <motion.div
@@ -145,7 +159,6 @@ export function UpcomingReminders({
                         </div>
                     )}
                 </div>
-            </div>
 
             {/* Lista Refatorada */}
             <div className="flex flex-1 flex-col gap-2 overflow-y-auto pr-1 custom-scrollbar">
@@ -286,8 +299,46 @@ export function UpcomingReminders({
                             </motion.div>
                         ))
                     )}
-                </AnimatePresence>
-            </div>
-        </motion.div>
-    );
+                    title={reminder.text}
+                  >
+                    {reminder.text}
+                  </p>
+                </div>
+
+                {/* Actions - Hover Only */}
+                {reminder.status === "pending" && (
+                  <div className="flex shrink-0 items-center gap-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                    <button
+                      onClick={() => updateStatus(reminder.id, "completed")}
+                      className="flex h-7 w-7 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-green-50 hover:text-green-600"
+                      title="Concluir"
+                    >
+                      <Check className="h-4 w-4" />
+                    </button>
+                    <button
+                      onClick={() => updateStatus(reminder.id, "cancelled")}
+                      className="flex h-7 w-7 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-red-50 hover:text-red-500"
+                      title="Cancelar"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                )}
+                {reminder.status !== "pending" && (
+                  <div className="flex shrink-0 items-center opacity-0 group-hover:opacity-50">
+                    <button
+                      onClick={() => updateStatus(reminder.id, "pending")}
+                      className="text-xs font-medium text-gray-400 underline hover:text-gray-600"
+                    >
+                      Desfazer
+                    </button>
+                  </div>
+                )}
+              </motion.div>
+            ))
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.div>
+  );
 }
