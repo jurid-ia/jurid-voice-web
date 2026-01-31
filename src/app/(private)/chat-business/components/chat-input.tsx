@@ -111,7 +111,7 @@ export function ChatInput({
             <WaveformAudioPlayer
               audioUrl={audioPreviewUrl}
               barCount={20}
-              className="border border-blue-100 bg-white py-2 shadow-sm [&_button]:bg-blue-50 [&_button]:text-blue-600 [&_button]:hover:bg-blue-100 [&_span]:text-blue-600 [&_svg]:fill-blue-600 [&_svg]:text-blue-600"
+              className="[&_button]:text-primary [&_span]:text-primary [&_svg]:text-primary border border-blue-100 bg-white py-2 shadow-sm [&_button]:bg-blue-50 [&_button]:hover:bg-blue-100 [&_svg]:fill-blue-600"
               videoDuration="00:00"
             />
             <button
@@ -229,7 +229,7 @@ export function ChatInput({
         </div>
       </div>
       <div className="mt-1 text-center text-xs text-gray-400">
-        O HealthVoice pode cometer erros. Considere verificar informações
+        A Jurid Voice pode cometer erros. Considere verificar informações
         importantes.
       </div>
     </div>

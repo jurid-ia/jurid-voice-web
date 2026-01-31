@@ -89,7 +89,7 @@ export function ChatInput({
         </div>
       </div>
       <div className="mt-1 text-center text-xs text-gray-400">
-        O HealthVoice pode cometer erros. Considere verificar informações
+        A Jurid Voice pode cometer erros. Considere verificar informações
         importantes.
       </div>
     </div>

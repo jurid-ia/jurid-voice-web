@@ -176,7 +176,7 @@ function LoadingScreen({ fallback }: { fallback?: React.ReactNode }) {
           >
             <Image
               src="/logos/icon.png"
-              alt="Health Voice Logo"
+              alt="Jurid Voice Logo"
               width={160}
               height={160}
               className="h-20 w-20 object-contain drop-shadow-md sm:h-24 sm:w-24"

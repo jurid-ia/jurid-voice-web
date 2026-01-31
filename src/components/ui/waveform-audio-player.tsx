@@ -237,7 +237,7 @@ export function WaveformAudioPlayer({
         {/* Play/Pause Button */}
         <button
           onClick={togglePlay}
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-gray-700 transition-colors hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="focus:ring-primary flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-gray-700 transition-colors hover:bg-gray-100 focus:ring-2 focus:outline-none"
         >
           {isPlaying ? (
             <Pause size={20} fill="currentColor" className="text-gray-600" />

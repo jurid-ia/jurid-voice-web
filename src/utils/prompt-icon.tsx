@@ -17,14 +17,18 @@ interface PromptIconProps {
  * - SVG string (começa com "<svg")
  * - Fallback para logo quando não houver ícone
  */
-export function PromptIcon({ icon, className = "", size = 20 }: PromptIconProps) {
+export function PromptIcon({
+  icon,
+  className = "",
+  size = 20,
+}: PromptIconProps) {
   // Se não houver ícone, usa a logo como fallback
   if (!icon || icon.trim() === "") {
     return (
       <div className={`flex items-center justify-center ${className}`}>
         <Image
           src="/logos/iconWhite.png"
-          alt="Health Voice"
+          alt="Jurid Voice"
           width={size}
           height={size}
           className="h-full w-full object-contain"
@@ -57,7 +61,7 @@ export function PromptIcon({ icon, className = "", size = 20 }: PromptIconProps)
     <div className={`flex items-center justify-center ${className}`}>
       <Image
         src="/logos/iconWhite.png"
-        alt="Health Voice"
+        alt="Jurid Voice"
         width={size}
         height={size}
         className="h-full w-full object-contain"
