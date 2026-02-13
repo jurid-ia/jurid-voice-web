@@ -118,7 +118,7 @@ export function General() {
         <AudioRecorder
           initialReminderId={selectedReminder.id}
           customLabel="Gravar para este lembrete"
-          buttonClassName="flex cursor-pointer items-center gap-2 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-sky-500/25 transition hover:shadow-sky-500/40 active:scale-95"
+          buttonClassName="flex cursor-pointer items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition hover:shadow-primary/40 active:scale-95"
           skipNewRecordingRequest
         />
       </div>

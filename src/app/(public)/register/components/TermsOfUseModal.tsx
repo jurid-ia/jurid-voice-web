@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/blocks/dialog";
+import Image from "next/image";
 
 const TERMS_CONTENT = (
   <>
@@ -24,9 +24,9 @@ const TERMS_CONTENT = (
       1. SOBRE O JURID VOICE
     </h3>
     <p className="mb-2 leading-relaxed text-gray-700">
-      1.1. O Jurid Voice é um aplicativo desenvolvido para auxiliar médicos e
-      outros profissionais da área de saúde na gravação, transcrição e gestão de
-      informações provenientes de consultas, reuniões e interações
+      1.1. O Jurid Voice é um aplicativo desenvolvido para auxiliar profissionais jurídicos e
+      outros profissionais da área jurídica na gravação, transcrição e gestão de
+      informações provenientes de reuniões e interações
       profissionais. Sua principal funcionalidade é a gravação de áudios com
       identificação dos interlocutores (limitado a 2 pessoas para a IA
       proprietária, conforme o plano contratado), transcrição automática do
@@ -48,7 +48,7 @@ const TERMS_CONTENT = (
     <p className="mb-4 leading-relaxed text-gray-700">
       1.3. O Jurid Voice é uma ferramenta de apoio administrativo, visando
       otimizar a organização e a gestão da informação, não substituindo, em
-      hipótese alguma, o prontuário médico ou qualquer outro registro oficial,
+      hipótese alguma qualquer outro registro oficial,
       nem o discernimento profissional do Usuário.
     </p>
 

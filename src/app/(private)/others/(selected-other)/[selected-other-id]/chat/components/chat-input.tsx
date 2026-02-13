@@ -113,7 +113,7 @@ export function ChatInput({
           <WaveformAudioPlayer
             audioUrl={pendingAudioUrl}
             barCount={14}
-            className="w-full border border-blue-100 bg-white py-1.5 pl-2 pr-2 shadow-sm [&_button]:h-6 [&_button]:w-6 [&_button]:bg-blue-50 [&_button]:text-blue-600 [&_button]:hover:bg-blue-100 [&_span]:text-blue-600 [&_span]:text-xs [&_svg]:h-3 [&_svg]:w-3 [&_svg]:fill-blue-600 [&_svg]:text-blue-600"
+            className="w-full border border-primary bg-white py-1.5 pl-2 pr-2 shadow-sm [&_button]:h-6 [&_button]:w-6 [&_button]:bg-primary/10 [&_button]:text-primary [&_button]:hover:bg-primary/20 [&_span]:text-xs [&_svg]:h-3 [&_svg]:w-3 [&_svg]:fill-primary [&_svg]:text-primary"
             videoDuration="00:00"
           />
           <span className="mt-0.5 block text-[10px] text-gray-500">
@@ -137,7 +137,7 @@ export function ChatInput({
                 key={fileKey}
                 className="group relative flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 shadow-sm"
               >
-                <div className="text-blue-500">{getFileIcon(file)}</div>
+                <div className="text-primary">{getFileIcon(file)}</div>
                 <span className="max-w-[150px] truncate text-xs text-gray-700">
                   {file.name}
                 </span>
@@ -189,7 +189,7 @@ export function ChatInput({
                 ? "animate-pulse bg-red-500 hover:bg-red-600 text-white"
                 : pendingAudioFile
                   ? "bg-red-100 text-red-600 hover:bg-red-200 hover:text-red-700"
-                  : "text-primary from-sky-500 to-blue-600 hover:bg-gradient-to-br hover:text-white"
+                  : "text-primary hover:bg-primary hover:text-white"
             }`}
             title={
               pendingAudioFile

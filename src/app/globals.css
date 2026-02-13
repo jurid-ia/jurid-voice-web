@@ -139,21 +139,21 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #3b82f6, #2563eb);
+  background: linear-gradient(to bottom, #AB8E63, #8f7652);
   border-radius: 9999px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #2563eb, #1d4ed8);
+  background: linear-gradient(to bottom, #AB8E63, #8f7652);
   background-clip: padding-box;
 }
 
 /* Para Firefox */
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #3b82f6 transparent;
+  scrollbar-color: #AB8E63 transparent;
 }
 
 /* Scrollbar para abas do header: thumb branco, track transparente/azul do fundo */
@@ -177,7 +177,7 @@
 
 .header-tabs-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #fff #0d78ec;
+  scrollbar-color: #fff #AB8E63;
 }
 
 .swiper-slide {

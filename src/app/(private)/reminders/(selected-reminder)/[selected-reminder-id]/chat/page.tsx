@@ -6,8 +6,8 @@ import { useSession } from "@/context/auth";
 import { useGeneralContext } from "@/context/GeneralContext";
 import { useChatPrompts, type ChatPrompt } from "@/hooks/useChatPrompts";
 import { cn } from "@/utils/cn";
-import { generalPrompt } from "@/utils/prompts";
 import { PromptIcon } from "@/utils/prompt-icon";
+import { generalPrompt } from "@/utils/prompts";
 import { ArrowLeft, Maximize2, Minimize2, Plus } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -107,7 +107,7 @@ export default function ChatPage() {
 
   const styles = {
     iconGradient: "bg-gradient-to-br from-stone-600 to-stone-800",
-    border: "border-sky-200",
+    border: "border-primary/20",
   };
 
   const isChatEmpty = messages.filter((m) => m.role !== "system").length === 0;

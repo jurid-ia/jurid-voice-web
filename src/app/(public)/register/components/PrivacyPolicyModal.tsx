@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/blocks/dialog";
+import Image from "next/image";
 
 const PRIVACY_CONTENT = (
   <>
@@ -126,7 +126,7 @@ const PRIVACY_CONTENT = (
     <ul className="mb-2 list-disc space-y-1 pl-6 text-gray-700">
       <li>
         Áudios de Consultas: Gravações de voz de interações profissionais
-        (médico-paciente, reuniões etc.).
+        (profissional-cliente, reuniões etc.).
       </li>
       <li>
         Transcrições de Áudio: Texto gerado a partir do processamento dos

@@ -2,9 +2,9 @@
 
 import { useSession } from "@/context/auth";
 import { cn } from "@/utils/cn";
-import { ChevronRight, ChevronLeft } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 interface StepContent {
   title: string;
@@ -14,15 +14,15 @@ interface StepContent {
 const steps: StepContent[] = [
   {
     title: "BAIXE O APP",
-    text: "Transforme seu celular na ferramenta mais poderosa do seu consultório",
+    text: "Transforme seu celular na ferramenta mais poderosa para seu escritório jurídico",
   },
   {
     title: "FUNCIONALIDADES MOBILE",
-    text: "Grave consultas, gerencie prontuários e acesse a inteligência do Health Voice de onde estiver",
+    text: "Grave reuniões, gerencie conversas e acesse a inteligência do Jurid Voice de onde estiver",
   },
   {
     title: "COMECE AGORA",
-    text: "Baixe o aplicativo e desbloqueie todo o potencial Health Voice na palma da sua mão",
+    text: "Baixe o aplicativo e desbloqueie todo o potencial Jurid Voice na palma da sua mão",
   },
 ];
 
@@ -34,8 +34,8 @@ const stepImages = [
 ];
 
 // Links dos apps
-const appleStoreLink = "https://apps.apple.com/br/app/executivos-voice/id6754694679";
-const googlePlayLink = "https://play.google.com/store/apps/details?id=com.executivos.healthvoice";
+const appleStoreLink = "https://apps.apple.com/br/app/jurid-voice-ia-para-advogado/id6754660537";
+const googlePlayLink = "https://play.google.com/store/apps/details?id=com.executivos.juridiavoice";
 
 const STORAGE_KEY = "trialAppModalClosedAt";
 const COOLDOWN_MINUTES = 30;
@@ -147,7 +147,7 @@ export function TrialAppModal() {
         <div
           className="w-full h-full min-h-0 flex flex-col"
           style={{
-            background: "linear-gradient(to bottom, #F4F4F4 0%, #E8F2FC 5%, #D1E6F8 10%, #B8D9F5 15%, #9BC9F0 20%, #7BB8ED 30%, #5AA5E8 45%, #3D92E3 65%, #0E78EC 100%)",
+            background: "linear-gradient(to bottom, #AB8E63 0%, #8f7652 100%)",
           }}
           onWheel={handleWheel}
         >
@@ -203,7 +203,7 @@ export function TrialAppModal() {
                     index === currentStep
                       ? "w-8 bg-white"
                       : index < currentStep
-                        ? "w-2 bg-blue-300"
+                        ? "w-2 bg-[#AB8E63]"
                         : "w-2 bg-white/30"
                   )}
                 />
@@ -218,7 +218,7 @@ export function TrialAppModal() {
                     href={appleStoreLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex flex-1 items-center justify-center gap-2 sm:gap-3 rounded-xl border border-white/30 bg-white px-4 py-3 sm:px-6 sm:py-4 font-bold text-sm sm:text-base text-[#1E40AF] transition-all hover:bg-gray-50 hover:scale-105 active:scale-95"
+                    className="group flex flex-1 items-center justify-center gap-2 sm:gap-3 rounded-xl border border-white/30 bg-white px-4 py-3 sm:px-6 sm:py-4 font-bold text-sm sm:text-base text-[#AB8E63] transition-all hover:bg-gray-50 hover:scale-105 active:scale-95"
                   >
                     <svg
                       width="24"
@@ -235,7 +235,7 @@ export function TrialAppModal() {
                     href={googlePlayLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex flex-1 items-center justify-center gap-2 sm:gap-3 rounded-xl bg-[#1E40AF] px-4 py-3 sm:px-6 sm:py-4 font-bold text-sm sm:text-base text-white shadow-lg transition-all hover:scale-105 active:scale-95"
+                    className="group flex flex-1 items-center justify-center gap-2 sm:gap-3 rounded-xl bg-[#AB8E63] px-4 py-3 sm:px-6 sm:py-4 font-bold text-sm sm:text-base text-white shadow-lg transition-all hover:scale-105 active:scale-95"
                   >
                     <svg
                       width="24"
@@ -260,7 +260,7 @@ export function TrialAppModal() {
                 ) : (
                   <button
                     onClick={handleClose}
-                    className="flex w-full items-center justify-center rounded-xl bg-white px-4 py-3 sm:px-6 sm:py-4 font-bold text-sm sm:text-base text-[#1E40AF] shadow-md transition-all hover:scale-105 active:scale-95"
+                    className="flex w-full items-center justify-center rounded-xl bg-white px-4 py-3 sm:px-6 sm:py-4 font-bold text-sm sm:text-base text-[#AB8E63] shadow-md transition-all hover:scale-105 active:scale-95"
                   >
                     Começar a utilizar
                   </button>
@@ -270,7 +270,7 @@ export function TrialAppModal() {
               // Step 1: apenas botão Continuar
               <button
                 onClick={handleNext}
-                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-[#1E40AF] px-6 py-3 sm:px-8 sm:py-4 font-bold text-sm sm:text-base text-white shadow-lg transition-all hover:scale-105 active:scale-95 flex-shrink-0"
+                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-[#AB8E63] px-6 py-3 sm:px-8 sm:py-4 font-bold text-sm sm:text-base text-white shadow-lg transition-all hover:scale-105 active:scale-95 flex-shrink-0"
               >
                 <span>Continuar</span>
                 <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
@@ -280,14 +280,14 @@ export function TrialAppModal() {
               <div className="flex w-full gap-2 sm:gap-3 flex-shrink-0">
                 <button
                   onClick={handlePrevious}
-                  className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white px-4 py-3 sm:px-6 sm:py-4 font-semibold text-sm sm:text-base text-[#1E40AF] transition-all hover:scale-105 active:scale-95"
+                  className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white px-4 py-3 sm:px-6 sm:py-4 font-semibold text-sm sm:text-base text-[#AB8E63] transition-all hover:scale-105 active:scale-95"
                 >
                   <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
                   <span>Voltar</span>
                 </button>
                 <button
                   onClick={handleNext}
-                  className="group flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#1E40AF] px-4 py-3 sm:px-6 sm:py-4 font-bold text-sm sm:text-base text-white shadow-lg transition-all hover:scale-105 active:scale-95"
+                  className="group flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#AB8E63] px-4 py-3 sm:px-6 sm:py-4 font-bold text-sm sm:text-base text-white shadow-lg transition-all hover:scale-105 active:scale-95"
                 >
                   <span>Continuar</span>
                   <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1 flex-shrink-0" />

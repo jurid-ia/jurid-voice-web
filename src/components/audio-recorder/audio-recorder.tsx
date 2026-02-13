@@ -5,30 +5,30 @@ import { trackAction, UserActionType } from "@/services/actionTrackingService";
 import { cn } from "@/utils/cn";
 import { handleApiError } from "@/utils/error-handler";
 import {
-  AlertCircle,
-  CheckCircle2,
-  ChevronDown,
-  Lightbulb,
-  Mic,
-  Pause,
-  Pen,
-  RefreshCw,
-  Send,
-  TriangleAlert,
-  UserPlus,
-  Video,
-  Volume2,
-  X,
+    AlertCircle,
+    CheckCircle2,
+    ChevronDown,
+    Lightbulb,
+    Mic,
+    Pause,
+    Pen,
+    RefreshCw,
+    Send,
+    TriangleAlert,
+    UserPlus,
+    Video,
+    Volume2,
+    X,
 } from "lucide-react";
 import moment from "moment";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import toast from "react-hot-toast";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
 } from "../ui/blocks/dropdown-menu";
 import { CreateClientSheet } from "../ui/create-client-sheet";
 import { useMediaRecorder } from "./use-media-recorder";
@@ -863,7 +863,7 @@ export function AudioRecorder({
                             ))
                           ) : (
                             <div className="p-4 text-center text-sm text-gray-500">
-                              Nenhum paciente encontrado.
+                              Nenhum cliente encontrado.
                             </div>
                           )}
                         </DropdownMenuContent>

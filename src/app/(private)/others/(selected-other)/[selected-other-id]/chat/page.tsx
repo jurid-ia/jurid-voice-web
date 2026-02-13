@@ -106,7 +106,7 @@ export default function ChatPage() {
 
   const styles = {
     iconGradient: "bg-gradient-to-br from-stone-600 to-stone-800",
-    border: "border-sky-200",
+    border: "border-primary/20",
   };
 
   const isChatEmpty = engine.messages.filter((m) => m.role !== "system").length === 0;
@@ -120,7 +120,7 @@ export default function ChatPage() {
       <div className="flex w-full items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
-            Assistente Médico
+            Jurid IA
           </h1>
           <p className="text-sm text-gray-500">
             Analisando: {selectedRecording?.name || "Consulta"}

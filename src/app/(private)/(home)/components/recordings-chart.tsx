@@ -78,8 +78,8 @@ export function RecordingsChart({ data, className }: RecordingsChartProps) {
                     >
                         <defs>
                             <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stopColor="#0ea5e9" />
-                                <stop offset="100%" stopColor="#2563eb" />
+                                <stop offset="0%" stopColor="#AB8E63" />
+                                <stop offset="100%" stopColor="#8f7652" />
                             </linearGradient>
                         </defs>
                         <CartesianGrid

@@ -90,13 +90,13 @@ export function GeneralClientTableItem({ client }: Props) {
             </TooltipTrigger>
             <TooltipContent
               className={cn(
-                "border-sky-100 bg-white text-gray-700 shadow-xl",
+                "border-primary/20 bg-white text-gray-700 shadow-xl",
                 client.description === "" && "hidden",
               )}
               side="top"
               align="start"
             >
-              <span className="block max-w-[300px] p-2 text-sm">
+              <span className="block max-w-[300px] text-primary p-2 text-sm">
                 {client.description}
               </span>
             </TooltipContent>

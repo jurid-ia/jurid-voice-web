@@ -1,14 +1,14 @@
 "use client";
 
-import { useSession } from "@/context/auth";
 import { useApiContext } from "@/context/ApiContext";
+import { useSession } from "@/context/auth";
 import { useGeneralContext } from "@/context/GeneralContext";
 import { useChatEngine } from "@/hooks/useChatEngine";
 import { useChatPrompts, type ChatPrompt } from "@/hooks/useChatPrompts";
 import { trackAction, UserActionType } from "@/services/actionTrackingService";
 import { cn } from "@/utils/cn";
-import { generalPrompt } from "@/utils/prompts";
 import { PromptIcon } from "@/utils/prompt-icon";
+import { generalPrompt } from "@/utils/prompts";
 import { ArrowLeft, Maximize2, Minimize2, Plus } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -153,7 +153,7 @@ export default function ChatPage() {
 
   const styles = {
     iconGradient: "bg-gradient-to-br from-[#AB8E63] to-[#8f7652] shadow-lg shadow-[#AB8E63]/25",
-    border: "border-sky-200",
+    border: "border-primary/20",
   };
 
   const isChatEmpty = engine.messages.filter((m) => m.role !== "system").length === 0;
@@ -167,7 +167,7 @@ export default function ChatPage() {
       <div className="flex w-full items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
-            Assistente Médico
+            Jurid IA
           </h1>
           <p className="text-sm text-gray-500">
             Analisando: {selectedRecording?.name || "Consulta"}

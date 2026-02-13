@@ -12,19 +12,18 @@ import { useApiContext } from "@/context/ApiContext";
 import { useGeneralContext } from "@/context/GeneralContext";
 import { cn } from "@/utils/cn";
 import { buildRowsFromSpeeches } from "@/utils/speeches";
+import { motion } from "framer-motion";
 import {
   Check,
   GripVertical,
   Loader2,
   Pencil,
   Stethoscope,
-  User,
   Users,
-  X,
+  X
 } from "lucide-react";
-import { motion, Reorder } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 interface SpeakerConfig {
   id: string;
@@ -319,8 +318,7 @@ export function Transcription() {
                 const isEditing = editingId === config.id;
 
                 return (
-                  <Reorder.Item
-                    value={config}
+                  <div  
                     key={config.id}
                     onClick={() => !isEditing && handleSetProfessional(config.id)}
                     className={cn(
@@ -417,10 +415,10 @@ export function Transcription() {
                         <Check className="h-4 w-4 text-white" />
                       </motion.div>
                     )}
-                  </Reorder.Item>
+                  </div>
                 );
               })}
-            </Reorder.Group>
+            </div>
 
             {/* Actions */}
             <div className="flex items-center justify-between border-t border-slate-200 pt-4">

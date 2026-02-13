@@ -1,9 +1,9 @@
 "use client";
 
 import { cn } from "@/utils/cn";
-import { ChevronRight, ChevronLeft, MessageCircle } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 interface StepContent {
   title: string;
@@ -72,8 +72,8 @@ export function PersonalizationModal({ isOpen, onClose, type }: PersonalizationM
 
   const handleWhatsAppClick = () => {
     const message = type === "resumo" 
-      ? "Olá! Gostaria de personalizar meus resumos gerais no Health Voice."
-      : "Olá! Gostaria de personalizar meus prontuários médicos no Health Voice.";
+      ? "Olá! Gostaria de personalizar meus resumos gerais no Jurid Voice."
+      : "Olá! Gostaria de personalizar a IA no Jurid Voice.";
     
     const whatsappUrl = `${WHATSAPP_LINK}&text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
@@ -92,14 +92,14 @@ export function PersonalizationModal({ isOpen, onClose, type }: PersonalizationM
         <div
           className="w-full"
           style={{
-            background: "linear-gradient(to bottom, #F4F4F4 0%, #E8F2FC 5%, #D1E6F8 10%, #B8D9F5 15%, #9BC9F0 20%, #7BB8ED 30%, #5AA5E8 45%, #3D92E3 65%, #0E78EC 100%)",
+            background: "linear-gradient(to bottom, #AB8E63 0%, #8f7652 100%)",
           }}
         >
           {/* Conteúdo da modal */}
           <div className="flex flex-col items-center px-5 py-10">
             {/* Imagem no topo - step 3 */}
             {isLastStep && (
-              <div className="relative mb-6 w-[70%] max-w-[300px] aspect-[16/10] overflow-hidden rounded-2xl shadow-lg">
+              <div className="relative mb-6 w-[70%] max-w-[300px] aspect-[16/10] overflow-hidden rounded-2xl">
                 <Image
                   src={stepImages[currentStep]}
                   alt={currentStepData.title}
@@ -159,7 +159,7 @@ export function PersonalizationModal({ isOpen, onClose, type }: PersonalizationM
                     index === currentStep
                       ? "w-8 bg-white"
                       : index < currentStep
-                        ? "w-2 bg-blue-300"
+                        ? "w-2 bg-white"
                         : "w-2 bg-white/30"
                   )}
                 />
@@ -171,7 +171,7 @@ export function PersonalizationModal({ isOpen, onClose, type }: PersonalizationM
               <div className="w-full">
                 <button
                   onClick={handleWhatsAppClick}
-                  className="group flex w-full items-center justify-center gap-3 rounded-xl bg-[#1E40AF] px-6 py-4 font-bold text-white shadow-lg transition-all hover:scale-105 active:scale-95"
+                  className="group flex w-full items-center justify-center gap-3 rounded-xl bg-[#AB8E63] px-6 py-4 font-bold text-white shadow-lg transition-all hover:scale-105 active:scale-95"
                 >
                   <MessageCircle className="h-5 w-5" />
                   <span>Fale Conosco</span>
@@ -179,7 +179,7 @@ export function PersonalizationModal({ isOpen, onClose, type }: PersonalizationM
                 </button>
                 <button
                   onClick={handleClose}
-                  className="mt-4 flex w-full items-center justify-center rounded-xl bg-white px-6 py-4 font-bold text-[#1E40AF] shadow-md transition-all hover:scale-105 active:scale-95"
+                  className="mt-4 flex w-full items-center justify-center rounded-xl bg-white px-6 py-4 font-bold text-[#AB8E63] shadow-md transition-all hover:scale-105 active:scale-95"
                 >
                   Fechar
                 </button>
@@ -188,7 +188,7 @@ export function PersonalizationModal({ isOpen, onClose, type }: PersonalizationM
               // Step 1: apenas botão Continuar
               <button
                 onClick={handleNext}
-                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-[#1E40AF] px-8 py-4 font-bold text-white shadow-lg transition-all hover:scale-105 active:scale-95"
+                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-[#AB8E63] px-8 py-4 font-bold text-white shadow-lg transition-all hover:scale-105 active:scale-95"
               >
                 <span>Continuar</span>
                 <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -198,14 +198,14 @@ export function PersonalizationModal({ isOpen, onClose, type }: PersonalizationM
               <div className="flex w-full gap-3">
                 <button
                   onClick={handlePrevious}
-                  className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white px-6 py-4 font-semibold text-[#1E40AF] transition-all hover:scale-105 active:scale-95"
+                  className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white px-6 py-4 font-semibold text-[#AB8E63] transition-all hover:scale-105 active:scale-95"
                 >
                   <ChevronLeft className="h-5 w-5" />
                   <span>Voltar</span>
                 </button>
                 <button
                   onClick={handleNext}
-                  className="group flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#1E40AF] px-6 py-4 font-bold text-white shadow-lg transition-all hover:scale-105 active:scale-95"
+                  className="group flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#AB8E63] px-6 py-4 font-bold text-white shadow-lg transition-all hover:scale-105 active:scale-95"
                 >
                   <span>Continuar</span>
                   <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />

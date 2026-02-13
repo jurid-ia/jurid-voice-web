@@ -110,7 +110,7 @@ export function ChatInput({
             <WaveformAudioPlayer
               audioUrl={audioPreviewUrl}
               barCount={14}
-              className="w-full [&_button]:text-primary [&_span]:text-primary [&_svg]:text-primary border border-blue-100 bg-white py-1.5 pl-2 pr-2 shadow-sm [&_button]:h-6 [&_button]:w-6 [&_button]:bg-blue-50 [&_button]:hover:bg-blue-100 [&_span]:text-xs [&_svg]:h-3 [&_svg]:w-3 [&_svg]:fill-blue-600"
+              className="w-full [&_button]:text-primary [&_span]:text-primary [&_svg]:text-primary border border-primary bg-white py-1.5 pl-2 pr-2 shadow-sm [&_button]:h-6 [&_button]:w-6 [&_button]:bg-primary/10 [&_button]:hover:bg-primary/20 [&_span]:text-xs [&_svg]:h-3 [&_svg]:w-3 [&_svg]:fill-primary"
               videoDuration="00:00"
             />
             <button

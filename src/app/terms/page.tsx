@@ -36,8 +36,7 @@ export default function Terms() {
       </span>
       <span>
         1.1. O {process.env.PROJECT_VOICE || "JuridIA Voice"} é um aplicativo
-        desenvolvido para auxiliar médicos e outros profissionais da área de
-        saúde na gravação, transcrição e gestão de informações provenientes de
+        desenvolvido para auxiliar profissionais jurídicos e outros profissionais da área jurídica na gravação, transcrição e gestão de informações provenientes de
         reuniões e interações profissionais. Sua principal funcionalidade é a
         gravação de áudios com identificação dos interlocutores (limitado a 2
         pessoas para a IA proprietária, conforme o plano contratado),
@@ -59,8 +58,7 @@ export default function Terms() {
       <span>
         1.3. O {process.env.PROJECT_VOICE || "JuridIA Voice"} é uma ferramenta
         de apoio administrativo, visando otimizar a organização e a gestão da
-        informação, não substituindo, em hipótese alguma, o prontuário médico ou
-        qualquer outro registro oficial, nem o discernimento profissional do
+        informação, não substituindo, em hipótese alguma qualquer outro registro oficial, nem o discernimento profissional do
         Usuário.
       </span>
       <span className="font-semibold">2. CADASTRO E ACESSO AO APLICATIVO</span>

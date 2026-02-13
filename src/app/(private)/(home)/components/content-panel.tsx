@@ -13,6 +13,7 @@ import {
     Loader2,
     Play,
     Search,
+    Share2,
     User
 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -213,14 +214,14 @@ export function ContentPanel({ className }: ContentPanelProps) {
                         <button
                             onClick={prevSlide}
                             disabled={currentIndex === 0 || filteredRecordings.length === 0}
-                            className="flex h-7 w-7 items-center justify-center rounded-lg bg-white text-gray-400 transition-all hover:bg-sky-50 hover:text-[#AB8E63] disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-gray-400"
+                            className="flex h-7 w-7 items-center justify-center rounded-lg bg-white text-gray-400 transition-all hover:bg-primary/10 hover:text-primary disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-gray-400"
                         >
                             <ChevronLeft className="h-4 w-4" />
                         </button>
                         <button
                             onClick={nextSlide}
                             disabled={currentIndex === maxIndex || filteredRecordings.length === 0}
-                            className="flex h-7 w-7 items-center justify-center rounded-lg bg-white text-gray-400 transition-all hover:bg-sky-50 hover:text-[#AB8E63] disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-gray-400"
+                            className="flex h-7 w-7 items-center justify-center rounded-lg bg-white text-gray-400 transition-all hover:bg-primary/10 hover:text-primary disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-gray-400"
                         >
                             <ChevronRight className="h-4 w-4" />
                         </button>

@@ -4,7 +4,7 @@ import { ReminderProps } from "@/@types/general-client";
 import { useApiContext } from "@/context/ApiContext";
 import { useGeneralContext } from "@/context/GeneralContext";
 import { cn } from "@/utils/cn";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   AlarmClock,
   Bell,
@@ -16,7 +16,7 @@ import {
   X,
 } from "lucide-react";
 import moment from "moment";
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 interface LocalReminder {
   id: string;
@@ -158,7 +158,7 @@ export function UpcomingReminders({ className }: UpcomingRemindersProps) {
         <div className="flex items-center gap-2">
           <button
             onClick={handleAdd}
-            className="from-primary to-primary/60 flex items-center gap-2 rounded-lg bg-gradient-to-r px-3 py-1.5 text-xs font-medium text-white transition-all hover:shadow-lg hover:shadow-sky-500/25 active:scale-95"
+            className="from-primary to-primary/60 flex items-center gap-2 rounded-lg bg-gradient-to-r px-3 py-1.5 text-xs font-medium text-white transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-95"
           >
             <Plus className="h-3.5 w-3.5" />
             Novo
@@ -196,7 +196,7 @@ export function UpcomingReminders({ className }: UpcomingRemindersProps) {
               animate={{ opacity: 1 }}
               className="flex flex-1 flex-col items-center justify-center gap-3 py-8 text-gray-300"
             >
-              <Loader2 className="h-8 w-8 animate-spin text-sky-500" />
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
               <p className="text-sm font-medium text-gray-400">
                 Carregando lembretes...
               </p>
@@ -224,7 +224,7 @@ export function UpcomingReminders({ className }: UpcomingRemindersProps) {
                 className={cn(
                   "group relative flex items-center gap-3 rounded-xl border px-3 py-2.5 transition-all duration-200",
                   reminder.status === "pending"
-                    ? "border-transparent bg-gray-50/80 hover:border-sky-100 hover:bg-white hover:shadow-sm"
+                    ? "border-transparent bg-gray-50/80 hover:border-primary/20 hover:bg-white hover:shadow-sm"
                     : reminder.status === "completed"
                       ? "border-transparent bg-green-50/40 opacity-75"
                       : "border-transparent bg-red-50/40 opacity-75",
@@ -235,19 +235,19 @@ export function UpcomingReminders({ className }: UpcomingRemindersProps) {
                   {editingId === reminder.id ? (
                     <div
                       ref={timeInputRef}
-                      className="absolute -top-1 -left-1 z-10 flex items-center gap-1 rounded-lg border border-sky-200 bg-white p-1 shadow-lg"
+                      className="absolute -top-1 -left-1 z-10 flex items-center gap-1 rounded-lg border border-primary/20 bg-white p-1 shadow-lg"
                     >
                       <input
                         type="time"
                         value={tempTime}
                         onChange={(e) => setTempTime(e.target.value)}
-                        className="w-16 rounded bg-gray-50 px-1 py-0.5 text-xs font-semibold text-gray-700 outline-none focus:ring-1 focus:ring-sky-400"
+                        className="w-16 rounded bg-gray-50 px-1 py-0.5 text-xs font-semibold text-gray-700 outline-none focus:ring-1 focus:ring-primary/20"
                         autoFocus
                       />
                       <button
                         onClick={() => updateTime(reminder.id)}
                         disabled={savingTimeId === reminder.id}
-                        className="rounded bg-sky-500 p-0.5 text-white hover:bg-sky-600 disabled:opacity-70"
+                        className="rounded bg-primary p-0.5 text-white hover:bg-primary/80 disabled:opacity-70"
                       >
                         {savingTimeId === reminder.id ? (
                           <Loader2 className="h-3 w-3 animate-spin" />
@@ -268,7 +268,7 @@ export function UpcomingReminders({ className }: UpcomingRemindersProps) {
                       className={cn(
                         "flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs font-bold transition-colors",
                         reminder.status === "pending"
-                          ? "group-hover:text-primary bg-white text-gray-600 shadow-sm ring-1 ring-gray-200 group-hover:ring-sky-200"
+                          ? "group-hover:text-primary bg-white text-gray-600 shadow-sm ring-1 ring-gray-200 group-hover:ring-primary/20"
                           : reminder.status === "completed"
                             ? "bg-green-100 text-green-700 hover:bg-green-200"
                             : "bg-red-100 text-red-700 hover:bg-red-200",
