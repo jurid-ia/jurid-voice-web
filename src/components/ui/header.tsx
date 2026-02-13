@@ -3,7 +3,7 @@ import { useGeneralContext } from "@/context/GeneralContext";
 import { useSession } from "@/context/auth";
 import { useSidebar } from "@/store";
 import { cn } from "@/utils/cn";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import moment from "moment";
 import { useCookies } from "next-client-cookies";
 import Image from "next/image";
@@ -420,8 +420,8 @@ export function Header() {
                         )
                       }
                     >
-                      <GeneralVisionIcon />
-                      Resumo Geral
+                      <Sparkles className="h-4 w-4" />
+                      Insights
                     </span>
                     <span
                       className={cn(
