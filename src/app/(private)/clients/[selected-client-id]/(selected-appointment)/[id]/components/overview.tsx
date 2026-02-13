@@ -1,15 +1,132 @@
 "use client";
 
+import { useCallback, useEffect, useImperativeHandle, useRef, useState, forwardRef, useMemo } from "react";
 import { useGeneralContext } from "@/context/GeneralContext";
-import { DynamicComponentRenderer } from "@/app/(private)/ai-components-preview/components/DynamicComponentRenderer";
+import { useApiContext } from "@/context/ApiContext";
+import { trackAction, UserActionType } from "@/services/actionTrackingService";
+import { handleApiError } from "@/utils/error-handler";
+import { DynamicComponentRenderer } from "@/app/(private)/ai-components-preview/components/core/DynamicComponentRenderer";
+import type { AIComponentResponse } from "@/app/(private)/ai-components-preview/types/component-types";
 import { convertToAIComponentResponse } from "../utils/summary-converter";
+import { OVERVIEW_CONTENT_ID } from "../utils/export-medical-record-pdf";
 import { Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
 
-export function Overview() {
-  const { selectedRecording } = useGeneralContext();
+export interface OverviewHandle {
+  getResponse: () => AIComponentResponse | null;
+}
 
-  console.log('[Overview] selectedRecording:', selectedRecording);
-  console.log('[Overview] structuredSummary raw:', selectedRecording?.structuredSummary);
+interface OverviewProps {
+  onEditStart?: () => void;
+  onEditEnd?: () => void;
+}
+
+export const Overview = forwardRef<OverviewHandle, OverviewProps>(function Overview({ onEditStart, onEditEnd }, ref) {
+  const { selectedRecording, selectedClient, setSelectedRecording } =
+    useGeneralContext();
+  const { PutAPI, PostAPI } = useApiContext();
+  const [response, setResponse] = useState<AIComponentResponse | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const responseRef = useRef<AIComponentResponse | null>(null);
+
+  const initialSummary = useMemo(
+    () =>
+      selectedRecording
+        ? convertToAIComponentResponse(selectedRecording.structuredSummary)
+        : null,
+    [selectedRecording],
+  );
+  const currentResponse = response ?? initialSummary;
+  responseRef.current = currentResponse ?? null;
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      getResponse: () => responseRef.current,
+    }),
+    [],
+  );
+
+  useEffect(() => {
+    if (!selectedRecording) return;
+    const next = convertToAIComponentResponse(
+      selectedRecording.structuredSummary,
+    );
+    if (next) setResponse(next);
+  }, [selectedRecording?.id]);
+
+  const handleUpdateComponent = useCallback(
+    async (
+      sectionIndex: number,
+      componentIndex: number,
+      updated: import("@/app/(private)/ai-components-preview/types/component-types").AIComponent,
+    ) => {
+      if (!selectedRecording?.id) return;
+      const prev = responseRef.current;
+      if (!prev?.sections) return;
+      
+      // Verificar se houve alteração real comparando o componente anterior com o atual
+      const prevComponent = prev.sections[sectionIndex]?.components[componentIndex];
+      const hasChanges = JSON.stringify(prevComponent) !== JSON.stringify(updated);
+      
+      const next: AIComponentResponse = {
+        pageTitle: prev.pageTitle ?? "",
+        sections: prev.sections.map((section, si) =>
+          si === sectionIndex
+            ? {
+                ...section,
+                components: section.components.map((c, ci) =>
+                  ci === componentIndex ? updated : c,
+                ),
+              }
+            : section,
+        ),
+      };
+      setResponse(next);
+      setIsSaving(true);
+      try {
+        const { status } = await PutAPI(
+          `/recording/${selectedRecording.id}`,
+          { structuredSummary: next },
+          true,
+        );
+        if (status >= 200 && status < 300) {
+          setSelectedRecording((prevRec) =>
+            prevRec ? { ...prevRec, structuredSummary: next } : prevRec,
+          );
+          // Tracking de edição de resumo - apenas se houver alterações reais
+          if (hasChanges && selectedRecording?.id) {
+            trackAction(
+              {
+                actionType: UserActionType.SUMMARY_EDITED,
+                recordingId: selectedRecording.id,
+                metadata: {
+                  screen: 'overview',
+                  screenName: 'Resumo Geral',
+                },
+              },
+              PostAPI
+            ).catch((error) => {
+              console.warn('Erro ao registrar tracking de edição:', error);
+            });
+          }
+          toast.success("Alterações salvas no resumo.");
+        } else {
+          const errorMessage = handleApiError(
+            { status, body: {} },
+            "Falha ao salvar. Tente novamente.",
+          );
+          toast.error(errorMessage);
+        }
+      } catch (error) {
+        console.error("Erro ao salvar resumo:", error);
+        toast.error("Falha ao salvar. Tente novamente.");
+      } finally {
+        setIsSaving(false);
+      }
+    },
+    [selectedRecording?.id, PutAPI, PostAPI, setSelectedRecording],
+  );
 
   if (!selectedRecording) {
     return (
@@ -22,24 +139,7 @@ export function Overview() {
     );
   }
 
-  const structuredSummary = convertToAIComponentResponse(
-    selectedRecording.structuredSummary,
-  );
-
-  console.log('[Overview] structuredSummary converted:', structuredSummary);
-  console.log('[Overview] structuredSummary.sections:', structuredSummary?.sections);
-  console.log('[Overview] structuredSummary.sections?.length:', structuredSummary?.sections?.length);
-  
-  // Log detalhado de cada seção
-  structuredSummary?.sections?.forEach((section, index) => {
-    console.log(`[Overview] Section ${index} full:`, JSON.stringify(section, null, 2));
-    console.log(`[Overview] Section ${index}.components:`, section.components);
-    console.log(`[Overview] Section ${index}.components type:`, typeof section.components);
-    console.log(`[Overview] Section ${index}.components isArray:`, Array.isArray(section.components));
-    console.log(`[Overview] Section ${index}.components?.length:`, section.components?.length);
-  });
-
-  if (!structuredSummary) {
+  if (!initialSummary) {
     return (
       <div className="flex w-full flex-col items-center justify-center rounded-lg border border-gray-200 bg-gray-50 p-12">
         <div className="text-center">
@@ -60,8 +160,19 @@ export function Overview() {
   }
 
   return (
-    <div className="animate-in fade-in w-full duration-500">
-      <DynamicComponentRenderer response={structuredSummary} />
+    <div
+      id={OVERVIEW_CONTENT_ID}
+      className="animate-in fade-in w-full duration-500"
+    >
+      <DynamicComponentRenderer
+        response={currentResponse!}
+        showCardActions
+        clientId={selectedClient?.id}
+        recordingId={selectedRecording.id}
+        onUpdateComponent={handleUpdateComponent}
+        onEditStart={onEditStart}
+        onEditEnd={onEditEnd}
+      />
     </div>
   );
-}
+});

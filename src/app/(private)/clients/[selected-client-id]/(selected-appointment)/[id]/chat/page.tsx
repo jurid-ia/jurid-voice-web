@@ -1,53 +1,75 @@
 "use client";
 
 import { useSession } from "@/context/auth";
+import { useApiContext } from "@/context/ApiContext";
 import { useGeneralContext } from "@/context/GeneralContext";
 import { useChatEngine } from "@/hooks/useChatEngine";
+import { useChatPrompts, type ChatPrompt } from "@/hooks/useChatPrompts";
+import { trackAction, UserActionType } from "@/services/actionTrackingService";
 import { cn } from "@/utils/cn";
 import { generalPrompt } from "@/utils/prompts";
-import {
-  ArrowLeft,
-  BookOpen, // Resumir
-  ClipboardList, // Prontuário
-  FileText, // Prescrições
-  Maximize2,
-  Minimize2,
-  Plus,
-  Stethoscope,
-} from "lucide-react";
+import { PromptIcon } from "@/utils/prompt-icon";
+import { ArrowLeft, Maximize2, Minimize2, Plus } from "lucide-react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ChatInput } from "./components/chat-input";
 import { SuggestionCard } from "./components/suggestion-card";
 import { Messages } from "./messages";
 
-type Suggestion = {
-  title: string;
-  description: string;
-  icon: any;
-  prompt: string;
-};
+// Ref para garantir que o texto do input seja enviado junto com o áudio (evita closure obsoleta)
+function useInputRef(value: string) {
+  const ref = useRef(value);
+  ref.current = value;
+  return ref;
+}
 
 export default function ChatPage() {
+  const pathname = usePathname();
   const { profile } = useSession();
+  const { PostAPI } = useApiContext();
   const { selectedRecording } = useGeneralContext();
+  const { prompts, isLoading: isLoadingPrompts } = useChatPrompts();
   const bottomRef = useRef<HTMLDivElement | null>(null);
+  const conversationStartedTrackedRef = useRef(false);
   const [selectedSuggestion, setSelectedSuggestion] =
-    useState<Suggestion | null>(null);
+    useState<ChatPrompt | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [inputMessage, setInputMessage] = useState("");
+  const inputMessageRef = useInputRef(inputMessage);
 
-  // Usa useChatEngine sem persistência (chat independente)
+  // Usa useChatEngine sem persistência (chat independente); prompt base de utils quando nenhuma sugestão selecionada
   const engine = useChatEngine({
     promptContent: selectedSuggestion
-      ? selectedSuggestion.prompt
+      ? selectedSuggestion.content
       : generalPrompt.prompt,
     skipPersistence: true, // Não salva no backend
   });
 
   const handleSendMessage = () => {
-    if (inputMessage.trim() || engine.fileHandler.files.length > 0 || engine.audioRecorder.audioFile) {
-      engine.sendMessage(inputMessage);
+    const textToSend = inputMessageRef.current;
+    if (textToSend.trim() || engine.fileHandler.files.length > 0 || engine.audioRecorder.audioFile) {
+      const userMessagesCount = engine.messages.filter((m) => m.role === 'user').length;
+      if (userMessagesCount === 0 && !conversationStartedTrackedRef.current) {
+        conversationStartedTrackedRef.current = true;
+        console.log('[Tracking] Disparando CONVERSATION_STARTED (chat)');
+        trackAction(
+          {
+            actionType: UserActionType.CONVERSATION_STARTED,
+            recordingId: selectedRecording?.id,
+            metadata: {
+              screen: 'chat',
+              screenName: 'Conversar',
+              recordingId: selectedRecording?.id,
+              conversationStarted: true,
+            },
+          },
+          PostAPI
+        ).catch((err: { status?: number; body?: unknown }) => {
+          console.warn('[Tracking] Falha ao registrar início de conversa:', err?.status ?? err, err?.body ?? err);
+        });
+      }
+      engine.sendMessage(textToSend);
       setInputMessage("");
     }
   };
@@ -59,38 +81,8 @@ export default function ChatPage() {
     }
   }, [engine.messages]);
 
-  const suggestions = [
-    {
-      title: "Resumir Consulta",
-      description: "Resuma os principais pontos discutidos durante a consulta.",
-      icon: BookOpen,
-      prompt: "Resuma os principais pontos discutidos nesta consulta médica.",
-    },
-    {
-      title: "Extrair Prescrições",
-      description: "Liste medicamentos e dosagens mencionadas.",
-      icon: FileText,
-      prompt:
-        "Liste todos os medicamentos e prescrições mencionadas na consulta.",
-    },
-    {
-      title: "Análise de Sintomas",
-      description: "Identifique e analise os sintomas relatados pelo paciente.",
-      icon: Stethoscope,
-      prompt:
-        "Identifique e analise os sintomas relatados pelo paciente na transcrição.",
-    },
-    {
-      title: "Gerar Prontuário",
-      description: "Estruture as informações para inserção no prontuário.",
-      icon: ClipboardList,
-      prompt:
-        "Organize as informações desta consulta em formato de prontuário médico (SOAP).",
-    },
-  ];
-
-  const handleSuggestionClick = (suggestion: Suggestion) => {
-    setSelectedSuggestion(suggestion);
+  const handleSuggestionClick = (prompt: ChatPrompt) => {
+    setSelectedSuggestion(prompt);
     engine.clearChat();
     setInputMessage("");
   };
@@ -122,6 +114,27 @@ export default function ChatPage() {
       }, 100);
     }
   };
+
+  // Tracking quando a página é visualizada (pathname garante disparo a cada acesso à tela)
+  useEffect(() => {
+    if (selectedRecording?.id) {
+      console.log('[Tracking] Disparando SCREEN_VIEWED: chat (Conversar)');
+      trackAction(
+        {
+          actionType: UserActionType.SCREEN_VIEWED,
+          recordingId: selectedRecording.id,
+          metadata: {
+            screen: 'chat',
+            screenName: 'Conversar',
+            recordingId: selectedRecording.id,
+          },
+        },
+        PostAPI
+      ).catch((err: { status?: number; body?: unknown }) => {
+        console.warn('[Tracking] Falha ao registrar Chat:', err?.status ?? err, err?.body ?? err);
+      });
+    }
+  }, [selectedRecording?.id, PostAPI, pathname]);
 
   // Re-inject transcription if messages cleared usually happens via useEffect logic
   useEffect(() => {
@@ -200,9 +213,13 @@ export default function ChatPage() {
               <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
             </button>
             <div className="border-primary flex items-center gap-2 rounded-full border bg-white/80 px-4 py-2 shadow-sm backdrop-blur-md">
-              <selectedSuggestion.icon className="text-primary h-4 w-4" />
+              <PromptIcon
+                icon={selectedSuggestion.icon}
+                className="text-primary h-4 w-4"
+                size={16}
+              />
               <span className="text-sm font-semibold text-gray-700">
-                {selectedSuggestion.title}
+                {selectedSuggestion.name}
               </span>
             </div>
           </div>
@@ -271,20 +288,26 @@ export default function ChatPage() {
                         }
                       });
                     }}
+                    pendingAudioFile={engine.audioRecorder.audioFile}
+                    onDiscardAudio={engine.audioRecorder.clearAudio}
                   />
                 </div>
               </div>
               <div className="mt-auto py-4">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                  {suggestions.map((suggestion, index) => (
-                    <SuggestionCard
-                      key={index}
-                      index={index}
-                      title={suggestion.title}
-                      icon={suggestion.icon}
-                      onClick={() => handleSuggestionClick(suggestion)}
-                    />
-                  ))}
+                  {isLoadingPrompts ? (
+                    <p className="text-sm text-gray-500">Carregando sugestões...</p>
+                  ) : (
+                    prompts.map((prompt, index) => (
+                      <SuggestionCard
+                        key={prompt.id}
+                        index={index}
+                        title={prompt.name}
+                        icon={prompt.icon ?? ""}
+                        onClick={() => handleSuggestionClick(prompt)}
+                      />
+                    ))
+                  )}
                 </div>
               </div>
             </div>
@@ -294,13 +317,17 @@ export default function ChatPage() {
               {isChatEmpty && selectedSuggestion && (
                 <div className="animate-in fade-in zoom-in-95 flex flex-1 flex-col items-center justify-center duration-500">
                   <div className="bg-primary mb-4 flex h-16 w-16 items-center justify-center rounded-2xl text-white">
-                    <selectedSuggestion.icon className="h-8 w-8" />
+                    <PromptIcon
+                      icon={selectedSuggestion.icon}
+                      className="h-8 w-8"
+                      size={32}
+                    />
                   </div>
                   <h3 className="text-lg font-medium text-gray-900">
-                    Modo {selectedSuggestion.title} Ativado
+                    Modo {selectedSuggestion.name} Ativado
                   </h3>
                   <p className="mt-1 max-w-xs text-center text-sm text-gray-500">
-                    {selectedSuggestion.prompt.replace(":", "...")}
+                    {selectedSuggestion.content.replace(":", "...")}
                   </p>
                 </div>
               )}
@@ -346,6 +373,8 @@ export default function ChatPage() {
                   }
                 });
               }}
+              pendingAudioFile={engine.audioRecorder.audioFile}
+              onDiscardAudio={engine.audioRecorder.clearAudio}
             />
           </div>
         )}

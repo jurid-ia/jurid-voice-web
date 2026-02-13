@@ -1,25 +1,24 @@
 "use client";
 
-import { useSession } from "@/context/auth";
-import { useApiContext } from "@/context/ApiContext";
-import { cn } from "@/utils/cn";
-import { maskCpfCnpj, maskPhone } from "@/utils/masks";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, CheckCircle2, User, Phone, Hash } from "lucide-react";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import z from "zod";
+import Field from "@/app/(public)/login/components/field";
 import {
   Form,
-  FormControl,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage,
+  FormMessage
 } from "@/components/ui/blocks/form";
-import Field from "@/app/(public)/login/components/field";
-import toast from "react-hot-toast";
+import { useApiContext } from "@/context/ApiContext";
+import { useSession } from "@/context/auth";
+import { cn } from "@/utils/cn";
+import { maskCpfCnpj, maskPhone } from "@/utils/masks";
+import { getCurrentPlatform } from "@/utils/platform";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CheckCircle2, Hash, Loader2, Phone, User } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import z from "zod";
 
 const FormSchema = z.object({
   name: z.string().min(3, "O nome deve ter pelo menos 3 caracteres"),
@@ -90,16 +89,17 @@ export function CompleteRegistrationModal() {
       const cleanPhone = data.phone.replace(/\D/g, ""); // Remove tudo exceto números
       const cleanCpfCnpj = data.cpfCnpj.replace(/\D/g, ""); // Remove tudo exceto números
 
-      // Envia os dados para a API
-      const response = await PutAPI(
-        "/user",
-        {
-          name: data.name,
-          mobilePhone: cleanPhone,
-          cpfCnpj: cleanCpfCnpj,
-        },
-        true, // true = requer autenticação
-      );
+            // Envia os dados para a API
+            const response = await PutAPI(
+                "/user",
+                {
+                    name: data.name,
+                    mobilePhone: cleanPhone,
+                    cpfCnpj: cleanCpfCnpj,
+                    registrationPlatform: getCurrentPlatform(),
+                },
+                true // true = requer autenticação
+            );
 
       if (response.status === 200) {
         toast.success("Cadastro atualizado com sucesso!");

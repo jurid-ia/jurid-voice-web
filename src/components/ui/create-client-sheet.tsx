@@ -1,7 +1,7 @@
 import { useApiContext } from "@/context/ApiContext";
 import { useGeneralContext } from "@/context/GeneralContext";
 import { cn } from "@/utils/cn";
-import { maskDate } from "@/utils/masks";
+import { handleApiError } from "@/utils/error-handler";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
@@ -31,7 +31,6 @@ interface CreateClientSheetProps {
 const FormSchema = z.object({
   name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
   description: z.string().optional().nullable(),
-  birthDate: z.string().optional().nullable(),
 });
 
 export function CreateClientSheet({
@@ -50,7 +49,6 @@ export function CreateClientSheet({
     defaultValues: {
       name: "",
       description: "",
-      birthDate: "",
     },
   });
 
@@ -58,7 +56,7 @@ export function CreateClientSheet({
     const [activeStep, setActiveStep] = useState(0);
 
     const stepFields = {
-      0: ["name", "description", "birthDate"] as const,
+      0: ["name", "description"] as const,
     };
 
     const validateStep = async (step: number) => {
@@ -81,8 +79,7 @@ export function CreateClientSheet({
 
       const fieldLabels: Record<keyof z.infer<typeof FormSchema>, string> = {
         name: "Nome",
-        description: "Descrição",
-        birthDate: "Data de nascimento",
+        description: "Descrição",
       };
 
       const firstErrorField = Object.keys(
@@ -137,8 +134,12 @@ export function CreateClientSheet({
         setIsLoading(false);
         return onClose();
       }
-      toast.error(data?.body?.message ?? "Falha ao enviar o formulário.");
-      return setIsLoading(false);
+      const errorMessage = handleApiError(
+        data,
+        "Falha ao enviar o formulário. Tente novamente.",
+      );
+      toast.error(errorMessage);
+      setIsLoading(false);
     }
   };
 
@@ -181,28 +182,6 @@ export function CreateClientSheet({
                   />
                 </FormControl>
                 <FormMessage className="font-base inline-flex h-[22px] items-center justify-center rounded-sm px-2 text-xs text-red-500" />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="birthDate"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-text-100">
-                  Data de Nascimento do Contato
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Digite..."
-                    type="text"
-                    value={field.value || ""}
-                    onChange={(e) => {
-                      field.onChange(maskDate(e.target.value));
-                    }}
-                    autoComplete="off"
-                  />
-                </FormControl>
               </FormItem>
             )}
           />

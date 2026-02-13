@@ -1,120 +1,74 @@
 "use client";
 
-import { AudioPlayer } from "@/components/chatPopup/AudioPlayer";
-import { useSectionChat } from "@/components/chatPopup/chat-handler";
-import { Prompt } from "@/components/chatPopup/types";
 import { useSession } from "@/context/auth";
 import { useGeneralContext } from "@/context/GeneralContext";
+import { useChatEngine } from "@/hooks/useChatEngine";
+import { useChatPrompts, type ChatPrompt } from "@/hooks/useChatPrompts";
 import { cn } from "@/utils/cn";
+import { PromptIcon } from "@/utils/prompt-icon";
 import { generalPrompt } from "@/utils/prompts";
-import {
-  ArrowLeft,
-  BookOpen, // Resumir
-  CheckSquare, // Extrair Tarefas
-  FileText, // Gerar Ata
-  Heart, // Sentimento
-  Maximize2,
-  Minimize2,
-  Plus,
-  X,
-} from "lucide-react";
+import { ArrowLeft, Maximize2, Minimize2, Plus } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ChatInput } from "./components/chat-input";
 import { SuggestionCard } from "./components/suggestion-card";
 import { Messages } from "./messages";
 
-type Suggestion = {
-  title: string;
-  description: string;
-  icon: any;
-  prompt: string;
-};
+// Ref para garantir que o texto do input seja enviado junto com o áudio (evita closure obsoleta)
+function useInputRef(value: string) {
+  const ref = useRef(value);
+  ref.current = value;
+  return ref;
+}
 
 export default function ChatPage() {
   const { profile } = useSession();
   const { selectedRecording } = useGeneralContext();
+  const { prompts, isLoading: isLoadingPrompts } = useChatPrompts();
   const bottomRef = useRef<HTMLDivElement | null>(null);
   const [selectedSuggestion, setSelectedSuggestion] =
-    useState<Suggestion | null>(null);
+    useState<ChatPrompt | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [selectedPrompt] = useState(generalPrompt);
+  const [inputMessage, setInputMessage] = useState("");
+  const inputMessageRef = useInputRef(inputMessage);
 
-  const hookPrompt: Prompt | undefined = selectedSuggestion
-    ? {
-      id: "transcription-prompt",
-      name: selectedSuggestion.title,
-      prompt: selectedSuggestion.prompt,
+  // Usa useChatEngine sem persistência (chat independente); prompt base de utils quando nenhuma sugestão selecionada
+  const engine = useChatEngine({
+    promptContent: selectedSuggestion
+      ? selectedSuggestion.content
+      : generalPrompt.prompt,
+    skipPersistence: true, // Não salva no backend
+  });
+
+  const handleSendMessage = () => {
+    const textToSend = inputMessageRef.current;
+    if (textToSend.trim() || engine.fileHandler.files.length > 0 || engine.audioRecorder.audioFile) {
+      engine.sendMessage(textToSend);
+      setInputMessage("");
     }
-    : selectedPrompt;
-
-  const {
-    messages,
-    setMessages,
-    inputMessage,
-    handleSendMessage,
-    setInputMessage,
-    isRecording,
-    startRecording,
-    stopRecording,
-    file,
-    setFile,
-    loading,
-  } = useSectionChat({ selectedPrompt: hookPrompt });
+  };
 
   // Auto-scroll to bottom
   useEffect(() => {
-    if (messages.length > 0 && bottomRef.current) {
+    if (engine.messages.length > 0 && bottomRef.current) {
       bottomRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages]);
+  }, [engine.messages]);
 
-  const suggestions = [
-    {
-      title: "Resumir Transcrição",
-      description: "Crie um resumo conciso dos principais pontos discutidos.",
-      icon: BookOpen,
-      prompt: "Resuma a transcrição atual focando nos pontos principais.",
-    },
-    {
-      title: "Extrair Tarefas",
-      description: "Liste todas as ações e tarefas mencionadas na conversa.",
-      icon: CheckSquare,
-      prompt:
-        "Liste todas as tarefas e ações pendentes identificadas na transcrição.",
-    },
-    {
-      title: "Análise de Sentimento",
-      description: "Analise o tom e o sentimento geral dos participantes.",
-      icon: Heart,
-      prompt:
-        "Analise o sentimento e o tom da conversa baseada na transcrição.",
-    },
-    {
-      title: "Gerar Ata",
-      description: "Formate a conversa como uma ata de reunião formal.",
-      icon: FileText,
-      prompt: "Crie uma ata formal desta reunião baseada na transcrição.",
-    },
-  ];
-
-  const handleSuggestionClick = (suggestion: Suggestion) => {
-    setSelectedSuggestion(suggestion);
-    setMessages([]);
+  const handleSuggestionClick = (prompt: ChatPrompt) => {
+    setSelectedSuggestion(prompt);
+    engine.clearChat();
     setInputMessage("");
-    if (selectedRecording && selectedRecording?.transcription) {
-      // logic handled by useEffect below
-    }
   };
 
   const handleBack = () => {
     setSelectedSuggestion(null);
-    setMessages([]);
+    engine.clearChat();
     setInputMessage("");
   };
 
   const handleNewChat = () => {
-    setMessages([]);
+    engine.clearChat();
     setInputMessage("");
     setSelectedSuggestion(null);
   };
@@ -137,25 +91,25 @@ export default function ChatPage() {
 
   // Re-inject transcription if messages cleared usually happens via useEffect logic
   useEffect(() => {
-    if (messages.length === 0) {
+    if (engine.messages.length === 0) {
       if (selectedRecording && selectedRecording?.transcription) {
-        setMessages((prev) => [
-          ...prev,
+        // Adiciona a transcrição como mensagem do sistema para contexto
+        engine.setMessages([
           {
             role: "system",
             content: selectedRecording.transcription as string,
-          },
+          } as any,
         ]);
       }
     }
-  }, [messages.length, selectedRecording]);
+  }, [engine.messages.length, selectedRecording, engine.setMessages]);
 
   const styles = {
     iconGradient: "bg-gradient-to-br from-stone-600 to-stone-800",
     border: "border-sky-200",
   };
 
-  const isChatEmpty = messages.filter((m) => m.role !== "system").length === 0;
+  const isChatEmpty = engine.messages.filter((m) => m.role !== "system").length === 0;
 
   return (
     <div
@@ -166,10 +120,10 @@ export default function ChatPage() {
       <div className="flex w-full items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
-            Assistente de Transcrição
+            Assistente Médico
           </h1>
           <p className="text-sm text-gray-500">
-            Conversando sobre: {selectedRecording?.name || "Gravação"}
+            Analisando: {selectedRecording?.name || "Consulta"}
           </p>
         </div>
 
@@ -212,9 +166,13 @@ export default function ChatPage() {
               <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
             </button>
             <div className="border-primary flex items-center gap-2 rounded-full border bg-white/80 px-4 py-2 shadow-sm backdrop-blur-md">
-              <selectedSuggestion.icon className="text-primary h-4 w-4" />
+              <PromptIcon
+                icon={selectedSuggestion.icon}
+                className="text-primary h-4 w-4"
+                size={16}
+              />
               <span className="text-sm font-semibold text-gray-700">
-                {selectedSuggestion.title}
+                {selectedSuggestion.name}
               </span>
             </div>
           </div>
@@ -261,25 +219,48 @@ export default function ChatPage() {
                   <ChatInput
                     value={inputMessage}
                     onChange={setInputMessage}
-                    onSend={() => handleSendMessage()}
-                    isRecording={isRecording}
-                    onRecordStart={startRecording}
-                    onRecordStop={stopRecording}
-                    isLoading={loading}
+                    onSend={handleSendMessage}
+                    isRecording={engine.audioRecorder.isRecording}
+                    onRecordStart={engine.audioRecorder.startRecording}
+                    onRecordStop={engine.audioRecorder.stopRecording}
+                    isLoading={engine.loading}
+                    files={engine.fileHandler.files.map(f => f.file)}
+                    onFilesChange={(newFiles) => {
+                      // Sincroniza com fileHandler
+                      const currentFiles = engine.fileHandler.files.map(f => f.file);
+                      const filesToAdd = newFiles.filter(f => !currentFiles.some(cf => cf.name === f.name && cf.size === f.size));
+                      const filesToRemove = currentFiles.filter(cf => !newFiles.some(nf => nf.name === cf.name && nf.size === cf.size));
+                      
+                      filesToAdd.forEach(file => {
+                        engine.fileHandler.addFile(file);
+                      });
+                      filesToRemove.forEach(file => {
+                        const fileItem = engine.fileHandler.files.find(f => f.file === file);
+                        if (fileItem) {
+                          engine.fileHandler.removeFile(fileItem.id);
+                        }
+                      });
+                    }}
+                    pendingAudioFile={engine.audioRecorder.audioFile}
+                    onDiscardAudio={engine.audioRecorder.clearAudio}
                   />
                 </div>
               </div>
               <div className="mt-auto py-4">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                  {suggestions.map((suggestion, index) => (
-                    <SuggestionCard
-                      key={index}
-                      index={index}
-                      title={suggestion.title}
-                      icon={suggestion.icon}
-                      onClick={() => handleSuggestionClick(suggestion)}
-                    />
-                  ))}
+                  {isLoadingPrompts ? (
+                    <p className="text-sm text-gray-500">Carregando sugestões...</p>
+                  ) : (
+                    prompts.map((prompt, index) => (
+                      <SuggestionCard
+                        key={prompt.id}
+                        index={index}
+                        title={prompt.name}
+                        icon={prompt.icon ?? ""}
+                        onClick={() => handleSuggestionClick(prompt)}
+                      />
+                    ))
+                  )}
                 </div>
               </div>
             </div>
@@ -289,22 +270,26 @@ export default function ChatPage() {
               {isChatEmpty && selectedSuggestion && (
                 <div className="animate-in fade-in zoom-in-95 flex flex-1 flex-col items-center justify-center duration-500">
                   <div className="bg-primary mb-4 flex h-16 w-16 items-center justify-center rounded-2xl text-white">
-                    <selectedSuggestion.icon className="h-8 w-8" />
+                    <PromptIcon
+                      icon={selectedSuggestion.icon}
+                      className="h-8 w-8"
+                      size={32}
+                    />
                   </div>
                   <h3 className="text-lg font-medium text-gray-900">
-                    Modo {selectedSuggestion.title} Ativado
+                    Modo {selectedSuggestion.name} Ativado
                   </h3>
                   <p className="mt-1 max-w-xs text-center text-sm text-gray-500">
-                    {selectedSuggestion.prompt.replace(":", "...")}
+                    {selectedSuggestion.content.replace(":", "...")}
                   </p>
                 </div>
               )}
 
-              {messages.map(
+              {engine.messages.map(
                 (message, i) =>
                   message.role !== "system" && (
                     <Messages
-                      key={`business-msg-${i}-${message.content.substring(0, 10)}`}
+                      key={`business-msg-${i}-${message.content?.substring(0, 10) || i}`}
                       message={message}
                     />
                   ),
@@ -316,42 +301,33 @@ export default function ChatPage() {
 
         {(!isChatEmpty || selectedSuggestion) && (
           <div className="border-t border-gray-100 bg-gray-50/50">
-            {/* File Preview Area */}
-            {file && (
-              <div className="flex items-center justify-between gap-3 border-b border-gray-100 bg-white/50 px-4 py-2">
-                <div className="flex flex-1 items-center gap-2 overflow-hidden">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100">
-                    <div className="h-2 w-2 animate-pulse rounded-full bg-red-500" />
-                  </div>
-                  <span className="truncate text-xs font-medium text-gray-500">
-                    Áudio anexado
-                  </span>
-                </div>
-
-                <div className="h-8 w-32">
-                  <AudioPlayer
-                    audioUrl={URL.createObjectURL(file)}
-                    className="h-full w-full"
-                  />
-                </div>
-
-                <button
-                  onClick={() => setFile(null)}
-                  className="rounded-lg p-1 text-gray-500 transition-colors hover:bg-gray-200"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              </div>
-            )}
-
             <ChatInput
               value={inputMessage}
               onChange={setInputMessage}
-              onSend={() => handleSendMessage()}
-              isRecording={isRecording}
-              onRecordStart={startRecording}
-              onRecordStop={stopRecording}
-              isLoading={typeof loading !== "undefined" ? loading : false}
+              onSend={handleSendMessage}
+              isRecording={engine.audioRecorder.isRecording}
+              onRecordStart={engine.audioRecorder.startRecording}
+              onRecordStop={engine.audioRecorder.stopRecording}
+              isLoading={engine.loading}
+              files={engine.fileHandler.files.map(f => f.file)}
+              onFilesChange={(newFiles) => {
+                // Sincroniza com fileHandler
+                const currentFiles = engine.fileHandler.files.map(f => f.file);
+                const filesToAdd = newFiles.filter(f => !currentFiles.some(cf => cf.name === f.name && cf.size === f.size));
+                const filesToRemove = currentFiles.filter(cf => !newFiles.some(nf => nf.name === cf.name && nf.size === cf.size));
+                
+                filesToAdd.forEach(file => {
+                  engine.fileHandler.addFile(file);
+                });
+                filesToRemove.forEach(file => {
+                  const fileItem = engine.fileHandler.files.find(f => f.file === file);
+                  if (fileItem) {
+                    engine.fileHandler.removeFile(fileItem.id);
+                  }
+                });
+              }}
+              pendingAudioFile={engine.audioRecorder.audioFile}
+              onDiscardAudio={engine.audioRecorder.clearAudio}
             />
           </div>
         )}

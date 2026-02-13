@@ -1,7 +1,9 @@
 import { ClientProps } from "@/@types/general-client";
 import { useApiContext } from "@/context/ApiContext";
 import { useGeneralContext } from "@/context/GeneralContext";
+import { trackAction, UserActionType } from "@/services/actionTrackingService";
 import { cn } from "@/utils/cn";
+import { handleApiError } from "@/utils/error-handler";
 import {
   AlertCircle,
   CheckCircle2,
@@ -19,7 +21,7 @@ import {
   X,
 } from "lucide-react";
 import moment from "moment";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import toast from "react-hot-toast";
 import {
@@ -50,6 +52,7 @@ interface AudioRecorderProps {
   customLabel?: string;
   customIcon?: React.ComponentType<{ className?: string }>;
   initialClientId?: string;
+  initialReminderId?: string;
   forcePersonalType?: "REMINDER" | "STUDY" | "OTHER";
   skipNewRecordingRequest?: boolean; // Se true, não escuta o newRecordingRequest do contexto
 }
@@ -60,16 +63,11 @@ export function AudioRecorder({
   customLabel,
   customIcon: CustomIcon,
   initialClientId,
+  initialReminderId,
   forcePersonalType,
   skipNewRecordingRequest = false,
 }: AudioRecorderProps) {
-  const {
-    GetRecordings,
-    clients,
-    selectedClient,
-    newRecordingRequest,
-    resetNewRecordingRequest,
-  } = useGeneralContext();
+  const { GetRecordings, GetReminders, clients, selectedClient, newRecordingRequest, resetNewRecordingRequest } = useGeneralContext();
   const { PostAPI } = useApiContext();
   const { uploadMedia, formatDurationForAPI } = useRecordingUpload();
   const [isCreateClientSheetOpen, setIsCreateClientSheetOpen] = useState(false);
@@ -89,7 +87,7 @@ export function AudioRecorder({
     error,
     setError,
     validateForm,
-    resetFlow,
+    resetFlow: originalResetFlow,
     openSaveDialog,
   } = useRecordingFlow(resetRecorderRef.current);
   useEffect(() => {
@@ -147,6 +145,37 @@ export function AudioRecorder({
   }, [recorder.resetRecording]);
   // -------------------------------------------------------------
 
+  // Wrapper para resetFlow que adiciona tracking quando há gravação pendente
+  const resetFlow = useCallback(() => {
+    // Verificar se há gravação pendente (não enviada)
+    const hasPendingRecording = 
+      recorder.mediaBlob && 
+      (currentStep === "preview" || currentStep === "save-dialog" || currentStep === "recording");
+
+    if (hasPendingRecording) {
+      // Tracking de cancelamento de gravação
+      trackAction(
+        {
+          actionType: UserActionType.RECORDING_CANCELLED,
+          metadata: {
+            recordingType: metadata.recordingType,
+            consultationType: metadata.consultationType,
+            personalRecordingType: metadata.personalRecordingType,
+            duration: recorder.duration,
+            hadBlob: !!recorder.mediaBlob,
+            step: currentStep,
+          },
+        },
+        PostAPI
+      ).catch((error) => {
+        console.warn('Erro ao registrar tracking de cancelamento:', error);
+      });
+    }
+
+    // Chamar o resetFlow original
+    originalResetFlow();
+  }, [recorder.mediaBlob, recorder.duration, currentStep, metadata, PostAPI, originalResetFlow]);
+
   // MODIFICADO: Recebe o finalMediaType como parâmetro
   const handleRecordingComplete = async (
     blob: Blob,
@@ -171,6 +200,9 @@ export function AudioRecorder({
         ...(metadata.selectedClientId
           ? { clientId: metadata.selectedClientId }
           : {}),
+        ...(metadata.personalRecordingType === "REMINDER" && initialReminderId
+          ? { reminderId: initialReminderId }
+          : {}),
       };
 
       console.log("payload", payload);
@@ -178,21 +210,28 @@ export function AudioRecorder({
       console.log("response", response);
 
       if (response?.status >= 400) {
-        throw new Error("Erro ao salvar gravação");
+        const errorMessage = handleApiError(
+          response,
+          "Erro ao salvar gravação. Tente novamente.",
+        );
+        setError(errorMessage);
+        toast.error(errorMessage);
+        setCurrentStep("preview"); // Return to preview to allow retry
+        return;
       }
 
       toast.success("Gravação salva com sucesso!");
 
       GetRecordings();
+      if (metadata.personalRecordingType === "REMINDER" && initialReminderId) {
+        GetReminders();
+      }
 
       resetFlow();
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      let errorMessage = "Erro ao salvar gravação. Tente novamente.";
-      if (error.message) {
-        errorMessage = error.message;
-      }
-
+      const errorMessage =
+        error.message || "Erro ao salvar gravação. Tente novamente.";
       setError(errorMessage);
       toast.error(errorMessage);
       setCurrentStep("preview"); // Return to preview to allow retry
@@ -224,23 +263,13 @@ export function AudioRecorder({
   }, [currentStep, recorder.mediaUrl, currentMediaType]); // ← ADICIONA currentMediaType como dependência
 
   const handleDropdownOpenChange = (open: boolean) => {
-    if (open) {
-      if (skipToClient) {
-        openSaveDialog("CLIENT");
-        return;
-      }
-      if (forcePersonalType) {
-        // Se forcePersonalType estiver definido, já configura o tipo e abre o dialog
-        updateMetadata({
-          recordingType: "PERSONAL",
-          personalRecordingType: forcePersonalType,
-          consultationType: null,
-        });
-        setCurrentStep("save-dialog");
-        return;
-      }
+    if (open && skipToClient) {
+      openSaveDialog("CLIENT");
+    } else if (open && initialReminderId) {
+      openSaveDialog("PERSONAL", "REMINDER");
+    } else {
+      setIsDropdownOpen(open);
     }
-    setIsDropdownOpen(open);
   };
 
   const getDerivedTitle = () => {
@@ -418,15 +447,30 @@ export function AudioRecorder({
     }
   }, [skipToClient, initialClientId, selectedClient?.id]);
 
-  // Renderizar botão customizado quando skipToClient é true (sem dropdown)
+  // Renderizar botão customizado quando skipToClient ou initialReminderId (sem dropdown)
   const renderTriggerButton = () => {
     const IconComponent = CustomIcon || Mic;
     const label = customLabel || "Nova Gravação";
 
-    if (skipToClient || forcePersonalType) {
+    if (skipToClient) {
       return (
         <div
           onClick={() => handleDropdownOpenChange(true)}
+          className={cn(
+            "flex cursor-pointer items-center gap-2 rounded-3xl px-4 py-2 transition",
+            buttonClassName,
+          )}
+        >
+          <IconComponent size={20} />
+          {label}
+        </div>
+      );
+    }
+
+    if (initialReminderId) {
+      return (
+        <div
+          onClick={() => openSaveDialog("PERSONAL", "REMINDER")}
           className={cn(
             "flex cursor-pointer items-center gap-2 rounded-3xl px-4 py-2 transition",
             buttonClassName,
@@ -562,7 +606,7 @@ export function AudioRecorder({
                     />
                   </div>
 
-                  {metadata.recordingType === "PERSONAL" && (
+                  {metadata.recordingType === "PERSONAL" && !initialReminderId && (
                     <div>
                       <label className="mb-2 block text-sm font-medium text-gray-700">
                         Tipo de Gravação
