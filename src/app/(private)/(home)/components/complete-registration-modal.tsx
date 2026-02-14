@@ -143,7 +143,7 @@ export function CompleteRegistrationModal() {
             </h3>
             <p className="mt-4 text-base leading-relaxed font-light text-stone-100 opacity-90">
               Junte-se a milhares de profissionais que transformaram sua rotina
-              clínica com a Jurid Voice.
+              jurídica com a Jurid Voice.
             </p>
           </div>
 

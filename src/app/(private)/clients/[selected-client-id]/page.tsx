@@ -34,10 +34,10 @@ export default function Clients() {
     <div className="flex w-full flex-col gap-4">
       <div className="mb-4 flex w-full flex-row items-center justify-between gap-2">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Suas Consultas</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Suas Reuniões</h1>
           <p className="text-sm text-gray-500">
-            Gerencie suas consultas do contato {selectedClient?.name}
-          </p>
+            Gerencie suas reuniões do contato {selectedClient?.name}
+          </p>  
         </div>
         <div className="flex flex-row items-center gap-4">
           <div className="flex items-center gap-2 rounded-xl border border-gray-100 bg-gray-50 p-1 transition-all focus-within:border-[#AB8E63] focus-within:bg-white focus-within:ring-4 focus-within:ring-[#AB8E63]/10">

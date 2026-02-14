@@ -191,12 +191,12 @@ export const mockAIGeneratedData: AIComponentResponse = {
     // ========== SEÇÃO: ORIENTAÇÕES E NOTAS ==========
     {
       title: "Orientações e Observações",
-      description: "Orientações ao paciente e notas clínicas",
+      description: "Orientações ao contato e notas jurídicas",
       variant: "teal",
       components: [
         {
           type: "orientations_card",
-          title: "Orientações ao Paciente",
+          title: "Orientações ao Contato",
           variant: "teal",
           data: {
             orientations: [

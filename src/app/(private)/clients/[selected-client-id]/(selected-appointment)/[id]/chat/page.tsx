@@ -170,7 +170,7 @@ export default function ChatPage() {
             Jurid IA
           </h1>
           <p className="text-sm text-gray-500">
-            Analisando: {selectedRecording?.name || "Consulta"}
+            Analisando: {selectedRecording?.name || "Reunião"}
           </p>
         </div>
 

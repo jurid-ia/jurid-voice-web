@@ -149,7 +149,7 @@ function getComponentTable(component: AIComponent): TableContent | null {
       notes?: string;
     }>;
     return {
-      head: ["Data", "Horário", "Tipo", "Médico", "Observações"],
+      head: ["Data", "Horário", "Tipo", "Advogado", "Observações"],
       body: arr.map((a) => [
         a.date ?? "-",
         a.time ?? "-",

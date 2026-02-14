@@ -24,7 +24,7 @@ export default function Register() {
             </h2>
             <p className="text-stone-50">
               Cadastre-se para acessar a tecnologia que transforma suas
-              consultas em registros perfeitos.
+              reuniões em registros perfeitos.
             </p>
           </div>
         </div>

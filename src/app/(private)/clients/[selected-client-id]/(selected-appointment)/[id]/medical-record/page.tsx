@@ -39,8 +39,8 @@ export default function MedicalRecordPage() {
           recordingId: selectedRecording.id,
           metadata: {
             screen: 'medical-record',
-            screenName: 'Prontuário Médico',
-            recordingId: selectedRecording.id,
+            screenName: 'Resumo Jurídico',
+            recordingId: selectedRecording.id,  
           },
         },
         PostAPI

@@ -101,7 +101,7 @@ export const MedicalRecord = forwardRef<MedicalRecordHandle, MedicalRecordProps>
                 recordingId: selectedRecording.id,
                 metadata: {
                   screen: 'medical-record',
-                  screenName: 'Prontuário Médico',
+                  screenName: 'Resumo Jurídico',
                 },
               },
               PostAPI

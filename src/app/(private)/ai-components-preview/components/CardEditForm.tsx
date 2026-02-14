@@ -904,7 +904,7 @@ export function CardEditForm({
             <ContentEditor
               value={(d.content as string) ?? ""}
               onChange={(v) => setEditData({ ...d, content: v })}
-              label="Notas clínicas"
+              label="Notas jurídicas"
             />
           )}
         </>

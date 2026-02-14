@@ -1,6 +1,6 @@
 import type { AIComponentResponse } from "@/app/(private)/ai-components-preview/types/component-types";
-import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas-pro";
+import { jsPDF } from "jspdf";
 import { generateMedicalRecordPdf, generateOverviewPdf } from "./pdfOverviewGenerator";
 
 const MEDICAL_RECORD_CONTENT_ID = "medical-record-content";
@@ -153,7 +153,7 @@ async function exportContentToPdf(
 }
 
 /**
- * Exporta o prontuário médico para PDF.
+ * Exporta o resumo jurídico para PDF.
  * Se `medicalRecordData` for passado, usa geração programática (jsPDF + autoTable, estilo Legisai):
  * sem sombras, arquivo leve e quebras de página sem cortar cards.
  * Caso contrário, usa html2canvas no DOM (comportamento anterior).

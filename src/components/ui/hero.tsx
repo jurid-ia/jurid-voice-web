@@ -15,7 +15,7 @@ export function Hero() {
         <div className="flex h-full w-full flex-col gap-4 pt-20 xl:flex-row xl:items-center">
           <div className="flex flex-1 flex-col gap-2 p-4 xl:gap-4 2xl:p-0">
             <div className="text-3xl font-light xl:text-5xl">
-              <span className="font-bold">Relatórios Médicos </span>
+              <span className="font-bold">Relatórios Jurídicos </span>
               <span>Inteligentes, Organizados e </span>
               <span className="font-bold">Prontos em Minutos.</span>
             </div>
@@ -65,7 +65,7 @@ export function Hero() {
           </AvatarGroup>
           <div className="font-light">
             <span>Mais de </span>
-            <span className="text-primary font-semibold">100 médicos </span>
+            <span className="text-primary font-semibold">100 advogados </span>
             <span> escolheram ser </span>
             <span className="font-semibold">Inteligentes e eficientes</span>
           </div>

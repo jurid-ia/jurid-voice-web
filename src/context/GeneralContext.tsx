@@ -245,15 +245,15 @@ export const GeneralContextProvider = ({ children }: ProviderProps) => {
         console.error("Erro ao buscar clientes:", response.status);
         const errorMessage = handleApiError(
           response,
-          "Não foi possível carregar os pacientes.",
+          "Não foi possível carregar os contatos.",
         );
-        toast.error(errorMessage);
+        toast.error(errorMessage);  
         setClients([]);
         setClientsTotalPages(0);
       }
     } catch (error) {
       console.error("Erro no GetClients:", error);
-      toast.error("Erro ao carregar pacientes. Tente novamente.");
+      toast.error("Erro ao carregar contatos. Tente novamente.");
       setClients([]);
       setClientsTotalPages(0);
     } finally {

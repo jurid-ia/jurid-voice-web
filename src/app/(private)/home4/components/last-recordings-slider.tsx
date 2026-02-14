@@ -45,8 +45,8 @@ export function LastRecordingsSlider() {
     },
     {
       id: 6,
-      title: "Discussão Clínica - Caso Raro",
-      date: new Date(Date.now() - 432000000),
+      title: "Discussão Jurídica - Caso Raro",
+      date: new Date(Date.now() - 432000000), 
       duration: "55min",
       type: "Estudo",
     },

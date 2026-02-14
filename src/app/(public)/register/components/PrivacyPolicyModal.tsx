@@ -117,7 +117,7 @@ const PRIVACY_CONTENT = (
       2.2. Conteúdo Gerado pelo Usuário (Dados Pessoais Sensíveis – Saúde)
     </h4>
     <p className="mb-2 leading-relaxed text-gray-700">
-      Esta categoria refere-se aos áudios de consultas, transcrições e anotações
+      Esta categoria refere-se aos áudios de reuniões, transcrições e anotações
       gravadas e geradas por você dentro do Aplicativo.
     </p>
     <p className="mb-2 leading-relaxed text-gray-700">
@@ -125,7 +125,7 @@ const PRIVACY_CONTENT = (
     </p>
     <ul className="mb-2 list-disc space-y-1 pl-6 text-gray-700">
       <li>
-        Áudios de Consultas: Gravações de voz de interações profissionais
+        Áudios de Reuniões: Gravações de voz de interações profissionais
         (profissional-cliente, reuniões etc.).
       </li>
       <li>
@@ -155,7 +155,7 @@ const PRIVACY_CONTENT = (
       saúde ou responsável pela interação, é o Controlador dos dados contidos
       nos áudios, transcrições e anotações. Ele é EXCLUSIVAMENTE responsável por
       obter o CONSENTIMENTO explícito e informado dos titulares dos dados
-      (pacientes e/ou demais interlocutores) para a gravação, armazenamento e
+      (contatos e/ou demais interlocutores) para a gravação, armazenamento e
       tratamento desses dados de saúde, conforme o Art. 11, I da LGPD. Além
       disso, outras bases legais para tratamento de dados sensíveis, como o Art.
       11, II, alínea &quot;f&quot; (proteção da vida ou incolumidade física do
