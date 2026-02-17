@@ -37,10 +37,10 @@ export function CompleteRegistrationModal() {
   // Image Carousel State
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [
-    "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1920&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=1920&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1920&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=1920&auto=format&fit=crop",
+    "/registerModal/Jurid_1.jpg.jpeg",
+    "/registerModal/Jurid2.jpg.jpeg",
+    "/registerModal/Jurid3.jpg.jpeg",
+    "/registerModal/Jurid4.jpg.jpeg",
   ];
 
   useEffect(() => {
@@ -139,11 +139,11 @@ export function CompleteRegistrationModal() {
 
           <div className="absolute bottom-10 left-10 z-20 max-w-md pr-8 text-white">
             <h3 className="text-3xl leading-tight font-bold tracking-tight">
-              A revolução do <br /> atendimento médico.
+              A revolução da <br /> prática jurídica.
             </h3>
             <p className="mt-4 text-base leading-relaxed font-light text-stone-100 opacity-90">
               Junte-se a milhares de profissionais que transformaram sua rotina
-              jurídica com a Jurid Voice.
+              jurídica com a Jurid.IA Voice.
             </p>
           </div>
 
