@@ -3,10 +3,10 @@ import { cookies } from "next/headers";
 const ACCESS_TOKEN_KEY = "hv_access_token";
 const REFRESH_TOKEN_KEY = "hv_refresh_token";
 
-// 7 dias em segundos (mesma validade do accessToken na API)
-const ACCESS_TOKEN_MAX_AGE = 7 * 24 * 60 * 60;
-// 30 dias em segundos (mesma validade do refreshToken na API)
-const REFRESH_TOKEN_MAX_AGE = 30 * 24 * 60 * 60;
+// 365 dias em segundos (mesma validade do accessToken JWT na API)
+const ACCESS_TOKEN_MAX_AGE = 365 * 24 * 60 * 60;
+// 365 dias em segundos (refreshToken JWT na API dura ~10 anos, mas limitamos o cookie a 1 ano)
+const REFRESH_TOKEN_MAX_AGE = 365 * 24 * 60 * 60;
 
 const isProduction = process.env.NODE_ENV === "production";
 
