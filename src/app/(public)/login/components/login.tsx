@@ -3,33 +3,27 @@
 // Importações do React e Next.js
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Importações de bibliotecas
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Amplify } from "aws-amplify";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
-import config from "../../../../utils/amplify.json";
 
 // Importações de UI (shadcn/ui e lucide)
 import { Eye, EyeOff, Loader2, LockIcon, Mail } from "lucide-react";
-import Field from "./field"; // Assumindo que este componente exista
-import { Form, FormField, FormItem, FormMessage } from "./form"; // Assumindo que este componente exista
+import Field from "./field";
+import { Form, FormField, FormItem, FormMessage } from "./form";
 
-// Importações do AWS Amplify (NOVO)
-import { signIn, signInWithRedirect } from "aws-amplify/auth";
-import { Hub } from "aws-amplify/utils";
-
-import { useSession } from "@/context/auth"; // ← ADICIONE ISSO
+import { useSession } from "@/context/auth";
 
 // Props do componente
 type SignInProps = {
   onClick: () => void; // Para "Esqueceu a senha?"
 };
 
-// Schema de validação do Zod (sem alteração)
+// Schema de validação do Zod
 const FormSchema = z.object({
   email: z.string().email({ message: "Email Inválido" }),
   password: z.string().min(6, "Senha inválida"),
@@ -37,15 +31,44 @@ const FormSchema = z.object({
 
 type FormData = z.infer<typeof FormSchema>;
 
+// Declaração de tipo para a Apple Sign-In JS SDK
+declare global {
+  interface Window {
+    AppleID?: {
+      auth: {
+        init: (config: {
+          clientId: string;
+          scope: string;
+          redirectURI: string;
+          usePopup: boolean;
+        }) => void;
+        signIn: () => Promise<{
+          authorization: {
+            id_token: string;
+            code: string;
+          };
+          user?: {
+            name?: {
+              firstName?: string;
+              lastName?: string;
+            };
+            email?: string;
+          };
+        }>;
+      };
+    };
+  }
+}
+
 const SignIn = ({ onClick }: SignInProps) => {
-  const { handleGetProfile, waitForTokens } = useSession();
+  const { handleGetProfile } = useSession();
   const router = useRouter();
-  Amplify.configure(config);
 
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const googleButtonRef = useRef<HTMLDivElement>(null);
 
-  // Configuração do react-hook-form (sem alteração)
+  // Configuração do react-hook-form
   const form = useForm<FormData>({
     resolver: zodResolver(FormSchema),
     mode: "onChange",
@@ -55,117 +78,219 @@ const SignIn = ({ onClick }: SignInProps) => {
     },
   });
 
-  // Efeito para "ouvir" eventos de autenticação do Amplify
+  // Inicializar Google Identity Services e Apple Sign-In SDK
   useEffect(() => {
-    const unsubscribe = Hub.listen("auth", async ({ payload }) => {
-      switch (payload.event) {
-        case "signedIn":
-          setIsLoggingIn(true);
-          try {
-            await waitForTokens();
-            await handleGetProfile(true);
-            await new Promise((resolve) => setTimeout(resolve, 300));
+    // Carrega o Google Identity Services
+    const googleScript = document.createElement("script");
+    googleScript.src = "https://accounts.google.com/gsi/client";
+    googleScript.async = true;
+    googleScript.defer = true;
+    document.head.appendChild(googleScript);
 
-            toast.success("Login efetuado com sucesso!");
-            router.push("/");
-          } catch (error) {
-            console.error("Erro ao carregar perfil após login social:", error);
-            toast.error("Erro ao carregar dados do usuário.");
-          } finally {
-            setIsLoggingIn(false);
-          }
-          break;
-
-        case "signInWithRedirect_failure":
-          console.error("Falha no login social:", payload.data);
-          toast.error("Falha ao tentar login com rede social.");
-          setIsLoggingIn(false);
-          break;
-
-        case "tokenRefresh_failure":
-          console.error("Falha ao renovar token:", payload.data);
-          toast.error("Sua sessão expirou. Faça login novamente.");
-          router.push("/login");
-          break;
+    // Carrega o Apple Sign-In JS SDK
+    const appleScript = document.createElement("script");
+    appleScript.src =
+      "https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js";
+    appleScript.async = true;
+    appleScript.onload = () => {
+      if (window.AppleID) {
+        window.AppleID.auth.init({
+          clientId: process.env.NEXT_PUBLIC_APPLE_CLIENT_ID || "",
+          scope: "name email",
+          redirectURI: window.location.origin,
+          usePopup: true,
+        });
       }
-    });
+    };
+    document.head.appendChild(appleScript);
 
-    return () => unsubscribe();
-  }, [router, handleGetProfile, waitForTokens]);
+    return () => {
+      // Cleanup: remove os scripts se o componente desmontar
+      if (googleScript.parentNode) {
+        googleScript.parentNode.removeChild(googleScript);
+      }
+      if (appleScript.parentNode) {
+        appleScript.parentNode.removeChild(appleScript);
+      }
+    };
+  }, []);
 
+
+  // Login com email/senha
   const handleLogin = async (data: FormData) => {
     setIsLoggingIn(true);
     try {
       const { email, password } = data;
-      console.log("entrando com email:",email, "e senha",password)
-      const { isSignedIn } = await signIn({
-        username: email.trim(),
-        password: password.trim(),
-        options: {
-          authFlowType: "USER_PASSWORD_AUTH",
-        },
+
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          email: email.trim(),
+          password: password.trim(),
+        }),
       });
-      console.log("resposta do email ",isSignedIn)
-      if (isSignedIn) {
-        const tokensReady = await waitForTokens();
-        console.log("token ready?", )
-        if (!tokensReady) {
-          toast.error("Erro ao carregar sessão. Tente novamente.");
-          return;
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        let errorMessage = "Erro ao efetuar login, tente novamente.";
+
+        if (response.status === 401) {
+          errorMessage = "E-mail ou senha incorretos.";
+        } else if (result.message) {
+          errorMessage = result.message;
         }
 
-        await handleGetProfile(true);
-        await new Promise((resolve) => setTimeout(resolve, 300));
-
-        toast.success("Login efetuado com sucesso!");
-        router.push("/");
-      } else {
-        toast.error("Não foi possível completar o login. Tente novamente.");
-      }
-    } catch (err: unknown) {
-      console.error("Erro no login:", err);
-      const error = err as { name?: string };
-
-      let errorMessage = "Erro ao efetuar login, tente novamente.";
-      if (error.name === "UserNotFoundException") {
-        errorMessage = "Usuário não encontrado.";
-      } else if (error.name === "NotAuthorizedException") {
-        errorMessage = "E-mail ou senha incorretos.";
-      } else if (error.name === "NetworkError") {
-        errorMessage = "Erro de rede. Verifique sua conexão.";
-      } else if (error.name === "UserAlreadyAuthenticatedException") {
-        errorMessage = "Você já está logado.";
-        router.push("/");
+        toast.error(errorMessage);
         return;
       }
-      toast.error(errorMessage);
+
+      // Login bem-sucedido — cookies já foram setados pelo Route Handler
+      await handleGetProfile(true);
+      toast.success("Login efetuado com sucesso!");
+      router.push("/");
+    } catch (err) {
+      console.error("Erro no login:", err);
+      toast.error("Erro de conexão. Verifique sua internet.");
     } finally {
       setIsLoggingIn(false);
     }
   };
 
+  // Google Sign-In usando Google Identity Services diretamente
   const handleGoogleSignIn = async () => {
     setIsLoggingIn(true);
     try {
-      await signInWithRedirect({
-        provider: "Google",
+      // Verifica se o Google Identity Services está carregado
+      if (typeof window === 'undefined' || !(window as any).google) {
+        toast.error("Google Sign-In não está disponível no momento. Aguarde alguns segundos e tente novamente.");
+        setIsLoggingIn(false);
+        return;
+      }
+
+      const google = (window as any).google;
+      const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+
+      if (!clientId) {
+        toast.error("Configuração do Google Sign-In não encontrada.");
+        setIsLoggingIn(false);
+        return;
+      }
+
+      // Inicializa o Google Identity Services
+      google.accounts.id.initialize({
+        client_id: clientId,
+        callback: async (response: any) => {
+          if (!response.credential) {
+            toast.error("Não foi possível obter o token do Google.");
+            setIsLoggingIn(false);
+            return;
+          }
+
+          try {
+            const apiResponse = await fetch("/api/auth/social/google", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              credentials: "include",
+              body: JSON.stringify({
+                idToken: response.credential,
+                registrationPlatform: "WEB",
+              }),
+            });
+
+            const result = await apiResponse.json();
+
+            if (!apiResponse.ok) {
+              toast.error(result.message || "Erro no login com Google.");
+              return;
+            }
+
+            await handleGetProfile(true);
+            toast.success("Login efetuado com sucesso!");
+            router.push("/");
+          } catch (error) {
+            console.error("Erro no Google Sign-In:", error);
+            toast.error("Erro ao processar login com Google.");
+          } finally {
+            setIsLoggingIn(false);
+          }
+        },
       });
+
+      // Renderiza um botão invisível e clica nele programaticamente
+      if (googleButtonRef.current) {
+        google.accounts.id.renderButton(
+          googleButtonRef.current,
+          {
+            theme: "outline",
+            size: "large",
+            text: "signin_with",
+            width: "100%",
+            type: "standard",
+          }
+        );
+
+        // Aguarda a renderização e então clica no botão
+        setTimeout(() => {
+          const button = googleButtonRef.current?.querySelector('div[role="button"]') as HTMLElement;
+          if (button) {
+            button.click();
+          } else {
+            setIsLoggingIn(false);
+            toast.error("Não foi possível iniciar o login com Google.");
+          }
+        }, 200);
+      }
     } catch (error) {
-      console.error("Erro ao iniciar Google SignIn:", error);
-      toast.error("Não foi possível iniciar o login com Google.");
+      console.error("Erro ao iniciar Google Sign-In:", error);
+      toast.error("Erro ao iniciar o login com Google.");
       setIsLoggingIn(false);
     }
   };
 
+  // Apple Sign-In via Apple JS SDK
   const handleAppleSignIn = async () => {
+    if (!window.AppleID) {
+      toast.error("Apple Sign-In não está disponível no momento.");
+      return;
+    }
+
     setIsLoggingIn(true);
     try {
-      await signInWithRedirect({
-        provider: "Apple",
+      const appleResponse = await window.AppleID.auth.signIn();
+
+      const identityToken = appleResponse.authorization.id_token;
+      const fullName = appleResponse.user?.name
+        ? `${appleResponse.user.name.firstName || ""} ${appleResponse.user.name.lastName || ""}`.trim()
+        : undefined;
+
+      const response = await fetch("/api/auth/social/apple", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          identityToken,
+          fullName: fullName || undefined,
+          registrationPlatform: "WEB",
+        }),
       });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        toast.error(result.message || "Erro no login com Apple.");
+        return;
+      }
+
+      await handleGetProfile(true);
+      toast.success("Login efetuado com sucesso!");
+      router.push("/");
     } catch (error) {
-      console.error("Erro ao iniciar Apple SignIn:", error);
-      toast.error("Não foi possível iniciar o login com Apple.");
+      console.error("Erro no Apple Sign-In:", error);
+      toast.error("Não foi possível completar o login com Apple.");
+    } finally {
       setIsLoggingIn(false);
     }
   };
@@ -267,21 +392,30 @@ const SignIn = ({ onClick }: SignInProps) => {
         </div>
 
         <div className="grid grid-cols-2 gap-3">
-          <button
-            type="button"
-            onClick={handleGoogleSignIn}
-            disabled={isLoggingIn}
-            className="flex h-11 items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white font-medium text-gray-700 transition hover:bg-gray-50 hover:border-gray-300 disabled:opacity-50"
-          >
-            <Image
-              src="/icons/google-login.png"
-              alt="Google"
-              width={20}
-              height={20}
-              className="h-5 w-5"
+          <div className="relative h-11">
+            {/* Botão customizado com estilo original */}
+            <button
+              type="button"
+              onClick={handleGoogleSignIn}
+              disabled={isLoggingIn}
+              className="flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white font-medium text-gray-700 transition hover:bg-gray-50 hover:border-gray-300 disabled:opacity-50"
+            >
+              <Image
+                src="/icons/google-login.png"
+                alt="Google"
+                width={20}
+                height={20}
+                className="h-5 w-5"
+              />
+              Google
+            </button>
+            {/* Container oculto para o botão do Google (usado internamente) */}
+            <div 
+              ref={googleButtonRef}
+              className="absolute inset-0 opacity-0 pointer-events-none overflow-hidden"
+              style={{ zIndex: -1 }}
             />
-            Google
-          </button>
+          </div>
           <button
             type="button"
             onClick={handleAppleSignIn}
