@@ -19,42 +19,18 @@ export function AuthGuard({ children, fallback }: AuthGuardProps) {
   const hasRedirected = useRef(false); // ← Evita múltiplos redirecionamentos
 
   useEffect(() => {
-    const validateSession = async () => {
-      console.log("entrou aqui");
-      // ✅ Aguarda loading inicial
+    // Aguarda loading inicial
+    if (loading) return;
 
-      // ✅ Evita redirecionar múltiplas vezes
-      if (hasRedirected.current) return;
+    // Evita redirecionar múltiplas vezes
+    if (hasRedirected.current) return;
 
-      console.log("passou 1");
-
-      // ✅ Verifica sessão
-      const isValid = await checkSession();
-
-      console.log("passou 2");
-      console.log("isValid: ", isValid);
-
-      if (!isValid || !profile) {
-        console.log("entrou aqui 2");
-        // ✅ Pequeno delay para dar tempo do login finalizar
-        await new Promise((resolve) => setTimeout(resolve, 100));
-
-        // ✅ Revalida após o delay
-        const recheckValid = await checkSession();
-
-        console.log("recheckValid: ", recheckValid);
-
-        console.log("passou 3");
-
-        if (!recheckValid) {
-          console.log("entrou aqui 3");
-          hasRedirected.current = true;
-          router.push("/login");
-        }
-      }
-    };
-
-    validateSession();
+    // Se não há sessão nem perfil, redireciona para login
+    // (O middleware já faz isso no server-side, mas aqui é uma proteção extra)
+    if (!checkSession() && !profile) {
+      hasRedirected.current = true;
+      router.push("/login");
+    }
   }, [profile, loading, checkSession, router, pathname]);
 
   if (loading || !profile) {

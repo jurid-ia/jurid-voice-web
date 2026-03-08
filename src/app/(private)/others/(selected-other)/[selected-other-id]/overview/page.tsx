@@ -46,7 +46,7 @@ export default function OverviewPage() {
             Insights
           </h1>
           <p className="text-sm break-words text-gray-500">
-            Insights estruturados da gravação com componentes gerados pela IA.
+            Insights estruturado da gravação com componentes gerados pela IA.
           </p>
         </div>
         <div className="flex items-center gap-3">

@@ -111,7 +111,7 @@ export default function OverviewPage() {
             onClick={() => setIsPersonalizationModalOpen(true)}
             className="flex items-center gap-2 rounded-lg border border-primary bg-primary/10 px-4 py-2.5 text-sm font-medium text-primary shadow-sm transition hover:bg-primary/20"
           >
-            <Sparkles className="h-4 w-4" />  
+            <Sparkles className="h-4 w-4" />
             Personalizar Insights
           </button>
           <button
