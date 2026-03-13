@@ -10,7 +10,7 @@ export default function Loading() {
         <div className="relative h-24 w-24">
           <motion.div
             className="border-primary/10 absolute inset-0 rounded-full border-4"
-            style={{ borderTopColor: "#0d78ec" }}
+            style={{ borderTopColor: "#AB8E63" }}
             animate={{ rotate: 360 }}
             transition={{
               duration: 1.2,
@@ -20,7 +20,7 @@ export default function Loading() {
           />
           <motion.div
             className="border-primary/5 absolute inset-2 rounded-full border-4"
-            style={{ borderBottomColor: "#3b82f6" }}
+            style={{ borderBottomColor: "#8f7652" }}
             animate={{ rotate: -360 }}
             transition={{
               duration: 2,
@@ -38,7 +38,7 @@ export default function Loading() {
               ease: "easeInOut",
             }}
           >
-            <div className="h-4 w-4 rounded-full bg-gradient-to-tr from-[#0d78ec] to-[#60a5fa] shadow-[0_0_15px_rgba(13,120,236,0.5)]" />
+            <div className="h-4 w-4 rounded-full bg-gradient-to-tr from-[#AB8E63] to-[#e0c99a] shadow-[0_0_15px_rgba(171,142,99,0.5)]" />
           </motion.div>
         </div>
 

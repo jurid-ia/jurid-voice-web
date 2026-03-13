@@ -196,7 +196,7 @@ function Field({
         className={cn(
           "flex h-11 items-center gap-2 rounded-xl border bg-gray-50 px-3.5 transition-all",
           focused
-            ? "border-blue-400 bg-white ring-2 ring-blue-50"
+            ? "border-[#AB8E63] bg-white ring-2 ring-amber-50"
             : "border-gray-200",
           disabled && "opacity-50",
         )}
@@ -226,7 +226,7 @@ function PaymentMethodTabs({
   onChange: (m: PaymentMethod) => void;
 }) {
   return (
-    <div className="mb-6 flex gap-1 rounded-xl bg-blue-50 p-1">
+    <div className="mb-6 flex gap-1 rounded-xl bg-stone-100 p-1">
       {(["pix", "card"] as PaymentMethod[]).map((m) => (
         <button
           key={m}
@@ -235,7 +235,7 @@ function PaymentMethodTabs({
           className={cn(
             "flex flex-1 items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-semibold transition-all",
             selected === m
-              ? "bg-primary text-white shadow-sm shadow-blue-500/30"
+              ? "bg-primary text-white shadow-sm shadow-[#AB8E63]/30"
               : "text-gray-400 hover:text-gray-600",
           )}
         >
@@ -264,9 +264,9 @@ function CardPreview({
     <div
       className="relative mb-6 w-full overflow-hidden rounded-2xl p-5"
       style={{
-        background: "linear-gradient(135deg, #0d78ec 0%, #1e40af 100%)",
+        background: "linear-gradient(135deg, #AB8E63 0%, #8f7652 100%)",
         minHeight: 160,
-        boxShadow: "0 10px 40px rgba(13,120,236,0.35)",
+        boxShadow: "0 10px 40px rgba(171,142,99,0.35)",
       }}
     >
       <div className="mb-4 flex items-start justify-between">
@@ -401,7 +401,7 @@ function PixGeneratedView({
             "flex w-full items-center justify-center gap-2.5 rounded-xl py-3.5 text-sm font-bold transition-all",
             copied
               ? "border border-emerald-200 bg-emerald-50 text-emerald-600"
-              : "bg-primary text-white shadow-lg shadow-blue-600/25 hover:bg-blue-600",
+              : "bg-primary text-white shadow-lg shadow-[#AB8E63]/25 hover:bg-[#8f7652]",
             !pixCode && "cursor-not-allowed opacity-50",
           )}
         >
@@ -495,7 +495,7 @@ function SuccessView({
       >
         <button
           onClick={onGoHome}
-          className="flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-primary text-base font-bold text-white shadow-xl shadow-blue-600/30 transition-all hover:bg-blue-600"
+          className="flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-primary text-base font-bold text-white shadow-xl shadow-[#AB8E63]/30 transition-all hover:bg-[#8f7652]"
         >
           Ir para o painel{" "}
           <ChevronRight className="h-5 w-5" strokeWidth={2.5} />
@@ -948,7 +948,7 @@ export default function PlansPage() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#0b1829]">
+    <div className="min-h-screen w-full bg-[#1a120a]">
       <div className="relative flex min-h-screen w-full flex-col bg-white lg:flex-row">
         {/* ═══ Background patterns ═══ */}
         <div className="pointer-events-none absolute inset-0 z-[5]">
@@ -958,7 +958,7 @@ export default function PlansPage() {
             className="absolute top-[15%] left-[45%] h-[500px] w-[500px] rounded-full opacity-[0.04]"
             style={{
               background:
-                "radial-gradient(circle, rgba(13,120,236,0.6) 0%, transparent 70%)",
+                "radial-gradient(circle, rgba(171,142,99,0.6) 0%, transparent 70%)",
             }}
           />
           <motion.div
@@ -967,13 +967,13 @@ export default function PlansPage() {
             className="absolute bottom-[10%] left-[42%] h-[600px] w-[600px] rounded-full opacity-[0.03]"
             style={{
               background:
-                "radial-gradient(circle, rgba(14,116,237,0.4) 0%, transparent 70%)",
+                "radial-gradient(circle, rgba(171,142,99,0.4) 0%, transparent 70%)",
             }}
           />
           <motion.div
             animate={{ rotate: [0, 360] }}
             transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
-            className="absolute top-[30%] left-[47%] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-400/[0.05]"
+            className="absolute top-[30%] left-[47%] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-amber-400/[0.05]"
           />
         </div>
 
@@ -984,7 +984,7 @@ export default function PlansPage() {
             isSuccess ? "lg:w-0 lg:min-w-0" : "lg:w-[45%]",
           )}
           style={{
-            background: "linear-gradient(145deg, #0d78ec 0%, #0a5fc4 40%, #1e3a8a 100%)",
+            background: "linear-gradient(145deg, #2d1e0f 0%, #1a120a 55%, #3d2a14 100%)",
           }}
         >
           {/* Background gradients */}
@@ -997,7 +997,7 @@ export default function PlansPage() {
               }}
             />
           </div>
-          <div className="absolute inset-0 z-[1] bg-blue-950/20" />
+          <div className="absolute inset-0 z-[1] bg-stone-950/20" />
 
           {/* Header */}
           <div
@@ -1036,12 +1036,12 @@ export default function PlansPage() {
             <motion.div
               animate={{ x: [0, 40, 0], y: [0, -30, 0], scale: [1, 1.2, 1] }}
               transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-20 -left-20 h-[28rem] w-[28rem] rounded-full bg-blue-300/[0.15] blur-[100px]"
+              className="absolute -top-20 -left-20 h-[28rem] w-[28rem] rounded-full bg-amber-300/[0.15] blur-[100px]"
             />
             <motion.div
               animate={{ x: [0, -30, 0], y: [0, 40, 0], scale: [1, 1.3, 1] }}
               transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -right-16 bottom-[20%] h-[24rem] w-[24rem] rounded-full bg-indigo-400/[0.12] blur-[100px]"
+              className="absolute -right-16 bottom-[20%] h-[24rem] w-[24rem] rounded-full bg-amber-400/[0.12] blur-[100px]"
             />
             <motion.div
               animate={{ rotate: [0, 360] }}
@@ -1125,9 +1125,9 @@ export default function PlansPage() {
                           className="object-cover object-top"
                           sizes="(max-width: 1024px) 100vw, 45vw"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-blue-950/20 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent" />
                         <div className="absolute right-4 bottom-4 left-4">
-                          <p className="text-xs font-semibold tracking-widest text-sky-300 uppercase">
+                          <p className="text-xs font-semibold tracking-widest text-[#AB8E63] uppercase">
                             Plano selecionado
                           </p>
                           <h3 className="text-xl font-bold text-white">
@@ -1282,7 +1282,7 @@ export default function PlansPage() {
         </div>
 
         {/* ═══ RIGHT — Content panel ═══ */}
-          <div className="relative flex min-h-screen flex-1 flex-col bg-[#f7f9ff]">
+          <div className="relative flex min-h-screen flex-1 flex-col bg-[#faf8f5]">
           {/* Right panel patterns */}
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
             <div className="absolute inset-0">
@@ -1290,8 +1290,8 @@ export default function PlansPage() {
                 className="absolute inset-0"
                 style={{
                   background: `
-                    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(13,120,236,0.04) 0%, transparent 60%),
-                    radial-gradient(ellipse 60% 60% at 80% 80%, rgba(30,64,175,0.03) 0%, transparent 50%)
+                    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(171,142,99,0.04) 0%, transparent 60%),
+                    radial-gradient(ellipse 60% 60% at 80% 80%, rgba(143,118,82,0.03) 0%, transparent 50%)
                   `,
                 }}
               />
@@ -1302,14 +1302,14 @@ export default function PlansPage() {
               className="absolute -top-[10%] -left-[5%] h-[60%] w-[120%]"
               style={{
                 background:
-                  "linear-gradient(135deg, transparent 25%, rgba(13,120,236,0.04) 38%, rgba(13,120,236,0.01) 50%, transparent 60%)",
+                  "linear-gradient(135deg, transparent 25%, rgba(171,142,99,0.04) 38%, rgba(171,142,99,0.01) 50%, transparent 60%)",
                 filter: "blur(35px)",
               }}
             />
           </div>
 
           {/* Mobile header */}
-          <div className="relative z-10 flex items-center justify-between border-b border-blue-100 bg-white px-5 py-4 lg:hidden">
+          <div className="relative z-10 flex items-center justify-between border-b border-amber-100 bg-white px-5 py-4 lg:hidden">
             <button
               onClick={handleBack}
               className="flex items-center gap-1.5 text-sm font-medium text-gray-500 transition hover:text-primary"
@@ -1359,13 +1359,13 @@ export default function PlansPage() {
                     </div>
 
                     {/* Billing toggle */}
-                    <div className="inline-flex rounded-full bg-white p-1.5 shadow-sm ring-1 ring-blue-100">
+                    <div className="inline-flex rounded-full bg-white p-1.5 shadow-sm ring-1 ring-amber-100">
                       <button
                         onClick={() => setBillingCycle("MONTHLY")}
                         className={cn(
                           "rounded-full px-6 py-2.5 text-sm font-semibold transition-all",
                           billingCycle === "MONTHLY"
-                            ? "bg-primary text-white shadow-md shadow-blue-500/30"
+                            ? "bg-primary text-white shadow-md shadow-[#AB8E63]/30"
                             : "text-gray-500 hover:text-gray-700",
                         )}
                       >
@@ -1376,7 +1376,7 @@ export default function PlansPage() {
                         className={cn(
                           "flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold transition-all",
                           billingCycle === "YEARLY"
-                            ? "bg-primary text-white shadow-md shadow-blue-500/30"
+                            ? "bg-primary text-white shadow-md shadow-[#AB8E63]/30"
                             : "text-gray-500 hover:text-gray-700",
                         )}
                       >
@@ -1416,16 +1416,16 @@ export default function PlansPage() {
                               className={cn(
                                 "group relative flex flex-col items-center rounded-3xl p-8 text-center transition-all duration-300",
                                 isSelected
-                                  ? "bg-gradient-to-br from-[#0d78ec] to-[#1e40af] shadow-2xl ring-2 shadow-blue-600/30 ring-[#0d78ec]"
-                                  : "bg-white shadow-lg ring-1 shadow-gray-200/50 ring-gray-100 hover:shadow-xl hover:ring-blue-200",
+                                  ? "bg-gradient-to-br from-[#AB8E63] to-[#8f7652] shadow-2xl ring-2 shadow-[#AB8E63]/30 ring-[#AB8E63]"
+                                  : "bg-white shadow-lg ring-1 shadow-gray-200/50 ring-gray-100 hover:shadow-xl hover:ring-amber-200",
                                 isPopular &&
                                   !isSelected &&
-                                  "ring-2 ring-[#0d78ec]/30",
+                                  "ring-2 ring-[#AB8E63]/30",
                               )}
                             >
                               {isPopular && (
                                 <div className="absolute -top-px left-1/2 -translate-x-1/2">
-                                  <span className="inline-flex items-center gap-1 rounded-b-xl bg-gradient-to-r from-[#0d78ec] to-[#1e40af] px-4 py-1 text-[10px] font-bold tracking-wide text-white shadow-lg shadow-blue-400/40">
+                                  <span className="inline-flex items-center gap-1 rounded-b-xl bg-gradient-to-r from-[#AB8E63] to-[#8f7652] px-4 py-1 text-[10px] font-bold tracking-wide text-white shadow-lg shadow-[#AB8E63]/40">
                                     <Crown className="h-3 w-3" /> POPULAR
                                   </span>
                                 </div>
@@ -1446,7 +1446,7 @@ export default function PlansPage() {
                                   "relative mb-5 flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-300",
                                   isSelected
                                     ? "bg-white/20 text-white"
-                                    : "bg-blue-50 text-blue-400 group-hover:bg-blue-100 group-hover:text-blue-600",
+                                    : "bg-amber-50 text-[#AB8E63] group-hover:bg-amber-100 group-hover:text-[#8f7652]",
                                 )}
                               >
                                 {i === 0 && <Zap className="h-6 w-6" />}
@@ -1539,7 +1539,7 @@ export default function PlansPage() {
                                     "mt-2 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium",
                                     isSelected
                                       ? "bg-white/15 text-white/70"
-                                      : "bg-blue-50 text-blue-500",
+                                      : "bg-amber-50 text-[#AB8E63]",
                                   )}
                                 >
                                   <CreditCard className="h-3 w-3" />
@@ -1561,7 +1561,7 @@ export default function PlansPage() {
                       whileTap={{ scale: 0.98 }}
                       onClick={() => selectedPlan && setViewState("checkout")}
                       disabled={!selectedPlan || loadingPlans}
-                      className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-primary py-4 text-base font-bold text-white shadow-xl shadow-blue-600/30 transition-all hover:bg-blue-600 hover:shadow-2xl hover:shadow-blue-600/40 disabled:cursor-not-allowed disabled:opacity-50"
+                      className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-primary py-4 text-base font-bold text-white shadow-xl shadow-[#AB8E63]/30 transition-all hover:bg-[#8f7652] hover:shadow-2xl hover:shadow-[#AB8E63]/40 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <span className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0 opacity-0 transition-opacity group-hover:opacity-100" />
                       Continuar para pagamento
@@ -1570,19 +1570,19 @@ export default function PlansPage() {
 
                     <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-gray-400">
                       <span className="flex items-center gap-1.5">
-                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-50">
+                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-50">
                           <Shield className="h-3 w-3 text-primary" />
                         </div>
                         Pagamento seguro
                       </span>
                       <span className="flex items-center gap-1.5">
-                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-50">
+                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-50">
                           <Zap className="h-3 w-3 text-primary" />
                         </div>
                         Ativação imediata
                       </span>
                       <span className="flex items-center gap-1.5">
-                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-50">
+                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-50">
                           <Clock className="h-3 w-3 text-primary" />
                         </div>
                         Cancele quando quiser
@@ -1611,7 +1611,7 @@ export default function PlansPage() {
                           <motion.div
                             initial={{ opacity: 0, x: 10 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="hidden items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-[11px] font-semibold tracking-wider text-primary uppercase shadow-sm sm:flex"
+                            className="hidden items-center gap-2 rounded-full border border-amber-100 bg-amber-50 px-4 py-2 text-[11px] font-semibold tracking-wider text-primary uppercase shadow-sm sm:flex"
                           >
                             <Shield className="h-3 w-3" /> Checkout seguro
                           </motion.div>
@@ -1843,7 +1843,7 @@ export default function PlansPage() {
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: 80, opacity: 0 }}
                     transition={{ duration: 0.3, ease: EASE }}
-                    className="fixed inset-x-0 bottom-0 z-[9999] border-t border-blue-100 bg-white/95 px-6 py-4 shadow-[0_-4px_20px_rgba(13,120,236,0.08)] backdrop-blur-md sm:px-8 lg:left-[45%]"
+                    className="fixed inset-x-0 bottom-0 z-[9999] border-t border-amber-100 bg-white/95 px-6 py-4 shadow-[0_-4px_20px_rgba(171,142,99,0.08)] backdrop-blur-md sm:px-8 lg:left-[45%]"
                   >
                     <div className="mx-auto flex max-w-2xl items-center gap-4">
                       {/* Resumo de preço */}
@@ -1880,7 +1880,7 @@ export default function PlansPage() {
                         className={cn(
                           "flex shrink-0 items-center justify-center gap-2 rounded-xl px-7 py-3.5 text-sm font-bold whitespace-nowrap shadow-lg transition-all",
                           canSubmit && !submitLoading
-                            ? "bg-primary text-white shadow-blue-600/25 hover:bg-blue-600 hover:shadow-xl hover:shadow-blue-600/30"
+                            ? "bg-primary text-white shadow-[#AB8E63]/25 hover:bg-[#8f7652] hover:shadow-xl hover:shadow-[#AB8E63]/30"
                             : "cursor-not-allowed bg-gray-100 text-gray-400 shadow-none",
                         )}
                       >

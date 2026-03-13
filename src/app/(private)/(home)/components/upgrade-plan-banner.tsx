@@ -24,7 +24,7 @@ export function UpgradePlanBanner({ className }: UpgradePlanBannerProps) {
     ? {
         icon: Rocket,
         badge: "TRIAL ATIVO",
-        badgeColor: "bg-sky-400/25 text-sky-200 border-sky-400/40",
+        badgeColor: "bg-amber-400/25 text-amber-200 border-amber-400/40",
         title: "Desbloqueie todo o potencial",
         titleHighlight: "do Health Voice",
         subtitle:
@@ -61,12 +61,12 @@ export function UpgradePlanBanner({ className }: UpgradePlanBannerProps) {
       transition={{ duration: 0.5, ease: "easeOut" }}
       onClick={() => router.push("/plans")}
       className={cn(
-        "group relative cursor-pointer overflow-hidden rounded-2xl border border-white/15 p-6 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/30 sm:p-8",
+        "group relative cursor-pointer overflow-hidden rounded-2xl border border-white/15 p-6 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-stone-800/30 sm:p-8",
         className,
       )}
       style={{
         background:
-          "linear-gradient(135deg, #0b1829 0%, #0d2a50 30%, #0d78ec18 60%, #0b1829 100%)",
+          "linear-gradient(135deg, #1a120a 0%, #2d1e0f 30%, #AB8E6318 60%, #1a120a 100%)",
       }}
     >
       {/* Animated background orbs */}
@@ -121,7 +121,7 @@ export function UpgradePlanBanner({ className }: UpgradePlanBannerProps) {
             transition={{ duration: 0.5 }}
             className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-lg backdrop-blur-sm sm:h-20 sm:w-20"
           >
-            <Icon className="h-8 w-8 text-sky-300 sm:h-10 sm:w-10" />
+            <Icon className="h-8 w-8 text-[#AB8E63] sm:h-10 sm:w-10" />
           </motion.div>
         </div>
 
@@ -160,9 +160,9 @@ export function UpgradePlanBanner({ className }: UpgradePlanBannerProps) {
             {config.features.map((feature) => (
               <span
                 key={feature}
-                className="flex items-center gap-1.5 text-xs text-blue-200/80 sm:text-sm"
+                className="flex items-center gap-1.5 text-xs text-amber-100/80 sm:text-sm"
               >
-                <Zap className="h-3 w-3 text-sky-400" />
+                <Zap className="h-3 w-3 text-[#AB8E63]" />
                 {feature}
               </span>
             ))}
@@ -174,7 +174,7 @@ export function UpgradePlanBanner({ className }: UpgradePlanBannerProps) {
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
-            className="bg-primary shadow-primary/30 group-hover:shadow-primary/40 flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:bg-blue-600 group-hover:shadow-xl sm:px-8 sm:py-4 sm:text-base"
+            className="bg-primary shadow-primary/30 group-hover:shadow-primary/40 flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:bg-[#8f7652] group-hover:shadow-xl sm:px-8 sm:py-4 sm:text-base"
           >
             {config.cta}
             <motion.div
@@ -188,7 +188,7 @@ export function UpgradePlanBanner({ className }: UpgradePlanBannerProps) {
       </div>
 
       {/* Bottom gradient line */}
-      <div className="absolute right-0 bottom-0 left-0 h-px bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
+      <div className="absolute right-0 bottom-0 left-0 h-px bg-gradient-to-r from-transparent via-[#AB8E63]/40 to-transparent" />
     </motion.div>
   );
 }

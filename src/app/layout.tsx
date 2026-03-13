@@ -42,7 +42,7 @@ export default function RootLayout({
       </head>
       <body className={`${poppins.variable} bg-neutral-100 text-black`}>
         <NextTopLoader
-          color="linear-gradient(to right, #0d78ec, #3b82f6, #60a5fa)"
+          color="linear-gradient(to right, #AB8E63, #c9a97a, #e0c99a)"
           initialPosition={0.08}
           crawlSpeed={200}
           height={3}
@@ -50,7 +50,7 @@ export default function RootLayout({
           showSpinner={false}
           easing="ease"
           speed={200}
-          shadow="0 0 10px #0d78ec,0 0 5px #0d78ec"
+          shadow="0 0 10px #AB8E63,0 0 5px #AB8E63"
         />
 
         <Toaster
