@@ -32,7 +32,7 @@ export function ReferralsCard({
           ref.date && { label: "Data", value: ref.date },
           ref.urgency && { label: "Urgência", value: ref.urgency },
         ].filter(Boolean) as Array<{ label: string; value: string }>,
-        tags: ref.professional && ref.professional !== "A definir" ? [`Profissional: ${ref.professional}`] : [],
+        tags: ref.professional && ref.professional !== "A definir" ? [`Responsável: ${ref.professional}`] : [],
       }))
     : [];
 
@@ -55,7 +55,7 @@ export function ReferralsCard({
         <div className="min-w-0 flex-1">
           <h2 className="text-xl font-bold text-gray-900 leading-relaxed">{title}</h2>
           <p className="text-xs text-gray-400 leading-relaxed">
-            {totalCount} encaminhamento(s)
+            {totalCount} indicação(ões)
           </p>
         </div>
       </div>
@@ -71,7 +71,7 @@ export function ReferralsCard({
             const reason = ref?.reason || item.secondary || "";
             const date = ref?.date || item.metadata?.find((m: any) => m.label === "Data")?.value || "";
             const urgency = ref?.urgency || item.metadata?.find((m: any) => m.label === "Urgência")?.value || "";
-            const professional = ref?.professional || item.tags?.find((t: string) => t.includes("Profissional"))?.replace("Profissional: ", "") || "";
+            const professional = ref?.professional || item.tags?.find((t: string) => t.includes("Responsável") || t.includes("Profissional"))?.replace(/^(Responsável|Profissional):\s*/i, "") || "";
 
             return (
               <div
@@ -97,7 +97,7 @@ export function ReferralsCard({
                     )}
                     {professional && professional !== "A definir" && (
                       <p className={`mt-2 text-xs font-medium ${styles.text} leading-relaxed`}>
-                        Profissional: {professional}
+                        Responsável: {professional}
                       </p>
                     )}
                   </div>
@@ -123,7 +123,7 @@ export function ReferralsCard({
           })
         ) : (
           <div className="text-center py-8 text-sm text-gray-500">
-            Nenhum encaminhamento disponível
+            Nenhuma indicação disponível
           </div>
         )}
       </div>

@@ -16,7 +16,7 @@ export function OrientationsCard({
   data,
 }: OrientationsCardProps) {
   const styles = getVariantStyles(variant);
-  const Icon = getIcon("clipboard-check");
+  const Icon = getIcon("scale");
   const CheckIcon = getIcon("check-circle");
 
   const items = data.orientations && Array.isArray(data.orientations) ? data.orientations : [];
@@ -58,7 +58,7 @@ export function OrientationsCard({
           </ul>
         ) : (
           <div className="py-8 text-center text-sm text-gray-400">
-            Nenhuma orientação disponível
+            Nenhum item disponível
           </div>
         )}
       </div>

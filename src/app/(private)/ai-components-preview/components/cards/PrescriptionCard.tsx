@@ -16,7 +16,7 @@ export function PrescriptionCard({
   data,
 }: PrescriptionCardProps) {
   const styles = getVariantStyles(variant);
-  const Icon = getIcon("pill");
+  const Icon = getIcon("scale");
 
   // Detectar formato: genérico (items[]) ou legado (prescriptions[])
   const isGenericFormat = data.items && Array.isArray(data.items) && data.items.length > 0;

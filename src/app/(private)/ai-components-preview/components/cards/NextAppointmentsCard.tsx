@@ -81,7 +81,7 @@ export function NextAppointmentsCard({
           if (!displayItems || displayItems.length === 0) {
             return (
               <div className="col-span-2 py-8 text-center text-sm text-gray-500">
-                Nenhum agendamento disponível
+                Nenhuma audiência ou compromisso disponível
               </div>
             );
           }

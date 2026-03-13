@@ -16,7 +16,7 @@ export function FamilyHistoryCard({
   data,
 }: FamilyHistoryCardProps) {
   const styles = getVariantStyles(variant);
-  const Icon = getIcon("dna");
+  const Icon = getIcon("users");
 
   return (
     <div className="h-full w-full max-w-full min-w-0 overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
@@ -42,7 +42,7 @@ export function FamilyHistoryCard({
           ))
         ) : (
           <div className="text-center py-4 text-sm text-gray-500">
-            Nenhum histórico familiar disponível
+            Nenhum dado disponível
           </div>
         )}
       </div>

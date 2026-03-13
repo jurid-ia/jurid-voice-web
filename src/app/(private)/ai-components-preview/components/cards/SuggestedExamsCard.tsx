@@ -15,7 +15,7 @@ export function SuggestedExamsCard({
   data,
 }: SuggestedExamsCardProps) {
   const styles = getVariantStyles(variant);
-  const Icon = getIcon("beaker");
+  const Icon = getIcon("file-search");
 
   // Detectar formato: genérico (items[]) ou legado (suggestedExams[])
   const isGenericFormat = data.items && Array.isArray(data.items) && data.items.length > 0;

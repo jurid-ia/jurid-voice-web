@@ -28,14 +28,14 @@ export function BiometricsCard({
   const legacyFields = data.personal
     ? [
         data.personal.bloodType
-          ? { label: "Tipo Sanguíneo", value: data.personal.bloodType, variant: "badge" as const, priority: 1 }
+          ? { label: "Tipo", value: data.personal.bloodType, variant: "badge" as const, priority: 1 }
           : null,
         data.personal.bmi
-          ? { label: "IMC", value: data.personal.bmi, priority: 2 }
+          ? { label: "Índice", value: data.personal.bmi, priority: 2 }
           : null,
         data.personal.weight || data.personal.height
           ? {
-              label: "Peso / Altura",
+              label: "Dados",
               value: `${data.personal.weight || "—"} / ${data.personal.height || "—"}`,
               priority: 3,
             }

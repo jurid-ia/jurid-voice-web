@@ -29,7 +29,7 @@ export function CertificatesCard({
         <div className="min-w-0 flex-1">
           <h2 className="text-xl font-bold text-gray-900 leading-relaxed">{title}</h2>
           <p className="text-xs text-gray-400 leading-relaxed">
-            {data.certificates && Array.isArray(data.certificates) ? data.certificates.length : 0} atestado(s)
+            {data.certificates && Array.isArray(data.certificates) ? data.certificates.length : 0} certidão(ões)
           </p>
         </div>
       </div>
@@ -58,7 +58,7 @@ export function CertificatesCard({
         ))
         ) : (
           <div className="col-span-2 text-center py-8 text-sm text-gray-500">
-            Nenhum atestado disponível
+            Nenhuma certidão disponível
           </div>
         )}
       </div>

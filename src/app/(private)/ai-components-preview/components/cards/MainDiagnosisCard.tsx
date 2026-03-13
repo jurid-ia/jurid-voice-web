@@ -15,7 +15,7 @@ export function MainDiagnosisCard({
   data,
 }: MainDiagnosisCardProps) {
   const styles = getVariantStyles(variant);
-  const Icon = getIcon("stethoscope");
+  const Icon = getIcon("gavel");
   const ActivityIcon = getIcon("activity");
   const AlertIcon = getIcon("alert-triangle");
   const ClockIcon = getIcon("clock");
@@ -29,8 +29,8 @@ export function MainDiagnosisCard({
 
   // Converter formato legado para genérico
   const legacyFields = [
-    data.mainCondition ? { label: "Condição Principal", value: data.mainCondition, variant: "highlight" as const, priority: 1 } : null,
-    data.cid ? { label: "CID", value: data.cid, priority: 2 } : null,
+    data.mainCondition ? { label: "Demanda Principal", value: data.mainCondition, variant: "highlight" as const, priority: 1 } : null,
+    data.cid ? { label: "Base Legal", value: data.cid, priority: 2 } : null,
     data.confidence ? { label: "Confiança", value: data.confidence, priority: 3 } : null,
     data.severity ? { label: "Severidade", value: data.severity, priority: 4 } : null,
     data.evolution ? { label: "Evolução", value: data.evolution, priority: 5 } : null,
@@ -42,14 +42,14 @@ export function MainDiagnosisCard({
     displayFields.find(
       (f) =>
         f.label && typeof f.label === "string" &&
-        (f.label.toLowerCase().includes("condição") || f.label.toLowerCase().includes("condition"))
+        (f.label.toLowerCase().includes("demanda") || f.label.toLowerCase().includes("condição") || f.label.toLowerCase().includes("condition"))
     )?.value ||
     data.mainCondition ||
     "N/A";
 
   const cid =
     displayFields.find(
-      (f) => f.label && typeof f.label === "string" && f.label.toLowerCase().includes("cid")
+      (f) => f.label && typeof f.label === "string" && (f.label.toLowerCase().includes("cid") || f.label.toLowerCase().includes("base legal"))
     )?.value || data.cid;
 
   const justification = data.content || data.justification || "";
@@ -58,9 +58,11 @@ export function MainDiagnosisCard({
   const extraFields = displayFields.filter(
     (f) =>
       f.label && typeof f.label === "string" &&
+      !f.label.toLowerCase().includes("demanda") &&
       !f.label.toLowerCase().includes("condição") &&
       !f.label.toLowerCase().includes("condition") &&
-      !f.label.toLowerCase().includes("cid")
+      !f.label.toLowerCase().includes("cid") &&
+      !f.label.toLowerCase().includes("base legal")
   );
 
   return (
@@ -85,7 +87,7 @@ export function MainDiagnosisCard({
               <span
                 className={`shrink-0 rounded-full border ${styles.border} ${styles.bg} px-2.5 py-0.5 text-xs font-semibold ${styles.text}`}
               >
-                CID: {cid}
+                {cid}
               </span>
             )}
           </div>

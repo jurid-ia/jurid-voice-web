@@ -30,7 +30,7 @@ export function RiskFactorsCard({
         </div>
         <div className="min-w-0 flex-1">
           <h3 className="font-semibold text-gray-900 break-words">{title}</h3>
-          <p className="text-xs text-gray-400">Agravantes identificados</p>
+          <p className="text-xs text-gray-400">Itens identificados</p>
         </div>
       </div>
       <div className="flex flex-wrap gap-2 min-w-0">
@@ -45,7 +45,7 @@ export function RiskFactorsCard({
           ))
         ) : (
           <div className="w-full text-center py-4 text-sm text-gray-500">
-            Nenhum fator de risco identificado
+            Nenhum item identificado
           </div>
         )}
       </div>

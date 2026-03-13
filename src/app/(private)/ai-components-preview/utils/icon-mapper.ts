@@ -2,35 +2,33 @@ import {
   Activity,
   AlertCircle,
   AlertTriangle,
-  Beaker,
   CalendarClock,
   CheckCircle,
   CheckCircle2,
   ChevronRight,
-  Cigarette,
   ClipboardCheck,
   Clock,
   Download,
-  Dna,
   FileOutput,
+  FileSearch,
   FileSignature,
   FileText,
+  Gavel,
   GitBranch,
   History,
   Info,
-  Pill,
-  Stethoscope,
+  Scale,
   User,
   UserPlus,
   Users,
-  Wine,
   LucideIcon,
 } from "lucide-react";
 import { Variant } from "../types/component-types";
 
-// Mapeamento de strings de ícones para componentes do lucide-react
+// Mapeamento de strings de ícones para componentes do lucide-react (contexto jurídico)
 export const iconMap: Record<string, LucideIcon> = {
-  pill: Pill,
+  scale: Scale,
+  gavel: Gavel,
   "file-output": FileOutput,
   "user-plus": UserPlus,
   "file-signature": FileSignature,
@@ -41,9 +39,8 @@ export const iconMap: Record<string, LucideIcon> = {
   user: User,
   "alert-circle": AlertCircle,
   activity: Activity,
-  stethoscope: Stethoscope,
   "alert-triangle": AlertTriangle,
-  beaker: Beaker,
+  "file-search": FileSearch,
   info: Info,
   "git-branch": GitBranch,
   "check-circle": CheckCircle,
@@ -52,9 +49,11 @@ export const iconMap: Record<string, LucideIcon> = {
   "chevron-right": ChevronRight,
   history: History,
   users: Users,
-  dna: Dna,
-  cigarette: Cigarette,
-  wine: Wine,
+  // Aliases para compatibilidade (mapeiam ícones antigos para jurídicos)
+  pill: Scale,
+  stethoscope: Gavel,
+  beaker: FileSearch,
+  dna: Users,
 };
 
 // Função para obter ícone por string

@@ -84,7 +84,7 @@ export function AllergiesCard({
                 {severityStr && (severityStr.toLowerCase().includes("alta") || severityStr.toLowerCase().includes("high")) && (
                   <span
                     className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-red-500"
-                    title="Alta Severidade"
+                    title="Alerta crítico"
                   ></span>
                 )}
               </div>

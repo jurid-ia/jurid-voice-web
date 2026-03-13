@@ -25,10 +25,10 @@ export function SocialHistoryCard({
 
   // Converter formato legado para genérico
   const legacyFields = data.socialHistory ? [
-    data.socialHistory.smoking && { label: "Tabagismo", value: data.socialHistory.smoking, priority: 1 },
-    data.socialHistory.alcohol && { label: "Consumo de Álcool", value: data.socialHistory.alcohol, priority: 2 },
-    data.socialHistory.activity && { label: "Atividade Física", value: data.socialHistory.activity, priority: 3 },
-    data.socialHistory.diet && { label: "Dieta", value: data.socialHistory.diet, priority: 4 },
+    data.socialHistory.smoking && { label: "Hábitos", value: data.socialHistory.smoking, priority: 1 },
+    data.socialHistory.alcohol && { label: "Consumo", value: data.socialHistory.alcohol, priority: 2 },
+    data.socialHistory.activity && { label: "Atividade", value: data.socialHistory.activity, priority: 3 },
+    data.socialHistory.diet && { label: "Perfil", value: data.socialHistory.diet, priority: 4 },
   ].filter(Boolean) as typeof fields : [];
 
   const displayFields = isGenericFormat ? fields : legacyFields;

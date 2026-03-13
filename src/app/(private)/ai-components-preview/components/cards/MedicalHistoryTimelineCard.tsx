@@ -26,7 +26,7 @@ export function MedicalHistoryTimelineCard({
           <span className="leading-relaxed">{title}</span>
         </h3>
         <button className="text-sm font-medium text-stone-900 hover:text-stone-950 hover:underline shrink-0 whitespace-nowrap">
-          Ver histórico completo
+          Ver histórico do caso
         </button>
       </div>
 
@@ -80,7 +80,7 @@ export function MedicalHistoryTimelineCard({
           ))
         ) : (
           <div className="text-center py-8 text-sm text-gray-500">
-            Nenhum histórico disponível
+            Nenhum registro no histórico
           </div>
         )}
       </div>
