@@ -1,368 +1,395 @@
 "use client";
+
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Privacy() {
   return (
-    <div className="mx-auto flex h-full w-full max-w-[1280px] flex-col gap-2 p-2 pb-8 text-sm text-black">
-      <div className="bg-bg-1 relative flex w-full items-center justify-center">
-        <ChevronLeft
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* Header */}
+      <div className="relative flex w-full items-center justify-center bg-[#AB8E63] py-6 shadow-md">
+        <button
           onClick={() => window.history.back()}
-          className="absolute top-1/2 left-2 -translate-y-1/2 cursor-pointer text-white"
-        />
+          className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/20 p-2 transition-all hover:bg-white/30"
+          aria-label="Voltar"
+        >
+          <ChevronLeft className="h-6 w-6 text-white" />
+        </button>
         <Image
           src="/logos/logo-dark.png"
-          alt=""
+          alt="Jurid Voice Logo"
           width={1000}
           height={500}
-          className="h-max w-80 object-contain"
+          className="h-auto w-64 object-contain md:w-80"
+          priority
         />
       </div>
-      <span className="mx-auto w-max text-lg font-bold">
-        POLÍTICA DE PRIVACIDADE - {process.env.PROJECT_NAME || "JURIDIA VOICE"}
-      </span>
-      <span>
-        Esta Política de Privacidade descreve como a Executivo{"'"}s Digital (
-        {"'"}
-        Nós{"'"},{"'"}Nosso{"'"}, {"'"}Nossa{"'"}), desenvolvedora do aplicativo{" "}
-        {"'"}
-        {process.env.PROJECT_NAME || "JuridIA Voice"}
-        {"'"}({"'"}Aplicativo{"'"}), coleta, utiliza, armazena, protege e, em
-        raras ocasiões, compartilha suas informações pessoais, bem como a forma
-        como você, Usuário ({"'"}Você{"'"}, {"'"}Seu{"'"}, {"'"}Sua
-        {"'"}), pode exercer seus direitos como titular de dados sob a Lei Geral
-        de Proteção de Dados Pessoais (Lei nº 13.709/2018 – LGPD) e outras
-        legislações aplicáveis.
-      </span>
-      <span>
-        A presente Política deve ser lida em conjunto com os Termos de Uso do
-        {process.env.PROJECT_NAME || "JuridIA Voice"}. Ao utilizar o Aplicativo,
-        você concorda com as práticas descritas nesta Política de Privacidade.
-      </span>
-      <span className="font-semibold">
-        1. NOSSO COMPROMISSO COM SUA PRIVACIDADE E A LGPD
-      </span>
-      <span>
-        A Executivo{"'"}s Digital está profundamente comprometida com a proteção
-        da sua privacidade e de seus dados pessoais. Desenvolvemos o JuridIA
-        Voice com a privacidade em mente (Privacy by Design), implementando
-        medidas técnicas e organizacionais rigorosas para garantir a segurança e
-        a conformidade com a LGPD e o Código de Ética Médica.
-      </span>
-      <span className="font-semibold">
-        2. QUAIS DADOS COLETAMOS E PARA QUAIS FINALIDADES?
-      </span>
-      <span>
-        A coleta de dados pelo {process.env.PROJECT_NAME || "JuridIA Voice"} se
-        divide em duas categorias principais: Dados de Cadastro e Uso da
-        Plataforma (tratados por nós como Controlador) e Conteúdo Gerado pelo
-        Usuário (no qual atuamos como Operador para o Usuário, que é o
-        Controlador).
-      </span>
-      <span className="font-semibold">
-        2.1. Dados de Cadastro e Uso da Plataforma (Dados Pessoais Comuns)
-      </span>
-      <span>
-        Estes são os dados que você nos fornece diretamente para criar e
-        gerenciar sua conta, bem como informações sobre como você interage com o
-        Aplicativo.
-      </span>
-      <span className="font-semibold">Identificação e Contato:</span>
-      <span>Dados: Nome completo, e-mail, telefone (opcional).</span>
-      <span>
-        Finalidade: Para criar e gerenciar sua conta de usuário, autenticar seu
-        acesso, enviar comunicações importantes relacionadas ao serviço, suporte
-        técnico, cobrança de planos e cumprimento de obrigações legais e
-        regulatórias.
-      </span>
-      <span>
-        Base Legal LGPD: Execução de contrato ou de procedimentos preliminares
-        relacionados a contrato (Art. 7º, V) e Cumprimento de obrigação legal ou
-        regulatória (Art. 7º, II).
-      </span>
-      <span className="font-semibold">Dados de Pagamento:</span>
-      <span>
-        Dados: Informações necessárias para processamento de pagamentos (ex:
-        dados de cartão de crédito, informações de conta bancária, a depender do
-        método escolhido). Importante: Estes dados são geralmente processados
-        por gateways de pagamento terceirizados e não são armazenados
-        integralmente por nós.
-      </span>
-      <span>
-        Finalidade: Para processar a assinatura dos planos de serviço e
-        gerenciar as transações financeiras.
-      </span>
-      <span>Base Legal LGPD: Execução de contrato (Art. 7º, V).</span>
-      <span className="font-semibold">Dados de Uso e Interação:</span>
-      <span>
-        Dados: Informações sobre como você utiliza o aplicativo (ex: recursos
-        acessados, tempo de uso, informações de dispositivos, sistema
-        operacional, versão do app).
-      </span>
-      <span>
-        Finalidade: Para melhorar a funcionalidade do Aplicativo, identificar e
-        corrigir erros, entender padrões de uso para aprimorar a experiência do
-        Usuário, e garantir a segurança e o desempenho do serviço.
-      </span>
-      <span>
-        Base Legal LGPD: Legítimo interesse (Art. 7º, IX) e Execução de contrato
-        (Art. 7º, V).
-      </span>
-      <span className="font-semibold">
-        2.2. Conteúdo Gerado pelo Usuário (Dados Pessoais Sensíveis – Saúde)
-      </span>
-      <span>
-        Esta categoria refere-se aos áudios de reuniões, transcrições e
-        anotações gravadas e geradas por você dentro do Aplicativo.
-      </span>
-      <span className="font-semibold">Dados:</span>
-      <span className="pl-4">
-        Áudios de Reuniões: Gravações de voz de interações profissionais
-        (advogado-cliente, reuniões etc.).
-      </span>
-      <span className="pl-4">
-        Transcrições de Áudio: Texto gerado a partir do processamento dos
-        áudios.
-      </span>
-      <span className="pl-4">
-        Anotações e Lembretes: Textos inseridos pelo Usuário para fins de
-        organização, estudo ou lembretes.
-      </span>
-      <span className="pl-4">
-        Identificação de Interlocutores: Nomes ou perfis associados às vozes
-        identificadas pela IA (limitado a 2 pessoas para a IA proprietária,
-        conforme o plano contratado).
-      </span>
-      <span className="font-semibold">Finalidade:</span>
-      <span>
-        A única finalidade para a qual o{" "}
-        {process.env.PROJECT_NAME || "JuridIA Voice"} processa este tipo de dado
-        é para prover a funcionalidade de gravação, transcrição e organização
-        conforme as instruções e comandos do Usuário.
-      </span>
-      <span className="font-semibold">Base Legal LGPD:</span>
-      <span className="font-semibold">Para o Usuário (Controlador):</span>
-      <span>
-        O Usuário, na qualidade de profissional de saúde ou responsável pela
-        interação, é o Controlador dos dados contidos nos áudios, transcrições e
-        anotações. Ele é EXCLUSIVAMENTE responsável por obter o CONSENTIMENTO
-        explícito e informado dos titulares dos dados (clientes e/ou demais
-        interlocutores) para a gravação, armazenamento e tratamento desses dados
-        de saúde, conforme o Art. 11, I da LGPD. Além disso, outras bases legais
-        para tratamento de dados sensíveis, como o Art. 11, II, alínea {"'"}f
-        {"'"}
-        (proteção da vida ou incolumidade física do titular ou de terceiro), ou
-        {"'"}g{"'"} (garantia da prevenção à fraude e à segurança do titular),
-        sob as condições ali estabelecidas, podem ser aplicáveis à sua prática
-        profissional.
-      </span>
-      <span className="font-semibold">
-        Para a Executivo{"'"}s Digital (Operador):
-      </span>
-      <span>
-        Atuamos estritamente como Operador destes dados. Nosso tratamento se
-        baseia na EXECUÇÃO DO CONTRATO DE PRESTAÇÃO DE SERVIÇOS com o Usuário.
-        Agimos sob as instruções do Usuário, que delegou a operacionalização do
-        tratamento de dados de saúde à nossa plataforma. A Executivo{"'"}s
-        Digital não toma decisões sobre o tratamento desses dados sensíveis nem
-        os utiliza para finalidades distintas das estabelecidas por seus
-        Usuários.
-      </span>
-      <span className="font-semibold">Importante:</span>
-      <span>
-        A Executivo{"'"}s Digital NÃO ARMAZENA DE FORMA PERMANENTE os áudios e
-        suas transcrições em seus servidores. O processamento para gerar a
-        transcrição ocorre de forma segura, efêmera e criptografada, diretamente
-        vinculada à sessão do usuário e às funcionalidades solicitadas, sem
-        retenção permanente pela Executivo{"'"}s Digital.
-      </span>
-      <span className="font-semibold">2.3. Dados de Localização:</span>
-      <span>
-        Dados: Nosso aplicativo NÃO SOLICITA nem coleta dados de localização do
-        seu dispositivo.
-      </span>
-      <span className="font-semibold">
-        3. COMO SEUS DADOS SÃO ARMAZENADOS E PROTEGIDOS?
-      </span>
-      <span className="font-semibold">
-        3.1. Dados de Cadastro e Uso da Plataforma:
-      </span>
-      <span>
-        São armazenados em servidores seguros, com medidas de segurança
-        compatíveis com o estado da arte e com as melhores práticas de mercado,
-        incluindo criptografia de dados em trânsito e em repouso, firewalls,
-        controle de acesso restrito e monitoramento contínuo.
-      </span>
-      <span className="font-semibold">
-        3.2. Conteúdo Gerado pelo Usuário (Áudios, Transcrições, Anotações):
-      </span>
-      <span className="font-semibold">
-        Armazenamento Local (Dispositivo do Usuário):
-      </span>
-      <span>
-        Preferencialmente, o conteúdo é armazenado no dispositivo do Usuário. O
-        Usuário é responsável por garantir a segurança física e lógica de seu
-        próprio dispositivo.
-      </span>
-      <span className="font-semibold">
-        Sincronização em Nuvem (Serviços de Terceiros):
-      </span>
-      <span>
-        Se o Usuário optar por funcionalidades de sincronização ou backup em
-        nuvem (ex: Google Drive, iCloud, OneDrive), o armazenamento ocorrerá nos
-        serviços desses terceiros, sob a responsabilidade do Usuário quanto à
-        configuração e segurança de sua conta junto a esses serviços. A
-        Executivo{"'"}s Digital não acessa ou gerencia diretamente essas contas
-        de terceiros.
-      </span>
-      <span className="font-semibold">Processamento Efêmero:</span>
-      <span>
-        Durante o processo de transcrição, os áudios podem ser temporariamente
-        processados em servidores seguros, com criptografia ponta a ponta e sem
-        retenção após a conclusão do serviço de transcrição, garantindo que não
-        ocorra armazenamento permanente desses dados pela Executivo{"'"}s
-        Digital.
-      </span>
-      <span className="font-semibold">3.3. Segurança Geral:</span>
-      <span>
-        Adotamos padrões rigorosos de segurança e criptografia para proteger
-        seus dados contra acesso não autorizado, alteração, divulgação ou
-        destruição. Nosso ambiente de desenvolvimento e produção segue as
-        melhores práticas de segurança da informação.
-      </span>
-      <span className="font-semibold">
-        4. COMPARTILHAMENTO DE DADOS COM TERCEIROS
-      </span>
-      <span className="font-semibold">4.1. Provedores de Serviços:</span>
-      <span>
-        Podemos compartilhar seus Dados de Cadastro e Uso da Plataforma com
-        parceiros e prestadores de serviços que nos auxiliam na operação do
-        Aplicativo, tais como processadores de pagamento, provedores de análise
-        de dados, serviços de nuvem e ferramentas de comunicação. Esses
-        terceiros estão contratualmente obrigados a proteger seus dados e
-        utilizá-los apenas para os fins específicos para os quais foram
-        contratados.
-      </span>
-      <span className="font-semibold">4.2. Conteúdo Gerado pelo Usuário:</span>
-      <span>
-        O Conteúdo Gerado pelo Usuário (áudios, transcrições, anotações) NÃO É
-        COMPARTILHADO com terceiros pela Executivo{"'"}s Digital para qualquer
-        finalidade que não seja a prestação do serviço diretamente solicitado
-        pelo Usuário (ex: processamento de transcrição), e mesmo assim, de forma
-        temporária e sem retenção.
-      </span>
-      <span className="font-semibold">4.3. Requisitos Legais:</span>
-      <span>
-        Podemos divulgar suas informações pessoais se exigido por lei, ordem
-        judicial, processo legal ou solicitação de autoridades governamentais.
-      </span>
-      <span className="font-semibold">
-        5. TRANSFERÊNCIA INTERNACIONAL DE DADOS
-      </span>
-      <span>
-        Caso haja necessidade de transferência de dados para fora do Brasil,
-        como no caso de utilização de serviços de nuvem de provedores globais,
-        nos certificaremos de que tal transferência observe as condições
-        estabelecidas na LGPD, garantindo que o país ou a organização
-        internacional em questão proporcionem um grau de proteção de dados
-        pessoais adequado ou mediante a adoção de cláusulas contratuais
-        específicas, normas corporativas globais ou selos, certificados e
-        códigos de conduta.
-      </span>
-      <span className="font-semibold">
-        6. SEUS DIREITOS COMO TITULAR DE DADOS (LGPD)
-      </span>
-      <span>
-        A LGPD garante a você vários direitos referentes aos seus dados
-        pessoais. Você pode exercer esses direitos a qualquer momento, mediante
-        requisição:
-      </span>
-      <span className="pl-4">
-        Confirmação: Confirmar a existência de tratamento de seus dados.
-      </span>
-      <span className="pl-4">
-        Acesso: Acessar seus dados pessoais tratados por nós.
-      </span>
-      <span className="pl-4">
-        Retificação: Corrigir dados incompletos, inexatos ou desatualizados.
-      </span>
-      <span className="pl-4">
-        Anonimização, Bloqueio ou Eliminação: Solicitar a anonimização, bloqueio
-        ou eliminação de dados desnecessários, excessivos ou tratados em
-        desconformidade com a LGPD.
-      </span>
-      <span className="pl-4">
-        Portabilidade: Solicitar a portabilidade dos seus dados para outro
-        fornecedor de serviço ou produto.
-      </span>
-      <span className="pl-4">
-        Eliminação: Solicitar a eliminação dos dados pessoais tratados com o seu
-        consentimento (exceto nos casos previstos na LGPD).
-      </span>
-      <span className="pl-4">
-        Informação: Obter informações sobre as entidades públicas e privadas com
-        as quais compartilhamos seus dados.
-      </span>
-      <span className="pl-4">
-        Informação sobre o não consentimento: Ser informado sobre a
-        possibilidade de não fornecer consentimento e sobre as consequências da
-        negativa.
-      </span>
-      <span className="pl-4">
-        Revogação do consentimento: Revogar seu consentimento a qualquer
-        momento, sem que isso afete a legalidade do tratamento realizado antes
-        da revogação.
-      </span>
-      <span className="pl-4">
-        Oposição: Opor-se a um tratamento de dados que viole a LGPD.
-      </span>
-      <span>
-        Para exercer qualquer um desses direitos, entre em contato conosco
-        através do canal indicado no item 9 desta Política. Responderemos à sua
-        solicitação em um prazo razoável e de acordo com a legislação aplicável.
-        Poderemos solicitar informações adicionais para confirmar sua
-        identidade.
-      </span>
-      <span className="font-semibold">7. RETENÇÃO DE DADOS</span>
-      <span>
-        Retemos seus Dados de Cadastro e Uso da Plataforma pelo tempo necessário
-        para cumprir as finalidades para as quais foram coletados, para
-        prestação dos serviços contratados, para cumprir obrigações legais,
-        resolver disputas e fazer cumprir nossos acordos.
-      </span>
-      <span>
-        Como mencionado, o Conteúdo Gerado pelo Usuário (áudios e transcrições)
-        NÃO É RETIDO de forma permanente pela Executivo{"'"}s Digital em seus
-        servidores.
-      </span>
-      <span className="font-semibold">
-        8. ALTERAÇÕES A ESTA POLÍTICA DE PRIVACIDADE
-      </span>
-      <span>
-        A Executivo{"'"}s Digital reserva-se o direito de modificar esta
-        Política de Privacidade a qualquer momento, para adaptá-la a novas
-        funcionalidades do Aplicativo, mudanças na legislação ou melhores
-        práticas de mercado. As alterações serão publicadas no Aplicativo e/ou
-        em nosso site, com indicação da data da última atualização. O uso
-        contínuo do Aplicativo após a publicação das alterações constitui sua
-        aceitação dos termos revisados.
-      </span>
-      <span className="font-semibold">
-        9. CONTATO DO ENCARREGADO DE DADOS (DPO)
-      </span>
-      <span>
-        Se você tiver dúvidas, comentários ou preocupações sobre esta Política
-        de Privacidade ou sobre o tratamento dos seus dados pessoais, ou se
-        desejar exercer seus direitos como titular de dados, por favor, entre em
-        contato com nosso Encarregado de Dados (DPO):
-      </span>
-      <span className="pl-4">
-        Encarregado de Dados (DPO): Gabriel Antônio de Moura Fernandes
-      </span>
-      <span className="pl-4">E-mail: diretoria@executivosdigital.com.br</span>
-      <span className="font-semibold">
-        Data da Última Atualização: 19/10/2025
-      </span>
+
+      {/* Content Container */}
+      <div className="mx-auto max-w-6xl px-4 py-8 md:px-6 lg:px-12 xl:px-16">
+        {/* Title */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 text-center"
+        >
+          <h1 className="mb-2 text-3xl font-bold text-gray-900 md:text-4xl">
+            Política de Privacidade
+          </h1>
+          <p className="text-lg text-gray-600">Jurid Voice</p>
+          <p className="mt-2 text-sm text-gray-500">
+            Última atualização: 20 de abril de 2026
+          </p>
+        </motion.div>
+
+        {/* Privacy Content */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="prose prose-lg max-w-none custom-scrollbar"
+        >
+          <div className="space-y-8 rounded-lg bg-white p-6 shadow-sm md:p-8 lg:p-10">
+            {/* Introdução */}
+            <section className="space-y-4">
+              <p className="leading-relaxed text-gray-700">
+                Nós, da <strong>Executivos Digital Software House</strong>,
+                levamos a sua privacidade muito a sério. Esta Política de
+                Privacidade descreve como o <strong>Jurid Voice</strong>{" "}
+                coleta, utiliza, protege e gerencia as informações do usuário,
+                com o compromisso de garantir que todos os dados permaneçam sob
+                seu exclusivo controle e acesso.
+              </p>
+            </section>
+
+            {/* Section 1 */}
+            <section className="space-y-4 border-t border-gray-200 pt-8">
+              <h2 className="text-2xl font-bold text-[#AB8E63] md:text-3xl">
+                1. Sobre o Jurid Voice
+              </h2>
+              <p className="leading-relaxed text-gray-700">
+                O <strong>Jurid Voice</strong> é uma ferramenta desenvolvida
+                para permitir que você grave e, posteriormente, acesse as suas
+                próprias interações e atividades. O objetivo é fornecer um
+                recurso de anotações e revisão pessoal, sem qualquer intenção
+                de monitoramento externo ou compartilhamento de dados com
+                terceiros.
+              </p>
+            </section>
+
+            {/* Section 2 */}
+            <section className="space-y-4 border-t border-gray-200 pt-8">
+              <h2 className="text-2xl font-bold text-[#AB8E63] md:text-3xl">
+                2. Coleta de Informações
+              </h2>
+              <p className="leading-relaxed text-gray-700">
+                O <strong>Jurid Voice</strong> opera com um princípio
+                fundamental de privacidade do usuário.
+              </p>
+
+              <div className="space-y-3">
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Informações de Uso Pessoal e Local
+                </h3>
+                <p className="leading-relaxed text-gray-700">
+                  A principal funcionalidade do <strong>Jurid Voice</strong>{" "}
+                  envolve a gravação de áudio e/ou tela do seu próprio
+                  ambiente de uso. Esta coleta é realizada somente com o seu
+                  consentimento explícito e ativo a cada sessão de gravação.
+                  Todas as informações capturadas (áudio, vídeo, texto ou
+                  metadados de sessão) são processadas e armazenadas
+                  localmente no seu dispositivo, em arquitetura que permite
+                  acesso apenas ao próprio usuário.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Dados de Uso Anônimos e Agregados (Opcional)
+                </h3>
+                <p className="leading-relaxed text-gray-700">
+                  Para fins de aprimoramento do <strong>Jurid Voice</strong> e
+                  detecção de bugs, podemos coletar dados de uso anônimos e
+                  agregados que não identificam você pessoalmente. Estes dados
+                  podem incluir informações sobre o desempenho da aplicação,
+                  funcionalidades mais utilizadas e erros técnicos (ex.:
+                  número de vezes que o <strong>Jurid Voice</strong> é aberto,
+                  duração média de uso, cliques em determinados botões). Esta
+                  coleta é realizada de forma a impossibilitar a sua
+                  identificação e tem como único propósito a melhoria
+                  contínua do serviço.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Permissões
+                </h3>
+                <p className="leading-relaxed text-gray-700">
+                  O <strong>Jurid Voice</strong> solicitará as permissões
+                  mínimas necessárias para operar suas funcionalidades, tais
+                  como:
+                </p>
+                <ul className="ml-6 list-disc space-y-2 text-gray-700">
+                  <li>
+                    Acesso a dispositivos de áudio e/ou vídeo (microfone,
+                    câmera) para gravação.
+                  </li>
+                  <li>
+                    Acesso ao conteúdo da tela ou abas ativas para gravação de
+                    vídeo.
+                  </li>
+                  <li>
+                    Acesso ao armazenamento local do navegador/dispositivo para
+                    armazenar suas gravações e configurações.
+                  </li>
+                </ul>
+                <p className="leading-relaxed text-gray-700">
+                  Estas permissões são solicitadas no momento da instalação e
+                  utilizadas estritamente para os propósitos descritos.
+                </p>
+              </div>
+            </section>
+
+            {/* Section 3 */}
+            <section className="space-y-4 border-t border-gray-200 pt-8">
+              <h2 className="text-2xl font-bold text-[#AB8E63] md:text-3xl">
+                3. Finalidade do Uso das Informações
+              </h2>
+              <p className="leading-relaxed text-gray-700">
+                As informações coletadas pelo <strong>Jurid Voice</strong> são
+                utilizadas exclusivamente para os seguintes propósitos:
+              </p>
+              <ul className="ml-6 list-disc space-y-2 text-gray-700">
+                <li>
+                  <strong>Gravação e Armazenamento para Acesso Pessoal:</strong>{" "}
+                  permitir que você grave suas interações e as armazene de
+                  forma segura para acesso e revisão futura.
+                </li>
+                <li>
+                  <strong>Aprimoramento da Experiência do Usuário:</strong>{" "}
+                  utilizar dados anônimos e agregados para compreender como o{" "}
+                  <strong>Jurid Voice</strong> é utilizado e como podemos
+                  torná-lo mais eficiente, intuitivo e livre de erros.
+                </li>
+                <li>
+                  <strong>Manutenção e Suporte Técnico:</strong> ajudar a
+                  diagnosticar e resolver problemas técnicos.
+                </li>
+              </ul>
+            </section>
+
+            {/* Section 4 */}
+            <section className="space-y-4 border-t border-gray-200 pt-8">
+              <h2 className="text-2xl font-bold text-[#AB8E63] md:text-3xl">
+                4. Compartilhamento e Acesso de Dados
+              </h2>
+              <p className="leading-relaxed text-gray-700">
+                Nós não vendemos, alugamos, trocamos ou compartilhamos suas
+                gravações ou quaisquer dados de identificação pessoal com
+                terceiros.
+              </p>
+
+              <div className="space-y-3">
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Dados Criptografados e Acesso Exclusivo
+                </h3>
+                <p className="leading-relaxed text-gray-700">
+                  Todas as gravações e as informações geradas pelo{" "}
+                  <strong>Jurid Voice</strong> são criptografadas e armazenadas
+                  de forma que apenas você — o usuário — tenha acesso a elas em
+                  seu próprio dispositivo. Não há servidores externos ou bancos
+                  de dados sob nosso controle que armazenem suas gravações
+                  pessoais. A criptografia é implementada para garantir que,
+                  mesmo em caso de acesso físico ao seu dispositivo, as
+                  informações não sejam facilmente decifráveis sem a sua
+                  autorização.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Situações Excepcionais (Não Aplicável a Gravações Pessoais)
+                </h3>
+                <p className="leading-relaxed text-gray-700">
+                  O único cenário em que informações não pessoais e não
+                  identificáveis (como dados de uso anônimos e agregados)
+                  poderiam ser divulgadas seria:
+                </p>
+                <ul className="ml-6 list-disc space-y-2 text-gray-700">
+                  <li>
+                    Se exigido por lei ou ordem judicial válida (sempre
+                    buscando proteger a privacidade do usuário ao máximo e
+                    informá-lo, se legalmente permitido).
+                  </li>
+                  <li>
+                    Para proteção de nossos direitos legais e segurança do{" "}
+                    <strong>Jurid Voice</strong>, quando não envolver dados
+                    pessoais do usuário.
+                  </li>
+                  <li>
+                    Em caso de fusão, aquisição ou venda de ativos, as
+                    informações anônimas e agregadas poderiam ser transferidas,
+                    mantendo-se o compromisso de não identificação pessoal.
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            {/* Section 5 */}
+            <section className="space-y-4 border-t border-gray-200 pt-8">
+              <h2 className="text-2xl font-bold text-[#AB8E63] md:text-3xl">
+                5. Segurança e Armazenamento
+              </h2>
+              <p className="leading-relaxed text-gray-700">
+                A segurança dos seus dados é primordial.
+              </p>
+
+              <div className="space-y-3">
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Armazenamento Local e Criptografia
+                </h3>
+                <p className="leading-relaxed text-gray-700">
+                  As suas gravações são armazenadas no seu dispositivo,
+                  utilizando as proteções de segurança inerentes ao ambiente
+                  do navegador/sistema operacional. Adicionalmente,
+                  implementamos criptografia robusta nos dados de gravação
+                  antes de serem armazenados, garantindo que seu conteúdo seja
+                  protegido mesmo que o arquivo local seja acessado
+                  indevidamente.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Nenhum Servidor Externo para suas Gravações
+                </h3>
+                <p className="leading-relaxed text-gray-700">
+                  É fundamental reforçar que o <strong>Jurid Voice</strong> não
+                  envia suas gravações ou qualquer dado pessoal de uso para
+                  servidores externos controlados por nós ou por terceiros.
+                  Todo o processamento e armazenamento das suas gravações
+                  ocorre diretamente no seu dispositivo.
+                </p>
+              </div>
+            </section>
+
+            {/* Section 6 */}
+            <section className="space-y-4 border-t border-gray-200 pt-8">
+              <h2 className="text-2xl font-bold text-[#AB8E63] md:text-3xl">
+                6. Seus Direitos e Controle
+              </h2>
+              <p className="leading-relaxed text-gray-700">
+                Você possui total controle sobre suas informações e o{" "}
+                <strong>Jurid Voice</strong>.
+              </p>
+              <ul className="ml-6 list-disc space-y-2 text-gray-700">
+                <li>
+                  <strong>Acesso e Gerenciamento:</strong> você pode acessar,
+                  reproduzir e gerenciar suas gravações diretamente na
+                  interface do <strong>Jurid Voice</strong>.
+                </li>
+                <li>
+                  <strong>Exclusão de Dados:</strong> você pode excluir suas
+                  gravações a qualquer momento através das funcionalidades do{" "}
+                  <strong>Jurid Voice</strong>. A desinstalação ou remoção da
+                  aplicação removerá automaticamente todas as gravações e dados
+                  associados armazenados localmente.
+                </li>
+                <li>
+                  <strong>Retirada de Consentimento:</strong> você pode revogar
+                  as permissões concedidas ao <strong>Jurid Voice</strong> a
+                  qualquer momento através das configurações do seu
+                  navegador/sistema. A desinstalação interromperá imediatamente
+                  qualquer coleta de dados e removerá os dados locais
+                  associados a ela.
+                </li>
+              </ul>
+            </section>
+
+            {/* Section 7 */}
+            <section className="space-y-4 border-t border-gray-200 pt-8">
+              <h2 className="text-2xl font-bold text-[#AB8E63] md:text-3xl">
+                7. Alterações a Esta Política de Privacidade
+              </h2>
+              <p className="leading-relaxed text-gray-700">
+                Podemos atualizar esta Política de Privacidade periodicamente
+                para refletir mudanças em nossas práticas ou regulamentações
+                legais. Notificaremos sobre quaisquer alterações significativas
+                publicando a nova política no site oficial do{" "}
+                <strong>Jurid Voice</strong> (
+                <a
+                  href="https://voice.juridia.com.br"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[#AB8E63] underline hover:text-[#8f7750]"
+                >
+                  https://voice.juridia.com.br
+                </a>
+                ) e atualizando a data da &quot;Última atualização&quot;.
+                Recomendamos que você revise esta política regularmente.
+              </p>
+              <p className="leading-relaxed text-gray-700">
+                Esta Política deve ser lida em conjunto com os{" "}
+                <Link
+                  href="/terms"
+                  className="font-semibold text-[#AB8E63] underline hover:text-[#8f7750]"
+                >
+                  Termos de Uso
+                </Link>{" "}
+                do <strong>Jurid Voice</strong>.
+              </p>
+            </section>
+
+            {/* Section 8 */}
+            <section className="space-y-4 border-t border-gray-200 pt-8">
+              <h2 className="text-2xl font-bold text-[#AB8E63] md:text-3xl">
+                8. Contato
+              </h2>
+              <p className="leading-relaxed text-gray-700">
+                Se você tiver dúvidas sobre esta Política de Privacidade ou
+                sobre as práticas do <strong>Jurid Voice</strong>, entre em
+                contato conosco pelos seguintes canais:
+              </p>
+              <ul className="ml-6 list-disc space-y-2 text-gray-700">
+                <li>
+                  <strong>E-mail:</strong>{" "}
+                  <a
+                    href="mailto:suporte@executivosdigital.com.br"
+                    className="font-semibold text-[#AB8E63] underline hover:text-[#8f7750]"
+                  >
+                    suporte@executivosdigital.com.br
+                  </a>
+                </li>
+                <li>
+                  <strong>Website:</strong>{" "}
+                  <a
+                    href="https://voice.juridia.com.br"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-[#AB8E63] underline hover:text-[#8f7750]"
+                  >
+                    https://voice.juridia.com.br
+                  </a>
+                </li>
+              </ul>
+            </section>
+          </div>
+        </motion.div>
+
+        {/* Footer Note */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-8 text-center text-sm text-gray-500"
+        >
+          <p>Última atualização: 20 de abril de 2026</p>
+        </motion.div>
+      </div>
     </div>
   );
 }
