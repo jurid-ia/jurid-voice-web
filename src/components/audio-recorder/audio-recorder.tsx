@@ -15,6 +15,7 @@ import {
     RefreshCw,
     Send,
     TriangleAlert,
+    Upload,
     UserPlus,
     Video,
     Volume2,
@@ -31,6 +32,7 @@ import {
     DropdownMenuTrigger,
 } from "../ui/blocks/dropdown-menu";
 import { CreateClientSheet } from "../ui/create-client-sheet";
+import { FileUploadSheet } from "./file-upload-sheet";
 import { useMediaRecorder } from "./use-media-recorder";
 import { useRecordingFlow } from "./use-recording-flow";
 import { useRecordingUpload } from "./use-recording-upload";
@@ -72,6 +74,7 @@ export function AudioRecorder({
   const { uploadMedia, formatDurationForAPI } = useRecordingUpload();
   const [isCreateClientSheetOpen, setIsCreateClientSheetOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isUploadSheetOpen, setIsUploadSheetOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [tempCreatedClient, setTempCreatedClient] =
     useState<ClientProps | null>(null);
@@ -516,6 +519,22 @@ export function AudioRecorder({
                 <p className="font-semibold text-gray-800">Pessoal</p>
                 <p className="text-xs text-gray-500">
                   Lembretes, estudos, etc.
+                </p>
+              </div>
+            </div>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onSelect={() => {
+              setIsDropdownOpen(false);
+              setIsUploadSheetOpen(true);
+            }}
+          >
+            <div className="flex items-center gap-2">
+              <Upload size={18} className="text-stone-900" />
+              <div>
+                <p className="font-semibold text-gray-800">Subir Arquivo</p>
+                <p className="text-xs text-gray-500">
+                  Áudio ou vídeo já gravado
                 </p>
               </div>
             </div>
@@ -1169,6 +1188,15 @@ export function AudioRecorder({
           }}
         />
       )}
+
+      <FileUploadSheet
+        isOpen={isUploadSheetOpen}
+        onClose={() => setIsUploadSheetOpen(false)}
+        initialClientId={initialClientId}
+        initialReminderId={initialReminderId}
+        forcePersonalType={forcePersonalType}
+        skipToClient={skipToClient}
+      />
     </>
   );
 }
