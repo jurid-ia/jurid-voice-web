@@ -1,6 +1,7 @@
 "use client";
 import { AuthGuard } from "@/components/auth-guard";
 import MobileAppBlocker from "@/components/mobile";
+import { CompleteRegistrationModal } from "@/components/profile/complete-registration-modal";
 import { Header } from "@/components/ui/header";
 import { Sidebar } from "@/components/ui/sidebar";
 import { GeneralContextProvider } from "@/context/GeneralContext";
@@ -53,6 +54,7 @@ export default function RootLayout({
               {children}
             </div>
         <MobileAppBlocker />
+        <CompleteRegistrationModal />
 
           </ChatPageProvider>
         </GeneralContextProvider>
@@ -93,6 +95,7 @@ export default function RootLayout({
             {children}
           </motion.div>
         </div>
+        <CompleteRegistrationModal />
         </ChatPageProvider>
       </GeneralContextProvider>
     </AuthGuard>

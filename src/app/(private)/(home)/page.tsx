@@ -7,7 +7,6 @@ import { startSession } from "@/services/analyticsService";
 import { Activity, Clock, Loader2, Mic, Users } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { DateRange } from "react-day-picker";
-import { CompleteRegistrationModal } from "./components/complete-registration-modal";
 import { ContentPanel } from "./components/content-panel";
 import { DateRangePicker } from "./components/date-range-picker";
 import { KPICard } from "./components/kpi-card";
@@ -261,7 +260,6 @@ export default function HomePage() {
         <ContentPanel className="min-h-[400px] lg:col-span-2" />
       </div>
 
-      <CompleteRegistrationModal />
       <TrialAppModal />
     </div>
   );
