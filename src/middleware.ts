@@ -1,6 +1,5 @@
 import { ACCESS_TOKEN_KEY } from "@/lib/auth-cookies";
 import { NextRequest, NextResponse } from "next/server";
-
 // Rotas de autenticação: usuários já logados não devem acessá-las
 // (se logado, é redirecionado para a home)
 const AUTH_ONLY_PATHS = ["/login", "/register", "/reset-password"];
