@@ -3,7 +3,7 @@ import { useGeneralContext } from "@/context/GeneralContext";
 import { useSession } from "@/context/auth";
 import { useSidebar } from "@/store";
 import { cn } from "@/utils/cn";
-import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download, Sparkles } from "lucide-react";
 import moment from "moment";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -470,6 +470,19 @@ export function Header() {
                 </div>
               </div>
               <div className="flex shrink-0 items-center gap-2 text-white/50 md:max-w-[320px]">
+                {selectedRecording?.audioUrl && (
+                  <a
+                    href={selectedRecording.audioUrl}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Baixar áudio"
+                    className="flex h-8 shrink-0 items-center gap-1.5 rounded-md border border-white/10 px-3 text-xs font-semibold text-white/80 transition hover:border-white/50 hover:bg-white/10 hover:text-white"
+                  >
+                    <Download className="h-3.5 w-3.5" />
+                    <span>Baixar</span>
+                  </a>
+                )}
                 <div className="flex min-w-0 items-center gap-1">
                   <Image
                     src="/icons/user.svg"
@@ -558,6 +571,19 @@ export function Header() {
                 </div>
               </div>
               <div className="flex shrink-0 items-center gap-2 text-white/50 md:max-w-[240px]">
+                {selectedRecording?.audioUrl && (
+                  <a
+                    href={selectedRecording.audioUrl}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Baixar áudio"
+                    className="flex h-8 shrink-0 items-center gap-1.5 rounded-md border border-white/10 px-3 text-xs font-semibold text-white/80 transition hover:border-white/50 hover:bg-white/10 hover:text-white"
+                  >
+                    <Download className="h-3.5 w-3.5" />
+                    <span>Baixar</span>
+                  </a>
+                )}
                 <div className="flex items-center gap-1">
                   <Image
                     src="/icons/calendar.svg"
@@ -663,6 +689,19 @@ export function Header() {
                 </div>
               </div>
               <div className="flex shrink-0 items-center gap-2 text-white/50 md:max-w-[240px]">
+                {selectedRecording?.audioUrl && (
+                  <a
+                    href={selectedRecording.audioUrl}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Baixar áudio"
+                    className="flex h-8 shrink-0 items-center gap-1.5 rounded-md border border-white/10 px-3 text-xs font-semibold text-white/80 transition hover:border-white/50 hover:bg-white/10 hover:text-white"
+                  >
+                    <Download className="h-3.5 w-3.5" />
+                    <span>Baixar</span>
+                  </a>
+                )}
                 <div className="flex items-center gap-1">
                   <Image
                     src="/icons/calendar.svg"
@@ -768,6 +807,19 @@ export function Header() {
                 </div>
               </div>
               <div className="flex shrink-0 items-center gap-2 text-white/50 md:max-w-[240px]">
+                {selectedRecording?.audioUrl && (
+                  <a
+                    href={selectedRecording.audioUrl}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Baixar áudio"
+                    className="flex h-8 shrink-0 items-center gap-1.5 rounded-md border border-white/10 px-3 text-xs font-semibold text-white/80 transition hover:border-white/50 hover:bg-white/10 hover:text-white"
+                  >
+                    <Download className="h-3.5 w-3.5" />
+                    <span>Baixar</span>
+                  </a>
+                )}
                 <div className="flex items-center gap-1">
                   <Image
                     src="/icons/calendar.svg"
