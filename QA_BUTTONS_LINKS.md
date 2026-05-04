@@ -2,7 +2,6 @@
 
 **Data da Análise:** 26 de Janeiro de 2026  
 **Projeto:** Health Voice Web
-
 ---
 
 ## Índice
