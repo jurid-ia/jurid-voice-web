@@ -21,7 +21,9 @@ export default function RootLayout({
 
   const isFullscreen =
     pathname === "/plans" ||
-    pathname.startsWith("/plans/");
+    pathname.startsWith("/plans/") ||
+    pathname === "/quiz" ||
+    pathname.startsWith("/quiz/");
 
   useEffect(() => {
     // Não inicializa Lenis nas páginas de chat ou checkout
